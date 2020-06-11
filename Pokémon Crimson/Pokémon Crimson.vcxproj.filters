@@ -2,8 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Model\Character.cpp" />
+    <ClCompile Include="src\View\View.cpp" />
+    <ClCompile Include="src\Controller\Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\Text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Model\Character.h" />
+    <ClInclude Include="src\View\View.h" />
+    <ClInclude Include="src\Controller\Controller.h" />
   </ItemGroup>
 </Project>
