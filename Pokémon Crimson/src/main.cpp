@@ -22,7 +22,7 @@ int main()
     }
 
     std::cout << "Coucou" << std::endl;
-    return 0;
+    return 1;
 }
 
 
