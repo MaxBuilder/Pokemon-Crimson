@@ -1,17 +1,17 @@
 #pragma once
-#include "View/View.h"
+#include "View/MainView.h"
 #include "Controller/Controller.h"
+#include "Model/MainModel.h"
 
 class Game {
 
 private:
-	// MainModel model;
-	// MainView view;
+	MainModel model;
+	MainView view;
 	// MainController controller;
 	bool run;
 
 	// Temporaire
-	View view;
 	Controller controller;
 
 public:
@@ -20,16 +20,14 @@ public:
 	~Game();
 	
 	// Lancement du jeu
-	void gLaunch(); 
+	void launch(); 
 
 	// Création / initialisation du jeu
-	void gCreate();
+	void create();
 	// Lance la boucle du jeu
-	void gLoop();
+	void loop();
 	// Fermeture du jeu
-	void gQuits();
-	// Retourne l'état de fonctionnement du jeu
-	bool gRunning();
+	void quit();
 
 };
 

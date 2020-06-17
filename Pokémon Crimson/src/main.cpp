@@ -2,7 +2,7 @@
 
 int main()
 {
-    Game * game = new Game();
-    game->gLaunch();
+    Game game;
+    game.launch();
     return 0;
 }

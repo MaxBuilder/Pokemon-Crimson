@@ -1,16 +1,26 @@
 #pragma once
-#include "../View/View.h"
+#include "SFML/System.hpp"
+#include "../View/MainView.h"
 
 class Controller
 {
 
 private:
-	View * view;
-	// Model model
+	MainView * view;
+	MainModel * model;
+	sf::Clock clock;
 
 public:
-	void init(View& v);
-	void handleEvents(int event);
+	
+	// Initialisation du constructeur (obtention de la view principale)
+	void init(MainView& v, MainModel& m);
 
+	// Mise à jour du modèle en fonction de l'event passé en paramètre)
+	void update(int event);
+
+
+	// Constructeur et destructeur
+	Controller();
+	~Controller();
 };
 

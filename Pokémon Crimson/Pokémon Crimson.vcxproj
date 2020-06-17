@@ -19,20 +19,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\View\MainView.cpp" />
+    <ClCompile Include="src\Model\MainModel.cpp" />
+    <ClCompile Include="src\Model\Map.cpp" />
     <ClCompile Include="src\Controller\Controller.cpp" />
     <ClCompile Include="src\Model\Character.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\View\View.cpp" />
+    <ClCompile Include="src\View\MapView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\Text.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\View\MainView.h" />
+    <ClInclude Include="src\Model\MainModel.h" />
+    <ClInclude Include="src\Model\Map.h" />
     <ClInclude Include="src\Controller\Controller.h" />
     <ClInclude Include="src\Model\Character.h" />
     <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\View\View.h" />
+    <ClInclude Include="src\View\MapView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\character.png" />
+    <Image Include="data\city.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -88,13 +98,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\obj\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\obj\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

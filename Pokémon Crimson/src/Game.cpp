@@ -1,31 +1,28 @@
 #include "Game.h"
 
-void Game::gLaunch() {
-	gCreate();
+void Game::launch() {
+	create();
 	while(run)
-		gLoop();
-	gQuits();
+		loop();
+	quit();
 }
 
-void Game::gCreate() {
-	view.init();
-	controller.init(view);
+void Game::create() {
+	model.init();
+	view.initAll(model);
+	controller.init(view, model);
 }
 
-void Game::gLoop() {
-	int a = view.update();
+void Game::loop() {
+	int a = view.handleEvents();
 
 	if (a == -1)
 		run = false;
-	else controller.handleEvents(a);
+	else controller.update(a);
 }
 
-void Game::gQuits() {
+void Game::quit() {
 	view.close();
-}
-
-bool Game::gRunning() {
-	return run;
 }
 
 Game::Game() { run = true; }
