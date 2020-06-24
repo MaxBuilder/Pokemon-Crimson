@@ -14,9 +14,18 @@ void Controller::init(MainView& v, MainModel &m) {
 }
 
 void Controller::update(int event) {
-	switch (event) {
+	// Se fera plus tard avec gestion en fonction des gamestate
+
+	// Déplacement dans la map
+	if (event >= 0 and event < 5 or event > 10 and event < 15)
+		mapMovement(event);
+
+}
+
+void Controller::mapMovement(int movement) {
+	switch (movement) {
 	case 0:
-		if(clock.getElapsedTime().asMilliseconds() > 100 )
+		if (clock.getElapsedTime().asMilliseconds() > 100)
 			model->character.moveCount = 0;
 		break;
 
@@ -30,9 +39,9 @@ void Controller::update(int event) {
 		}
 		if (model->character.moveCount > 0) {
 			model->character.posY--;
-			for (float i = 0; i < 10; i++) {
-				view->mapView.render(false, -1, (model->character.posY * 16 + 16 - (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(20));
+			for (float i = 0; i < 20; i++) {
+				view->mapView.render(false, -1, (model->character.posY * 16 + 16 - (i - 19.0f) * 0.8f));
+				sf::sleep(sf::milliseconds(12));
 			}
 		}
 		clock.restart();
@@ -48,9 +57,9 @@ void Controller::update(int event) {
 		}
 		if (model->character.moveCount > 0) {
 			model->character.posY++;
-			for (float i = 0; i < 10; i++) {
-				view->mapView.render(false, -1, (model->character.posY * 16 + 16 + (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(20));
+			for (float i = 0; i < 20; i++) {
+				view->mapView.render(false, -1, (model->character.posY * 16 + 16 + (i - 19.0f) * 0.8f));
+				sf::sleep(sf::milliseconds(12));
 			}
 		}
 		clock.restart();
@@ -66,9 +75,9 @@ void Controller::update(int event) {
 		}
 		if (model->character.moveCount > 0) {
 			model->character.posX--;
-			for (float i = 0; i < 10; i++) {
-				view->mapView.render(false, (model->character.posX * 16 + 16 - (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(20));
+			for (float i = 0; i < 20; i++) {
+				view->mapView.render(false, (model->character.posX * 16 + 16 - (i - 19.0f) * 0.8f));
+				sf::sleep(sf::milliseconds(12));
 			}
 		}
 		clock.restart();
@@ -84,9 +93,9 @@ void Controller::update(int event) {
 		}
 		if (model->character.moveCount > 0) {
 			model->character.posX++;
-			for (float i = 0; i < 10; i++) {
-				view->mapView.render(false, (model->character.posX * 16 + 16 + (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(20));
+			for (float i = 0; i < 20; i++) {
+				view->mapView.render(false, (model->character.posX * 16 + 16 + (i - 19.0f) * 0.8f));
+				sf::sleep(sf::milliseconds(12));
 			}
 		}
 		clock.restart();
@@ -106,7 +115,7 @@ void Controller::update(int event) {
 			model->character.posY--;
 			for (float i = 0; i < 10; i++) {
 				view->mapView.render(true, -1, (model->character.posY * 16 + 16 - (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(12));
+				sf::sleep(sf::milliseconds(10));
 			}
 		}
 		clock.restart();
@@ -124,7 +133,7 @@ void Controller::update(int event) {
 			model->character.posY++;
 			for (float i = 0; i < 10; i++) {
 				view->mapView.render(true, -1, (model->character.posY * 16 + 16 + (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(12));
+				sf::sleep(sf::milliseconds(10));
 			}
 		}
 		clock.restart();
@@ -142,7 +151,7 @@ void Controller::update(int event) {
 			model->character.posX--;
 			for (float i = 0; i < 10; i++) {
 				view->mapView.render(true, (model->character.posX * 16 + 16 - (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(12));
+				sf::sleep(sf::milliseconds(10));
 			}
 		}
 		clock.restart();
@@ -160,17 +169,15 @@ void Controller::update(int event) {
 			model->character.posX++;
 			for (float i = 0; i < 10; i++) {
 				view->mapView.render(true, (model->character.posX * 16 + 16 + (i - 9.0f) * 1.6f));
-				sf::sleep(sf::milliseconds(12));
+				sf::sleep(sf::milliseconds(10));
 			}
 		}
 		clock.restart();
 		break;
 	}
-	if (event != 0) sf::sleep(sf::milliseconds(30));
+	if (movement != 0) sf::sleep(sf::milliseconds(30));
 	view->mapView.render(false);
-
 }
-// 1 haut, 2 bas, 3 gauche, 4 droite (provisoire)
 
 Controller::Controller() {}
 Controller::~Controller() {}

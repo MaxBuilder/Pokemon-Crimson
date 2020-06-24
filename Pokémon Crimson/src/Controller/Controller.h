@@ -19,6 +19,10 @@ public:
 	void update(int event);
 
 
+	// Fonctions secondaires du contrôleur de la map
+	void mapMovement(int movement);
+
+
 	// Constructeur et destructeur
 	Controller();
 	~Controller();
