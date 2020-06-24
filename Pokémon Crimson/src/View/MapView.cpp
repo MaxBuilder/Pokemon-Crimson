@@ -6,7 +6,7 @@ void MapView::init(sf::RenderWindow& target, MainModel& m) {
 	load();
 }
 
-void MapView::render(float x, float y) {
+void MapView::render(bool sprint, float x, float y) {
 	// Camera coord selection
 	float camPosX, camPosY;
 	x == -1 ? camPosX = model->character.posX * 16 + 16 : camPosX = x;
@@ -26,7 +26,8 @@ void MapView::render(float x, float y) {
 	window->draw(sp); 
 
 	// Character
-	sp.setTextureRect(sf::IntRect((model->character.moveCount % 4)*32, model->character.direction * 32, model->character.sizeX, model->character.sizeY));
+	sprint ? sp.setTextureRect(sf::IntRect((model->character.moveCount % 4) * 32 + 128, model->character.direction * 32, model->character.sizeX, model->character.sizeY))
+		: sp.setTextureRect(sf::IntRect((model->character.moveCount % 4) * 32, model->character.direction * 32, model->character.sizeX, model->character.sizeY));
 	sp.setTexture(character);
 	//sp.setPosition(model->character.posX*16 + 8, model->character.posY*16);
 	sp.setPosition(camPosX, camPosY);

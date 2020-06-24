@@ -26,7 +26,7 @@ public:
 	void load();
 
 	// Render de la fenêtre 
-	void render(float x = -1, float y = -1);
+	void render(bool sprint, float x = -1, float y = -1);
 
 
 	// Constructeur et destructeur
