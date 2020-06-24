@@ -13,6 +13,7 @@ private:
 	sf::View view;
 	sf::Texture map;
 	sf::Texture character;
+	sf::Texture menu;
 
 
 	//void loadTexture(std::string path);
@@ -25,8 +26,11 @@ public:
 	// Chargement de toutes les textures 
 	void load();
 
-	// Render de la fenêtre 
-	void render(bool sprint, float x = -1, float y = -1);
+	// Render de la map (classique)
+	void render(float x = -1, float y = -1);
+
+	// Render du menu
+	void renderMenu();
 
 
 	// Constructeur et destructeur

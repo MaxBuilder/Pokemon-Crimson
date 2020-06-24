@@ -18,9 +18,11 @@ public:
 	// Mise à jour du modèle en fonction de l'event passé en paramètre)
 	void update(int event);
 
+	void mapUpdate(int event);
 
 	// Fonctions secondaires du contrôleur de la map
 	void mapMovement(int movement);
+	void mapMenu(int action);
 
 
 	// Constructeur et destructeur

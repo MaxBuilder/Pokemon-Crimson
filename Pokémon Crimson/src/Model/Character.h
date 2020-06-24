@@ -7,7 +7,7 @@ public:
 	int posX, posY;
 	int direction;
 	int moveCount;
-	bool run;
+	bool sprint;
 
 
 };

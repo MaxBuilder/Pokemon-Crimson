@@ -43,6 +43,7 @@
   <ItemGroup>
     <Image Include="data\character.png" />
     <Image Include="data\city.png" />
+    <Image Include="data\menu.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
