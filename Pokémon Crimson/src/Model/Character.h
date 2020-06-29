@@ -1,4 +1,6 @@
 #pragma once
+#include "Inventory.h"
+
 class Character
 {
 public:
@@ -9,6 +11,9 @@ public:
 	int moveCount;
 	bool sprint;
 
+private:
+	Inventory inventory;
+	// PkmnTeam team;
 
 };
 

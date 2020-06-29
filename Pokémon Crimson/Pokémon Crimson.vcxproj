@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Model\Inventory.cpp" />
     <ClCompile Include="src\View\MainView.cpp" />
     <ClCompile Include="src\Model\MainModel.cpp" />
     <ClCompile Include="src\Model\Map.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="src\View\MapView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Model\Inventory.h" />
     <ClInclude Include="src\View\MainView.h" />
     <ClInclude Include="src\Model\MainModel.h" />
     <ClInclude Include="src\Model\Map.h" />

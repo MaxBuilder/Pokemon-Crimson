@@ -9,6 +9,7 @@
     <ClCompile Include="src\View\MapView.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Model\Inventory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Controller\Controller.h" />
@@ -18,6 +19,7 @@
     <ClInclude Include="src\View\MainView.h" />
     <ClInclude Include="src\View\MapView.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Model\Inventory.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\city.png" />
