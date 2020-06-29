@@ -35,7 +35,7 @@ void MapView::renderMenu() {
 	window->display();
 }
 
-void MapView::render(float x, float y) {
+void MapView::render(float x, float y, bool second) {
 	// Camera coord selection
 	float camPosX, camPosY;
 	x == -1 ? camPosX = model->getCharacter().posX * 16.f + 16 : camPosX = x;
@@ -47,24 +47,26 @@ void MapView::render(float x, float y) {
 	window->setView(view);
 
 	window->clear();
-
 	sf::Sprite sp;
 
 	// Map
 	sp.setTexture(map);
 	window->draw(sp); 
 
-	// getCharacter()
-	model->getCharacter().sprint ? sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 4) * 32 + 128, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY))
-		: sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 4) * 32, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+	// Character
+	//model->getCharacter().sprint ? sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 4) * 32 + 128, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY)) : sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 4) * 32, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+	if (model->getCharacter().moveCount > 0) {
+		if (!model->getCharacter().sprint)
+			second ? sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 2) * 64 + 32, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY)) : sp.setTextureRect(sf::IntRect(0, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+		else //second ? sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 2) * 64 + 160, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY)) : sp.setTextureRect(sf::IntRect(128, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+			sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 4) * 32 + 128, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+	}
+	else sp.setTextureRect(sf::IntRect(0, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+
 	sp.setTexture(character);
-	//sp.setPosition(model->character.posX*16 + 8, model->character.posY*16);
 	sp.setPosition(camPosX, camPosY);
 	window->draw(sp);
-
-	// Test menuMode
 	
-
 	window->display();
 }
 

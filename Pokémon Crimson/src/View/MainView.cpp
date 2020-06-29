@@ -2,7 +2,7 @@
 
 void MainView::initAll(MainModel& m) {
 	window.create(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close);
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(120);
 
 	mapView.init(window, m);
 	// ...

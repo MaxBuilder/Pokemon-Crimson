@@ -27,7 +27,7 @@ public:
 	void load();
 
 	// Render de la map (classique)
-	void render(float x = -1, float y = -1);
+	void render(float x = -1, float y = -1, bool second = false);
 
 	// Render du menu
 	void renderMenu();
