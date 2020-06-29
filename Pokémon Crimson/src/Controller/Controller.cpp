@@ -11,6 +11,8 @@ void Controller::init(MainView& v, MainModel& m) {
 	chara.direction = 0;
 	chara.sprint = false;
 	Map& map = model->getMap();
+
+	prevEvent = 0;
 }
 
 void Controller::update(int event) {
@@ -23,22 +25,39 @@ void Controller::update(int event) {
 }
 
 void Controller::mapUpdate(int event) {
-	if (event == 5 and !model->getGameState().menuMode)
+	if (event == 5 and !model->getGameState().menuMode) // Event "X"
 		model->getGameState().menuMode = true;
 
-	model->getGameState().menuMode ? mapMenu(event) : mapMovement(event);
+	model->getGameState().menuMode ? mapMenuUpdate(event) : mapMovementUpdate(event);
+	// TO DO : Big redo of character animation
+
+	prevEvent = event;
 }
 
-void Controller::mapMenu(int action) {
-	if (action == 7)
-		model->getGameState().menuMode = false;
+// Fonction de mise à jour en fonction d'un évènement dans le menu
+void Controller::mapMenuUpdate(int action) {
+	GameState& gameState = model->getGameState();
+
+	if (action == 7) // Event "E"
+		gameState.menuMode = false;
+
+	else if (action == 1 and prevEvent != 1) { // Event "Z"
+		gameState.menuId--;
+		if (gameState.menuId < 0) gameState.menuId = 6;
+	}
+
+	else if (action == 2 and prevEvent != 2) { // Event "S"
+		gameState.menuId++;
+		if (gameState.menuId > 6) gameState.menuId = 0;
+	}
 
 	view->mapView.renderMenu();
-	sf::sleep(sf::milliseconds(30));
+	sf::sleep(sf::milliseconds(20));
 }
 
-void Controller::mapMovement(int movement) {
-	Character& character = model->getCharacter(); // Syntax simplification
+// Fonction de mise à jour en fonction d'un évènement dans la map
+void Controller::mapMovementUpdate(int movement) {
+	Character& character = model->getCharacter(); // Syntax simp.
 
 	switch (movement) {
 	case 0:

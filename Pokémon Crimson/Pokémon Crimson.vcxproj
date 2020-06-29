@@ -29,9 +29,6 @@
     <ClCompile Include="src\View\MapView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\Text.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="src\View\MainView.h" />
     <ClInclude Include="src\Model\MainModel.h" />
     <ClInclude Include="src\Model\Map.h" />

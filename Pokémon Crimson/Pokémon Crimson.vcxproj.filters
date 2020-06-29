@@ -11,9 +11,6 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\Text.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="src\Controller\Controller.h" />
     <ClInclude Include="src\Model\Character.h" />
     <ClInclude Include="src\Model\MainModel.h" />

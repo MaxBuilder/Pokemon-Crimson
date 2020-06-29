@@ -13,6 +13,7 @@ struct GameState {
 
 	// Map gameStates
 	bool menuMode;
+	int menuId;
 };
 
 class MainModel

@@ -9,6 +9,7 @@ private:
 	MainView * view;
 	MainModel * model;
 	sf::Clock clock;
+	int prevEvent;
 
 public:
 	
@@ -21,8 +22,8 @@ public:
 	void mapUpdate(int event);
 
 	// Fonctions secondaires du contrôleur de la map
-	void mapMovement(int movement);
-	void mapMenu(int action);
+	void mapMovementUpdate(int movement);
+	void mapMenuUpdate(int action);
 
 
 	// Constructeur et destructeur

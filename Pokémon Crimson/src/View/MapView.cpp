@@ -9,16 +9,27 @@ void MapView::init(sf::RenderWindow& target, MainModel& m) {
 void MapView::renderMenu() {
 	render();
 
-	//window->clear();
-	
 	// Reset de la view
 	window->setView(window->getDefaultView());
 
 	sf::Sprite sp;
 	sp.setTexture(menu);
-	sp.setTextureRect(sf::IntRect(0, 0, 100, 180));
-	sp.setPosition(0, 0);
 	sp.setScale(5.0, 5.0);
+	int id = model->getGameState().menuId;
+	
+	// Menu texture 
+	sp.setTextureRect(sf::IntRect(0, 0, 100, 180));
+	sp.setPosition(760.f, 20.f);
+	window->draw(sp);
+
+	// Selector texture
+	sp.setTextureRect(sf::IntRect(102, 2, 92, 26));
+	sp.setPosition(780.f, 45 + id * 120.f);
+	window->draw(sp);
+
+	// Icons texture
+	sp.setTextureRect(sf::IntRect( 102 + (id >= 4) * 24, 32 + (id % 4) * 24 , 24, 24));
+	sp.setPosition(800, 50 + id * 120);
 	window->draw(sp);
 
 	window->display();
@@ -27,8 +38,8 @@ void MapView::renderMenu() {
 void MapView::render(float x, float y) {
 	// Camera coord selection
 	float camPosX, camPosY;
-	x == -1 ? camPosX = model->getCharacter().posX * 16 + 16 : camPosX = x;
-	y == -1 ? camPosY = model->getCharacter().posY * 16 + 16 : camPosY = y;
+	x == -1 ? camPosX = model->getCharacter().posX * 16.f + 16 : camPosX = x;
+	y == -1 ? camPosY = model->getCharacter().posY * 16.f + 16 : camPosY = y;
 
 	// Camera
 	view.setCenter(camPosX+16, camPosY+16);
