@@ -2,14 +2,10 @@
 
 class Map
 {
+private:
+
+
 public:
-
-
-
-public:
-
-
-
 
 	// Constructeur et destructeur
 	Map();

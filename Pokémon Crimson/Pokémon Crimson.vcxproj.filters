@@ -20,10 +20,14 @@
     <ClInclude Include="src\View\MapView.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Model\Inventory.h" />
+    <ClInclude Include="libraries\json.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\city.png" />
     <Image Include="data\character.png" />
     <Image Include="data\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\items.json" />
   </ItemGroup>
 </Project>

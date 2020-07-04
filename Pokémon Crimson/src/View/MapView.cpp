@@ -29,7 +29,7 @@ void MapView::renderMenu() {
 
 	// Icons texture
 	sp.setTextureRect(sf::IntRect( 102 + (id >= 4) * 24, 32 + (id % 4) * 24 , 24, 24));
-	sp.setPosition(800, 50 + id * 120);
+	sp.setPosition(800.f, 50.f + id * 120.f);
 	window->draw(sp);
 
 	window->display();

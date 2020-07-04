@@ -16,6 +16,7 @@ void Controller::init(MainView& v, MainModel& m) {
 	chara.getInventory().loadInventory();
 
 
+
 	prevEvent = 0;
 }
 

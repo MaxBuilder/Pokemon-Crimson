@@ -15,5 +15,12 @@ private:
 	Inventory inventory;
 	// PkmnTeam team;
 
+public:
+	Inventory& getInventory();
+	//PkmnTeam& getPkmnTeam();
+
+	// Constructeur et destructeur 
+	Character();
+	~Character();
 };
 

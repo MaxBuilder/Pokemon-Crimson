@@ -30,6 +30,7 @@
     <ClCompile Include="src\View\MapView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="libraries\json.hpp" />
     <ClInclude Include="src\Model\Inventory.h" />
     <ClInclude Include="src\View\MainView.h" />
     <ClInclude Include="src\Model\MainModel.h" />
@@ -43,6 +44,9 @@
     <Image Include="data\character.png" />
     <Image Include="data\city.png" />
     <Image Include="data\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\items.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -118,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\libraries\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\libraries\;$(SolutionDir)$(ProjectName)\libraries\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\libraries\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\libraries\;$(SolutionDir)$(ProjectName)\libraries\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
