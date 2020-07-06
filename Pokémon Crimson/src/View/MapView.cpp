@@ -46,7 +46,6 @@ void MapView::renderBag() {
 }
 
 void MapView::renderMenu() {
-	//window->clear(sf::Color(0, 255, 0, 255));
 	render();
 
 	// Reset de la view

@@ -36,6 +36,10 @@ void Controller::mapUpdate(int event) {
 	if (event == 5 and !gameState.menuMode and prevEvent != 5) { // Event "X"
 		gameState.menuMode = true;
 		gameState.menuId = 0;
+		// Reset des mouvements lors de l'ouverture du menu
+		model->getCharacter().sprint = false;
+		model->getCharacter().moveCount = 0;
+		view->mapView.render();
 	}
 
 	else if (gameState.menuMode and event == 5 and prevEvent != 5) // Anti spam "X"
