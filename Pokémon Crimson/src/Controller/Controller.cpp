@@ -19,49 +19,119 @@ void Controller::init(MainView& v, MainModel& m) {
 	prevEvent = 0;
 }
 
+// Fonction de mise à jour du jeu à la réception d'un évènement
 void Controller::update(int event) {
 	GameState& gameState = model->getGameState();
 
-	// Détection de l'état du jeu 
-	if (gameState.mapMode)
+	// Détection de l'état du jeu global
+	if (gameState.mapMode) 
 		mapUpdate(event);
 
 }
 
 // Fonction de mise à jour losque le joueur est dans la map
 void Controller::mapUpdate(int event) {
-	if (event == 5 and !model->getGameState().menuMode and prevEvent != 5) // Event "X"
-		model->getGameState().menuMode = true;
-	else if(model->getGameState().menuMode and event == 5 and prevEvent != 5) // Anti spam "X"
-		model->getGameState().menuMode = false;
+	GameState& gameState = model->getGameState();
 
-	model->getGameState().menuMode ? mapMenuUpdate(event) : mapMovementUpdate(event);
+	if (event == 5 and !gameState.menuMode and prevEvent != 5) { // Event "X"
+		gameState.menuMode = true;
+		gameState.menuId = 0;
+	}
+
+	else if (gameState.menuMode and event == 5 and prevEvent != 5) // Anti spam "X"
+		gameState.menuMode = false;
+
+	// Détection des états puis envoi de l'évènement aux sous-fonctions
+	if (gameState.menuMode)
+		mapMenuUpdate(event);
+	else if (gameState.invMode)
+		mapBagUpdate(event);
+	else mapMovementUpdate(event); // Default mode
 
 	prevEvent = event;
 }
 
+// TO DO
+void Controller::mapBagUpdate(int action) {
+	GameState& gameState = model->getGameState();
+
+	if (action != prevEvent) {
+		switch (action) {
+			case 1:
+				break;
+			case 2:
+				break;
+		case 3:
+			gameState.invCatId--;
+			if (gameState.invCatId < 0)
+				gameState.invCatId = 7;
+			break;
+		case 4:
+			gameState.invCatId++;
+			if (gameState.invCatId > 7)
+				gameState.invCatId = 0;
+			break;
+		case 6:	// Event "A" -> selection d'un objet
+			break;
+		case 7: // Event "E" -> retour vers le menu
+			gameState.invMode = false;
+			gameState.menuMode = true;
+			view->mapView.render();
+			return;
+		}
+	}
+
+	// Item selection logic to go here, eventually modify model
+
+	view->mapView.renderBag();
+	sf::sleep(sf::milliseconds(50));
+}
+
 // Fonction de mise à jour en fonction d'un évènement dans le menu
+// Permet d'entrer dans les sous fonctions du menu mais pas d'en sortir 
+// Le retour se fait directement dans les sous-fonctions concernées
 void Controller::mapMenuUpdate(int action) {
 	GameState& gameState = model->getGameState();
 
-	if (action == 7) // Event "E"
+	if (action == 7 and prevEvent != 7) // Event "E" -> retour vers la map
 		gameState.menuMode = false;
 
-	else if (action == 1 and prevEvent != 1) { // Event "Z"
+	else if (action == 1 and prevEvent != 1) { // Event "Z" -> up + anti-spam
 		gameState.menuId--;
 		if (gameState.menuId < 0) gameState.menuId = 6;
 	}
 
-	else if (action == 2 and prevEvent != 2) { // Event "S"
+	else if (action == 2 and prevEvent != 2) { // Event "S" -> down + anti-spam
 		gameState.menuId++;
 		if (gameState.menuId > 6) gameState.menuId = 0;
+	}
+
+	else if (action == 6) { // Event "A" -> confirmer
+		switch (gameState.menuId) {
+			case 0:	// Entrée dans le pokédex
+				break;
+
+			case 1:	// Entrée dans l'équipe
+				break;
+
+			case 2:	// Entrée dans l'inventaire
+				gameState.invMode = true;
+				gameState.menuMode = false;
+				break;
+
+			case 6:
+				gameState.menuMode = false;
+				break;
+
+			// ... Carte de dresseur, save, options.
+		}
 	}
 
 	view->mapView.renderMenu();
 	sf::sleep(sf::milliseconds(20));
 }
 
-// Fonction de déplacement dans la map en fonction d'un évenement
+// Fonction de déplacement dans la map
 void Controller::mapMovementUpdate(int movement) {
 	Character& character = model->getCharacter(); // Syntax simp.
 

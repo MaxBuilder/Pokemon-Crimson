@@ -1,4 +1,6 @@
 #pragma once
+
+#include <iostream>
 #include "View/MainView.h"
 #include "Controller/Controller.h"
 #include "Model/MainModel.h"
@@ -8,11 +10,8 @@ class Game {
 private:
 	MainModel model;
 	MainView view;
-	// MainController controller;
-	bool run;
-
-	// Temporaire
 	Controller controller;
+	bool run;
 
 public:
 	// Constructeur et destructeur

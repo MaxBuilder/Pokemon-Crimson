@@ -6,6 +6,7 @@ void MainModel::init() {
 
 	itemInit();
 	//pkmnInit();
+	//atkInit();
 }
 
 Character& MainModel::getCharacter() { return character; }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "SFML/System.hpp"
 #include "../View/MainView.h"
 
@@ -24,6 +25,7 @@ public:
 	// Fonctions secondaires du contrôleur de la map
 	void mapMovementUpdate(int movement);
 	void mapMenuUpdate(int action);
+	void mapBagUpdate(int action);
 
 
 	// Constructeur et destructeur

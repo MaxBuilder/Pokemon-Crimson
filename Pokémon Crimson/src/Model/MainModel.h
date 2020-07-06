@@ -14,13 +14,17 @@ struct GameState {
 	// Main gameStates
 	bool mapMode;
 	// bool combatMode 
-	// bool inventoryMode
-	// bool pokedexMode
-	// bool teamMode
 
-	// Map gameStates
+	// Menu gamestates
 	bool menuMode;
 	int menuId;
+
+	// Inventory gamestates
+	bool invMode;
+	int invCatId;
+	int invItemId;
+	//bool invMenu;
+
 };
 
 struct ItemData {
@@ -44,6 +48,7 @@ public:
 	// Sous fonctions d'initialisation
 	void itemInit();
 	void pkmnInit();
+	void atkInit();
 
 	// Getters 
 	Character& getCharacter();
@@ -53,6 +58,7 @@ public:
 	// Donnéees 
 	std::vector <ItemData> itemData;
 	//std::vector <PkmnData> pkmnData;
+	//std::vector <AtkData> atkData;
 
 private:
 	Map map;

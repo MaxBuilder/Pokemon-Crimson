@@ -1,7 +1,6 @@
 #include "MainView.h"
 
 void MainView::initAll(MainModel& m) {
-	window.create(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close);
 	window.setFramerateLimit(120);
 
 	mapView.init(window, m);
@@ -60,5 +59,5 @@ void MainView::close() {
 	std::cout << "Done" << std::endl;
 }
 
-MainView::MainView() {}
+MainView::MainView() : window(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close) {}
 MainView::~MainView() {}

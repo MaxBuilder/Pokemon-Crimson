@@ -26,6 +26,8 @@
     <Image Include="data\city.png" />
     <Image Include="data\character.png" />
     <Image Include="data\menu.png" />
+    <Image Include="data\bag.png" />
+    <Image Include="data\items.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\items.json" />

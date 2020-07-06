@@ -14,12 +14,11 @@ private:
 	sf::Texture map;
 	sf::Texture character;
 	sf::Texture menu;
+	sf::Texture bag;
+	sf::Texture items;
 
-
-	//void loadTexture(std::string path);
 
 public:
-	
 	// Initalisation de la view secondaire 
 	void init(sf::RenderWindow & target, MainModel& m);
 
@@ -31,6 +30,9 @@ public:
 
 	// Render du menu
 	void renderMenu();
+
+	// Render de l'inventaire
+	void renderBag();
 
 
 	// Constructeur et destructeur

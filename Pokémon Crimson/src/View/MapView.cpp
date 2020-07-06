@@ -6,7 +6,47 @@ void MapView::init(sf::RenderWindow& target, MainModel& m) {
 	load();
 }
 
+void MapView::renderBag() {
+	int catId = model->getGameState().invCatId;
+	window->clear();
+
+	sf::Sprite sp;
+	sp.setTexture(bag);
+	sp.setScale(5.f, 5.f);
+
+	// Basic render :
+
+	// Background
+	sp.setTextureRect(sf::IntRect(0, 0, 256, 192));
+	window->draw(sp);
+
+	// Text render ....
+
+	// Panel
+	sp.setTextureRect(sf::IntRect(0, 326, 142, 126));
+	sp.setPosition(540.f, 35.f);
+	window->draw(sp);
+
+	// Bag icon
+	sp.setTextureRect(sf::IntRect(0 + (catId % 4) * 56, 194 + 58  * (catId > 3), 56, 58));
+	sp.setPosition(100.f, 110.f);
+	window->draw(sp);
+
+	// Small icon + selector
+	sp.setTextureRect(sf::IntRect(0 + catId * 12, 312, 12, 12));
+	sp.setPosition(35.f + catId * 55.f, 450.f);
+	window->draw(sp);
+	sp.setTextureRect(sf::IntRect(150, 454, 14, 14));
+	sp.setPosition(30.f + catId * 55.f, 445);
+	window->draw(sp);
+
+
+
+	window->display();
+}
+
 void MapView::renderMenu() {
+	//window->clear(sf::Color(0, 255, 0, 255));
 	render();
 
 	// Reset de la view
@@ -47,9 +87,9 @@ void MapView::render(float x, float y, bool second) {
 	window->setView(view);
 
 	window->clear();
-	sf::Sprite sp;
-
+	
 	// Map
+	sf::Sprite sp;
 	sp.setTexture(map);
 	window->draw(sp); 
 
@@ -74,6 +114,8 @@ void MapView::load() {
 	map.loadFromFile("data/city.png");
 	character.loadFromFile("data/character.png");
 	menu.loadFromFile("data/menu.png");
+	bag.loadFromFile("data/bag.png");
+	items.loadFromFile("data/items.png");
 }
 
 MapView::MapView() {}

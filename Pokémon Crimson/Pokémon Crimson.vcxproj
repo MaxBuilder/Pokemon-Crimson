@@ -41,8 +41,10 @@
     <ClInclude Include="src\View\MapView.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="data\bag.png" />
     <Image Include="data\character.png" />
     <Image Include="data\city.png" />
+    <Image Include="data\items.png" />
     <Image Include="data\menu.png" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@ void Game::create() {
 	model.init();
 	view.initAll(model);
 	controller.init(view, model);
+	run = true;
 }
 
 void Game::loop() {
@@ -23,9 +24,10 @@ void Game::loop() {
 
 void Game::quit() {
 	view.close();
+	std::cout << "Normal closing " << std::endl;
 }
 
-Game::Game() { run = true; }
+Game::Game() {}
 
 Game::~Game() {};
 
