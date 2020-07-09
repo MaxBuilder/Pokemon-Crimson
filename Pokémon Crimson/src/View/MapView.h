@@ -26,13 +26,22 @@ public:
 	void load();
 
 	// Render de la map (classique)
-	void render(float x = -1, float y = -1, bool second = false);
-
+	void renderWorld(float x = -1, float y = -1, bool second = false);
 	// Render du menu
 	void renderMenu();
-
 	// Render de l'inventaire
 	void renderBag();
+
+	// TO DO : Animate transitions (parametre : x, y overide)
+
+
+	// Fonctions auxiliaires
+
+	// Render de texte
+	void fdrawText(std::string line, int cursor, int y, int color = 0);
+
+	// Render d'une image (allègement de la syntaxe)
+	void drawImage(sf::Sprite& sp, const int xo, const int yo, const int sizex, const int sizey, const float posx = 0, const float posy = 0, const float scale = 5.f);
 
 
 	// Constructeur et destructeur

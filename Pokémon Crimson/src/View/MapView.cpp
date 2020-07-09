@@ -12,69 +12,45 @@ void MapView::renderBag() {
 
 	sf::Sprite sp;
 	sp.setTexture(bag);
-	sp.setScale(5.f, 5.f);
-
-	// Basic render :
 
 	// Background
-	sp.setTextureRect(sf::IntRect(0, 0, 256, 192));
-	window->draw(sp);
+	drawImage(sp, 0, 0, 256, 192);
 
-	// Text render ....
+	// Text
+	// drawText
 
 	// Panel
-	sp.setTextureRect(sf::IntRect(0, 326, 142, 126));
-	sp.setPosition(540.f, 35.f);
-	window->draw(sp);
+	drawImage(sp, 0, 326, 142, 126, 540.f, 35.f);
 
 	// Bag icon
-	sp.setTextureRect(sf::IntRect(0 + (catId % 4) * 56, 194 + 58  * (catId > 3), 56, 58));
-	sp.setPosition(100.f, 110.f);
-	window->draw(sp);
+	drawImage(sp, 0 + (catId % 4) * 56, 194 + 58 * (catId > 3), 56, 58, 100.f, 110.f);
 
 	// Small icon + selector
-	sp.setTextureRect(sf::IntRect(0 + catId * 12, 312, 12, 12));
-	sp.setPosition(35.f + catId * 55.f, 450.f);
-	window->draw(sp);
-	sp.setTextureRect(sf::IntRect(150, 454, 14, 14));
-	sp.setPosition(30.f + catId * 55.f, 445);
-	window->draw(sp);
-
-
+	drawImage(sp, 0 + catId * 12, 312, 12, 12, 35.f + catId * 55.f, 450.f);
+	drawImage(sp, 150, 454, 14, 14, 30.f + catId * 55.f, 445);
 
 	window->display();
 }
 
 void MapView::renderMenu() {
-	render();
+	renderWorld();
 
 	// Reset de la view
 	window->setView(window->getDefaultView());
 
+	int id = model->getGameState().menuId;
 	sf::Sprite sp;
 	sp.setTexture(menu);
-	sp.setScale(5.0, 5.0);
-	int id = model->getGameState().menuId;
-	
-	// Menu texture 
-	sp.setTextureRect(sf::IntRect(0, 0, 100, 180));
-	sp.setPosition(760.f, 20.f);
-	window->draw(sp);
 
-	// Selector texture
-	sp.setTextureRect(sf::IntRect(102, 2, 92, 26));
-	sp.setPosition(780.f, 45 + id * 120.f);
-	window->draw(sp);
-
-	// Icons texture
-	sp.setTextureRect(sf::IntRect( 102 + (id >= 4) * 24, 32 + (id % 4) * 24 , 24, 24));
-	sp.setPosition(800.f, 50.f + id * 120.f);
-	window->draw(sp);
+	// Menu, selector, icons
+	drawImage(sp, 0, 0, 100, 180, 760.f, 20.f);
+	drawImage(sp, 102, 2, 92, 26, 780.f, 45 + id * 120.f);
+	drawImage(sp, 102 + (id >= 4) * 24, 32 + (id % 4) * 24, 24, 24, 800.f, 50.f + id * 120.f);
 
 	window->display();
 }
 
-void MapView::render(float x, float y, bool second) {
+void MapView::renderWorld(float x, float y, bool second) {
 	// Camera coord selection
 	float camPosX, camPosY;
 	x == -1 ? camPosX = model->getCharacter().posX * 16.f + 16 : camPosX = x;
@@ -115,6 +91,13 @@ void MapView::load() {
 	menu.loadFromFile("data/menu.png");
 	bag.loadFromFile("data/bag.png");
 	items.loadFromFile("data/items.png");
+}
+
+void MapView::drawImage(sf::Sprite& sp, const int xo, const int yo, const int sizex, const int sizey, const float posx, const float posy, const float scale) {
+	sp.setTextureRect(sf::IntRect(xo, yo, sizex, sizey));
+	sp.setPosition(posx, posy);
+	sp.setScale(scale, scale);
+	window->draw(sp);
 }
 
 MapView::MapView() {}

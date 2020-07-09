@@ -33,17 +33,20 @@ void Controller::update(int event) {
 void Controller::mapUpdate(int event) {
 	GameState& gameState = model->getGameState();
 
+	// Entrée dans le menu
 	if (event == 5 and !gameState.menuMode and prevEvent != 5) { // Event "X"
 		gameState.menuMode = true;
 		gameState.menuId = 0;
 		// Reset des mouvements lors de l'ouverture du menu
 		model->getCharacter().sprint = false;
 		model->getCharacter().moveCount = 0;
-		view->mapView.render();
+		view->mapView.renderWorld();
 	}
-
 	else if (gameState.menuMode and event == 5 and prevEvent != 5) // Anti spam "X"
 		gameState.menuMode = false;
+
+	// TO DO : Action dans la map via le bouton "A" (vérif de coord et action en conséquence)
+	// TO DO : Détection d'évènement extérieurs comme un combat (vérif de line of sight)
 
 	// Détection des états puis envoi de l'évènement aux sous-fonctions
 	if (gameState.menuMode)
@@ -80,7 +83,7 @@ void Controller::mapBagUpdate(int action) {
 		case 7: // Event "E" -> retour vers le menu
 			gameState.invMode = false;
 			gameState.menuMode = true;
-			view->mapView.render();
+			view->mapView.renderWorld();
 			return;
 		}
 	}
@@ -97,40 +100,44 @@ void Controller::mapBagUpdate(int action) {
 void Controller::mapMenuUpdate(int action) {
 	GameState& gameState = model->getGameState();
 
-	if (action == 7 and prevEvent != 7) // Event "E" -> retour vers la map
-		gameState.menuMode = false;
-
-	else if (action == 1 and prevEvent != 1) { // Event "Z" -> up + anti-spam
-		gameState.menuId--;
-		if (gameState.menuId < 0) gameState.menuId = 6;
-	}
-
-	else if (action == 2 and prevEvent != 2) { // Event "S" -> down + anti-spam
-		gameState.menuId++;
-		if (gameState.menuId > 6) gameState.menuId = 0;
-	}
-
-	else if (action == 6) { // Event "A" -> confirmer
-		switch (gameState.menuId) {
-			case 0:	// Entrée dans le pokédex
+	if (action != prevEvent) {
+		switch (action) {
+			case 1:	// Event "Z" -> up + anti-spam
+				gameState.menuId--;
+				if (gameState.menuId < 0) gameState.menuId = 6;
 				break;
 
-			case 1:	// Entrée dans l'équipe
+			case 2: // Event "S" -> down + anti-spam
+				gameState.menuId++;
+				if (gameState.menuId > 6) gameState.menuId = 0;
 				break;
 
-			case 2:	// Entrée dans l'inventaire
-				gameState.invMode = true;
+			case 6: // Event "A" -> confirmer
+				switch (gameState.menuId) {
+				case 0:	// Entrée dans le pokédex
+					break;
+
+				case 1:	// Entrée dans l'équipe
+					break;
+
+				case 2:	// Entrée dans l'inventaire
+					gameState.invMode = true;
+					gameState.menuMode = false;
+					break;
+
+				case 6:
+					gameState.menuMode = false;
+					break;
+
+					// ... Carte de dresseur, save, options.
+				}
+				break;
+
+			case 7:
 				gameState.menuMode = false;
 				break;
-
-			case 6:
-				gameState.menuMode = false;
-				break;
-
-			// ... Carte de dresseur, save, options.
 		}
 	}
-
 	view->mapView.renderMenu();
 	sf::sleep(sf::milliseconds(20));
 }
@@ -159,7 +166,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posY--;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.render(-1, (character.posY * 16 + 16 - (i - 19.0f) * 0.8f), (i > 9));
+				view->mapView.renderWorld(-1, (character.posY * 16 + 16 - (i - 19.0f) * 0.8f), (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -178,7 +185,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posY++;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.render(-1, (character.posY * 16 + 16 + (i - 19.0f) * 0.8f), (i > 9));
+				view->mapView.renderWorld(-1, (character.posY * 16 + 16 + (i - 19.0f) * 0.8f), (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -197,7 +204,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posX--;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.render((character.posX * 16 + 16 - (i - 19.0f) * 0.8f), -1, (i > 9));
+				view->mapView.renderWorld((character.posX * 16 + 16 - (i - 19.0f) * 0.8f), -1, (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -216,7 +223,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posX++;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.render((character.posX * 16 + 16 + (i - 19.0f) * 0.8f), -1, (i > 9));
+				view->mapView.renderWorld((character.posX * 16 + 16 + (i - 19.0f) * 0.8f), -1, (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -232,7 +239,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posY--;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.render(-1, (character.posY * 16 + 16 - (i - 9.0f) * 1.6f), (i < 4));
+			view->mapView.renderWorld(-1, (character.posY * 16 + 16 - (i - 9.0f) * 1.6f), (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -246,7 +253,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posY++;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.render(-1, (character.posY * 16 + 16 + (i - 9.0f) * 1.6f), (i < 4));
+			view->mapView.renderWorld(-1, (character.posY * 16 + 16 + (i - 9.0f) * 1.6f), (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -260,7 +267,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posX--;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.render((character.posX * 16 + 16 - (i - 9.0f) * 1.6f), -1, (i < 4));
+			view->mapView.renderWorld((character.posX * 16 + 16 - (i - 9.0f) * 1.6f), -1, (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -274,7 +281,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posX++;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.render((character.posX * 16 + 16 + (i - 9.0f) * 1.6f), -1, (i < 4));
+			view->mapView.renderWorld((character.posX * 16 + 16 + (i - 9.0f) * 1.6f), -1, (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -282,7 +289,7 @@ void Controller::mapMovementUpdate(int movement) {
 		break;
 	}
 	if (movement != 0) sf::sleep(sf::milliseconds(30));
-	view->mapView.render();
+	view->mapView.renderWorld();
 }
 
 Controller::Controller() {}
