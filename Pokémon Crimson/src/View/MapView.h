@@ -16,6 +16,7 @@ private:
 	sf::Texture menu;
 	sf::Texture bag;
 	sf::Texture items;
+	sf::Texture fonts[4];
 
 
 public:
@@ -38,7 +39,7 @@ public:
 	// Fonctions auxiliaires
 
 	// Render de texte
-	void fdrawText(std::string line, int cursor, int y, int color = 0);
+	void drawText(std::string line, int cursor, int y, int color = 0);
 
 	// Render d'une image (allègement de la syntaxe)
 	void drawImage(sf::Sprite& sp, const int xo, const int yo, const int sizex, const int sizey, const float posx = 0, const float posy = 0, const float scale = 5.f);

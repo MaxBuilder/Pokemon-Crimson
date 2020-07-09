@@ -1,0 +1,952 @@
+{
+    "0" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Pierre Feu",
+            "description" : "à ê Une pierre étrange qui fait évoluer |certaines espèces de Pokémon. |Elle est jaune et orange.|",
+            "nb" : "999",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Pierre Eau",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Elle est jaune et orange.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Pierre Foudre",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Un eclair est dessine dessus.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Pierre Plante",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Une feuille est dessinee dessus.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Pierre Lune",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Elle est sombre comme la nuit.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Pierre Soleil",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Elle est rouge comme le soleil.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "6" : {
+            "id" : "6",
+            "name" : "Pierre Eclat",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Elle brille d'une lumiere aveuglante.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "7" : {
+            "id" : "7",
+            "name" : "Pierre Nuit",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Elle est sombre comme une nuit sans lune.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "8" : {
+            "id" : "8",
+            "name" : "Pierre Aube",
+            "description" : "Une pierre etrange qui fait evoluer |certaines especes de Pokemon. |Elle brille comme un oeil.|",
+            "nb" : "2",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "9" : {
+            "id" : "9",
+            "name" : "Repousse",
+            "description" : "Repousse les Pokemon sauvages |faibles pendant 100 pas.|",
+            "nb" : "30",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "10" : {
+            "id" : "10",
+            "name" : "Super Repousse",
+            "description" : "Repousse les Pokemon sauvages |faibles pendant 200 pas.|",
+            "nb" : "30",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "11" : {
+            "id" : "11",
+            "name" : "Max Repousse",
+            "description" : "Repousse les Pokemon sauvages |faibles pendant 250 pas.|",
+            "nb" : "30",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "12" : {
+            "id" : "12",
+            "name" : "Corde Sortie",
+            "description" : "Une corde longue et solide permettant |de sortir rapidement d'une grotte ou |d'un donjon.|",
+            "nb" : "5",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "13" : {
+            "id" : "13",
+            "name" : "Ecaillecoeur",
+            "description" : "Une jolie ecaille en forme de coeur qui |est tres rare. Elle brille legerement |d'un eclat arc-en-ciel.|",
+            "nb" : "20",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "14" : {
+            "id" : "14",
+            "name" : "Pepite",
+            "description" : "Pepite d'or pur qui brille magnifiquement. |Peut etre vendue a bon prix aux |magasins.|",
+            "nb" : "4",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "15" : {
+            "id" : "15",
+            "name" : "Perle",
+            "description" : "Une petite perle qui brille d'une jolie |couleur argent. Peut etre vendue a bas |prix aux magasins.|",
+            "nb" : "4",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "16" : {
+            "id" : "16",
+            "name" : "Grande perle",
+            "description" : "Une grande perle d'une jolie couleur |argentee. Se vend a un bon prix |aux magasins.|",
+            "nb" : "4",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "17" : {
+            "id" : "17",
+            "name" : "Poussiere Etoile",
+            "description" : "Sable rouge ravissant, aux grains tres |fins. Peut etre vendu a bon prix |aux magasins.|",
+            "nb" : "4",
+            "caracteristique" : "",
+            "effect" : "0"
+        },
+
+        "18" : {
+            "id" : "18",
+            "name" : "Morceau Etoile",
+            "description" : "Un fragment de gemme, qui brille d'un |eclat rouge. Peut etre vendu a un bon |prix aux magasins.|",
+            "nb" : "4",
+            "caracteristique" : "",
+            "effect" : "0"
+        }
+
+    },
+
+    "1" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Potion",
+            "description" : "Un spray qui soigne les blessures. |Restaure 20 PV a un Pokemon.|",
+            "nb" : "10",
+            "heal" : "20",
+            "statut" : "0"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Super Potion",
+            "description" : "Un spray qui soigne les blessures. |Restaure 50 PV a un Pokemon.|",
+            "nb" : "10",
+            "heal" : "50",
+            "statut" : "0"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Hyper Potion",
+            "description" : "Un spray qui soigne les blessures. |Restaure 200 PV a un Pokemon.|",
+            "nb" : "10",
+            "heal" : "200",
+            "statut" : "0"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Potion Max",
+            "description" : "Un spray qui soigne les blessures. |Restaure tous les PV d'un Pokemon.|",
+            "nb" : "10",
+            "heal" : "9999",
+            "statut" : "0"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Guerison",
+            "description" : "Un medicament qui restaure tous les |PV d'un Pokemon et soigne tous ses |problemes de statut.|",
+            "nb" : "10",
+            "heal" : "9999",
+            "statut" : "9"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Eau Fraiche",
+            "description" : "Une eau riche en mineraux. |Restaure 50 PV a un Pokemon.|",
+            "nb" : "4",
+            "heal" : "50",
+            "statut" : "0"
+        },
+
+        "6" : {
+            "id" : "6",
+            "name" : "Soda Cool",
+            "description" : "Une boisson petillante. |Restaure 60 PV a un Pokemon.|",
+            "nb" : "4",
+            "heal" : "60",
+            "statut" : "0"
+        },
+
+        "7" : {
+            "id" : "7",
+            "name" : "Limonade",
+            "description" : "Une boisson tres sucree. |Restaure 80 PV a un Pokemon.|",
+            "nb" : "4",
+            "heal" : "80",
+            "statut" : "0"
+        },
+
+        "8" : {
+            "id" : "8",
+            "name" : "Lait Meumeu",
+            "description" : "Un lait tres nourrissant. |Restaure 100 PV a un Pokemon.|",
+            "nb" : "20",
+            "heal" : "100",
+            "statut" : "0"
+        },
+
+        "9" : {
+            "id" : "9",
+            "name" : "Anti Para",
+            "description" : "Un medicament sous forme de spray. |Soigne un Pokemon de la paralysie.|",
+            "nb" : "10",
+            "heal" : "0",
+            "statut" : "1"
+        },
+
+        "10" : {
+            "id" : "10",
+            "name" : "Antidote",
+            "description" : "Un medicament sous forme de spray. |Guerit un Pokemon empoisonne.|",
+            "nb" : "10",
+            "heal" : "0",
+            "statut" : "2"
+        },
+
+        "11" : {
+            "id" : "11",
+            "name" : "Reveil",
+            "description" : "Un medicament sous forme de spray. |Reveille un Pokemon endormi.|",
+            "nb" : "10",
+            "heal" : "0",
+            "statut" : "3"
+        },
+        
+        "12" : {
+            "id" : "12",
+            "name" : "Anti Brule",
+            "description" : "Un medicament sous forme de spray. |Soigne les brulures d'un Pokemon.|",
+            "nb" : "10",
+            "heal" : "0",
+            "statut" : "4"
+        },
+
+        "13" : {
+            "id" : "13",
+            "name" : "Antigel",
+            "description" : "Un medicament sous forme de spray. |Rechauffe un Pokemon gele.|",
+            "nb" : "10",
+            "heal" : "0",
+            "statut" : "5"
+        },
+
+        "14" : {
+            "id" : "14",
+            "name" : "Total soin",
+            "description" : "Un medicament sous forme de spray. |Soigne tous les problemes de statut |d'un Pokemon.|",
+            "nb" : "10",
+            "heal" : "0",
+            "statut" : "9"
+        },
+
+        "15" : {
+            "id" : "15",
+            "name" : "Huile",
+            "description" : "Restaure jusqu'a 10 PP d'une |capacite selectionnee.|",
+            "nb" : "2",
+            "heal" : "0",
+            "statut" : "11"
+        },
+
+        "16" : {
+            "id" : "16",
+            "name" : "Huile Max",
+            "description" : "Restaure tous les PP d'une |capacite selectionnee.|",
+            "nb" : "2",
+            "heal" : "0",
+            "statut" : "12"
+        },
+
+        "17" : {
+            "id" : "17",
+            "name" : "Elixir",
+            "description" : "Restaure 10 PP de toutes les |capacites d'un Pokemon.|",
+            "nb" : "2",
+            "heal" : "0",
+            "statut" : "13"
+        },
+
+        "18" : {
+            "id" : "18",
+            "name" : "Elixir Max",
+            "description" : "Restaure tous les PP de toutes les |capacites d'un Pokemon.|",
+            "nb" : "2",
+            "heal" : "0",
+            "statut" : "14"
+        },
+
+        "19" : {
+            "id" : "19",
+            "name" : "Rappel",
+            "description" : "Un medicament qui ranime un Pokemon |K.O. et restaure la moitie de ses PV |max.|",
+            "nb" : "20",
+            "heal" : "0",
+            "statut" : "20"
+        },
+
+        "20" : {
+            "id" : "20",
+            "name" : "Rappel Max",
+            "description" : "Un medicament qui ranime un Pokemon |K.O. et restaure tous ses PV.|",
+            "nb" : "5",
+            "heal" : "0",
+            "statut" : "21"
+        }
+
+    },
+
+    "2" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Poke Ball",
+            "description" : "Un objet pareil a une capsule qui |capture les Pokemon sauvages. Il suffit |pour cela de la jeter comme une balle.|",
+            "nb" : "10",
+            "catchrate" : "1"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Super Ball",
+            "description" : "Une Ball tres performante dont le taux |de reussite est superieur a celui de la |Poke Ball.|",
+            "nb" : "12",
+            "catchrate" : "1.5"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Hyper Ball",
+            "description" : "Une Ball ultraperformante dont le taux |de reussite est superieur a celui de la |Super Ball.|",
+            "nb" : "15",
+            "catchrate" : "2"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Master Ball",
+            "description" : "Assurement la Ball la plus performante. |Elle permet de capturer a coup sur un |Pokemon sauvage.|",
+            "nb" : "1",
+            "catchrate" : "255"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Filet Ball",
+            "description" : "Une Poke Ball un peu speciale qui |fonctionne particulierement bien sur les |Pokemon Eau ou Insecte.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Scuba Ball",
+            "description" : "Une Poke Ball un peu speciale qui |fonctionne particulierement bien sur les |Pokemon sous-marins.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "6" : {
+            "id" : "6",
+            "name" : "Faiblo Ball",
+            "description" : "Une Poke Ball un peu speciale qui |fonctionne particulierement bien sur les |Pokemon les plus faibles.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "7" : {
+            "id" : "7",
+            "name" : "Bis Ball",
+            "description" : "Une Poke Ball un peu speciale qui |fonctionne particulierement bien sur les |especes de Pokemon deja capturees.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "8" : {
+            "id" : "8",
+            "name" : "Chrono Ball",
+            "description" : "Une Poke Ball un peu speciale qui |fonctionne de mieux en mieux a mesure |que le combat s'eternise.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "9" : {
+            "id" : "9",
+            "name" : "Luxe Ball",
+            "description" : "Une Poke Ball pratique qui permet de |gagner rapidement l'amitie d'un Pokemon |sauvage attrape.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "10" : {
+            "id" : "10",
+            "name" : "Honor Ball",
+            "description" : "Une Poke Ball assez rare qui fut creee |pour un evenement particulier.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "11" : {
+            "id" : "11",
+            "name" : "Sombre Ball",
+            "description" : "Une Poke Ball efficace de nuit ou dans |les endroits sombres, tels que |les grottes.",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "12" : {
+            "id" : "12",
+            "name" : "Soin Ball",
+            "description" : "Une Poke Ball de soin qui rend tous les |PV du pokemon attrape et qui soigne |tous les changements de statut.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        },
+
+	    "13" : {
+            "id" : "13",
+            "name" : "Rapide Ball",
+            "description" : "Une Poke Ball qui permet d'attraper un |Pokemon sauvage plus facilement si |on l'utilise au debut du combat.|",
+            "nb" : "5",
+            "catchrate" : "1"
+        }
+
+    },
+    
+    "3" : {
+        
+        "0" : {
+            "id" : "0",
+            "name" : "Luminocanon",
+            "description" : "Le lanceur concentre son energie |lumineuse et la fait exploser. Peut aussi |baisser la Defense Speciale de l'ennemi.|",
+            "nb" : "99",
+            "power" : "80",
+            "pp" : "10",
+            "type" : "1"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Poing-karate",
+            "description" : "L'ennemi est tranche violemment. |Taux de critique eleve.|",
+            "nb" : "1",
+            "power" : "50",
+            "pp" : "25",
+            "type" : "2"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Draco Meteor",
+            "description" : "Le lanceur invoque des cometes. |Le contrecoup reduit beaucoup son |Attaque Speciale.|",
+            "nb" : "1",
+            "power" : "130",
+            "pp" : "5",
+            "type" : "3"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Surf",
+            "description" : "Une enorme vague s’abat sur le champ |de bataille et inflige des degats a tous |les Pokemon autour du lanceur.|",
+            "nb" : "1",
+            "power" : "90",
+            "pp" : "15",
+            "type" : "4"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Fatal Foudre",
+            "description" : "La foudre tombe sur l'ennemi pour lui |infliger des degats. Peut aussi le |paralyser.|",
+            "nb" : "1",
+            "power" : "120",
+            "pp" : "10",
+            "type" : "5"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Pouvoir Lunaire",
+            "description" : "Attaque l'ennemi grace au pouvoir de la |lune. Peut diminuer son Attaque Speciale.|",
+            "nb" : "1",
+            "power" : "95",
+            "pp" : "15",
+            "type" : "6"
+        },
+
+        "6" : {
+            "id" : "6",
+            "name" : "Lance Flamme",
+            "description" : "L'ennemi reçoit un torrent de flammes. |Peut aussi le bruler.|",
+            "nb" : "1",
+            "power" : "90",
+            "pp" : "15",
+            "type" : "7"
+        },
+
+        "7" : {
+            "id" : "7",
+            "name" : "Laser Glace",
+            "description" : "Un rayon de glace frappe l'ennemi. |Peut aussi le geler.|",
+            "nb" : "1",
+            "power" : "90",
+            "pp" : "10",
+            "type" : "8"
+        },
+
+        "8" : {
+            "id" : "8",
+            "name" : "Plaie Croix",
+            "description" : "Le lanceur taillade l'ennemi en utilisant |ses faux ou ses griffes comme une paire |de ciseaux.|",
+            "nb" : "1",
+            "power" : "80",
+            "pp" : "15",
+            "type" : "9"
+        },
+
+        "9" : {
+            "id" : "9",
+            "name" : "Ultralaser",
+            "description" : "Projette un puissant rayon sur l'ennemi. |Le lanceur doit se reposer au tour |suivant.|",
+            "nb" : "1",
+            "power" : "150",
+            "pp" : "5",
+            "type" : "10"
+        },
+
+        "10" : {
+            "id" : "10",
+            "name" : "Lance Soleil",
+            "description" : "Absorbe la lumiere au premier tour et |envoie un rayon puissant au tour |suivant.|",
+            "nb" : "1",
+            "power" : "120",
+            "pp" : "10",
+            "type" : "11"
+        },
+
+        "11" : {
+            "id" : "11",
+            "name" : "Direct Toxic",
+            "description" : "Attaque l'ennemi avec un tentacule, un |bras, ou un autre membre plein de poison. |Peut aussi l'empoisonner.|",
+            "nb" : "1",
+            "power" : "80",
+            "pp" : "20",
+            "type" : "12"
+        },
+
+        "12" : {
+            "id" : "12",
+            "name" : "Psyko",
+            "description" : "Une puissante force telekinesique frappe |l'ennemi. Peut aussi faire baisser sa |Defense Speciale.|",
+            "nb" : "1",
+            "power" : "90",
+            "pp" : "10",
+            "type" : "13"
+        },
+
+        "13" : {
+            "id" : "13",
+            "name" : "Lame de Roc",
+            "description" : "Fait surgir des pierres aiguisees sous |l'ennemi. Taux de critique eleve.|",
+            "nb" : "1",
+            "power" : "100",
+            "pp" : "5",
+            "type" : "14"
+        },
+
+        "14" : {
+            "id" : "14",
+            "name" : "Seisme",
+            "description" : "Le lanceur provoque un tremblement |de terre touchant tous les Pokemon |autour de lui.|",
+            "nb" : "1",
+            "power" : "100",
+            "pp" : "10",
+            "type" : "15"
+        },
+
+        "15" : {
+            "id" : "15",
+            "name" : "Ball'Ombre",
+            "description" : "Projette une grande ombre sur l'ennemi. |Peut aussi baisser sa Defense Speciale.|",
+            "nb" : "1",
+            "power" : "80",
+            "pp" : "15",
+            "type" : "16"
+        },
+
+        "16" : {
+            "id" : "16",
+            "name" : "Tricherie",
+            "description" : "Le lanceur utilise la force de l'ennemi. |Plus l'Attaque de l'ennemi est elevee, |plus le lanceur inflige de degats.|",
+            "nb" : "1",
+            "power" : "90",
+            "pp" : "15",
+            "type" : "17"
+        },
+
+        "17" : {
+            "id" : "17",
+            "name" : "Rapace",
+            "description" : "Le lanceur replie ses ailes et charge |en rase-mottes. Blesse gravement le |lanceur.|",
+            "nb" : "1",
+            "power" : "120",
+            "pp" : "15",
+            "type" : "18"
+        }
+
+    },
+
+    "4" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Baie Ceriz",
+            "description" : "Utilisee ou tenue, cette Baie soigne |la paralysie.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Baie Marron",
+            "description" : "Utilisee ou tenue, cette Baie reveille |les Pokemon endormis.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Baie Pecha",
+            "description" : "Utilisee ou tenue, cette Baie soigne |du poison.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Baie Fraive",
+            "description" : "Utilisee ou tenue, cette Baie soigne |une brulure.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Baie Willia",
+            "description" : "Utilisee ou tenue, cette Baie degele |les Pokemon.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Baie Mepo",
+            "description" : "Utilisee ou tenue, cette Baie restaure |10 PP d'une capacite.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "6" : {
+            "id" : "6",
+            "name" : "Baie Oran",
+            "description" : "Utilisee ou tenue, cette Baie restaure |10 PV au Pokemon.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "7" : {
+            "id" : "7",
+            "name" : "Baie Kika",
+            "description" : "Utilisee ou tenue, cette Baie soigne |la confusion.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "8" : {
+            "id" : "8",
+            "name" : "Baie Prine",
+            "description" : "Utilisee ou tenue, cette Baie soigne |tous les problemes de statut.|",
+            "nb" : "5",
+            "effect" : "0"
+        },
+
+        "9" : {
+            "id" : "9",
+            "name" : "Baie Sitrus",
+            "description" : "Utilisee ou tenue, cette Baie restaure |quelques PV au Pokemon.|",
+            "nb" : "5",
+            "effect" : "0"
+        }
+
+    },
+
+    "5" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Lettre Herbe",
+            "description" : "Un papier a lettres representant un |champ d'herbe luxuriante. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Lettre Feu",
+            "description" : "Un papier a lettres orne de flammes d'un |rouge flamboyant. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Lettre Mer",
+            "description" : "Un papier a lettres representant le bleu |du monde sous-marin. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Lettre Petale",
+            "description" : "Un papier a lettres orne de ravissants |motifs floraux. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Lettre Mine",
+            "description" : "Un papier a lettres representant une |mine de charbon peu eclairee. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Lettre Acier",
+            "description" : "Un papier a lettres orne de motifs |mecaniques assez froids. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "6" : {
+            "id" : "6",
+            "name" : "Lettre Coeur",
+            "description" : "Un papiers a lettres orne de coeurs |gigantesques. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "7" : {
+            "id" : "7",
+            "name" : "Lettre Neige",
+            "description" : "Un papier a lettres representant un |monde gele, recouvert de neige. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "8" : {
+            "id" : "8",
+            "name" : "Lettre Cosmos",
+            "description" : "Un papier a lettres representant le vide |interstellaire. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "9" : {
+            "id" : "9",
+            "name" : "Lettre Avion",
+            "description" : "Un papier a lettres orne de lignes |colorees. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        },
+
+        "10" : {
+            "id" : "10",
+            "name" : "Lettre Mosaic",
+            "description" : "Un papier a lettre orne de couleurs. |Peut etre tenu et livre par un pokemon.|",
+            "nb" : "3"
+        },
+
+        "11" : {
+            "id" : "11",
+            "name" : "Lettre Brik",
+            "description" : "Un papier a lettres orne de briques qui |ont vraiment l'air solides. |Peut etre tenu et livre par un Pokemon.|",
+            "nb" : "3"
+        }
+
+    },
+
+    "6" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Attaque +",
+            "description" : "Monte l'Attaque pendant un combat. |L'effet s'estompe si le Pokemon se |retire.|",
+            "nb" : "4"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Defense +",
+            "description" : "Monte la Defense pendant un combat. |L'effet s'estompe si le Pokemon se |retire.|",
+            "nb" : "4"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Atk. Spe. +",
+            "description" : "Monte l'Att. Spe. pendant un combat. |L'effet s'estompe si le Pokemon se |retire.|",
+            "nb" : "4"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Def. Spe. +",
+            "description" : "Monte la Def. Spe. pendant un combat. |L'effet s'estompe si le Pokemon se |retire.|",
+            "nb" : "4"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Vitesse +",
+            "description" : "Monte la Vitesse pendant un combat. |L'effet s'estompe si le Pokemon se |retire.|",
+            "nb" : "4"
+        },
+
+        "5" : {
+            "id" : "5",
+            "name" : "Muscle +",
+            "description" : "Monte le taux de coups critiques pendant |un combat. L'effet s'estompe si le |Pokemon se retire.|",
+            "nb" : "4"
+        },
+
+        "6" : {
+            "id" : "6",
+            "name" : "Precision +",
+            "description" : "Monte la Precision d'un Pokemon pendant |un combat. L'effet s'estompe si le |Pokemon se retire.|",
+            "nb" : "4"
+        },
+
+        "7" : {
+            "id" : "7",
+            "name" : "Garde Stats",
+            "description" : "Empache la reduction de stats de tous |les Pokemon de l'equipe pendant 5 tours.|",
+            "nb" : "4"
+        },
+
+        "8" : {
+            "id" : "8",
+            "name" : "Pokepoupee",
+            "description" : "Poupee qui attire les Pokemon. Permet de |s’enfuir d’un combat contre un Pokemon |sauvage.|",
+            "nb" : "1"
+        }
+
+    },
+
+    "7" : {
+
+        "0" : {
+            "id" : "0",
+            "name" : "Carte",
+            "description" : "Une carte tres pratique pouvant |etre consultee n'importe quand. Elle |indique votre position actuelle.|",
+            "nb" : "1",
+            "function" : "0"
+        },
+
+        "1" : {
+            "id" : "1",
+            "name" : "Bicyclette",
+            "description" : "Une Bicyclette pliable permettant de se |deplacer plus rapidement qu'avec les |Chaussures de Sport.|",
+            "nb" : "1",
+            "function" : "1"
+        },
+
+        "2" : {
+            "id" : "2",
+            "name" : "Canne",
+            "description" : "Une vieille canne usee. |Utilisez la pour pecher des Pokemon |sauvages dans les points d'eau.|",
+            "nb" : "1",
+            "function" : "2"
+        },
+
+        "3" : {
+            "id" : "3",
+            "name" : "Super Canne",
+            "description" : "Une canne neuve et de bonne qualite. |Utilisez la pour pecher des Pokemon |sauvages dans les points d'eau.|",
+            "nb" : "1",
+            "function" : "3"
+        },
+
+        "4" : {
+            "id" : "4",
+            "name" : "Mega Canne",
+            "description" : "Une canne a peche ultramoderne. |Utilisez la pour pecher des Pokemon |sauvages dans les points d'eau.|",
+            "nb" : "1",
+            "function" : "4"
+        }
+        
+    }
+}

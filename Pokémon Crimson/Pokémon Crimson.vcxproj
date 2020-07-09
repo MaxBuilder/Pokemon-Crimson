@@ -44,11 +44,16 @@
     <Image Include="data\bag.png" />
     <Image Include="data\character.png" />
     <Image Include="data\city.png" />
+    <Image Include="data\fonts\black-grey.png" />
+    <Image Include="data\fonts\black-lgrey.png" />
+    <Image Include="data\fonts\lblue-grey.png" />
+    <Image Include="data\fonts\white-black.png" />
     <Image Include="data\items.png" />
     <Image Include="data\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\items.json" />
+    <None Include="data\source.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

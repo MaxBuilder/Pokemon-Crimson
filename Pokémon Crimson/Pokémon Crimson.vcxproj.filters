@@ -28,8 +28,13 @@
     <Image Include="data\menu.png" />
     <Image Include="data\bag.png" />
     <Image Include="data\items.png" />
+    <Image Include="data\fonts\black-grey.png" />
+    <Image Include="data\fonts\black-lgrey.png" />
+    <Image Include="data\fonts\lblue-grey.png" />
+    <Image Include="data\fonts\white-black.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\items.json" />
+    <None Include="data\source.json" />
   </ItemGroup>
 </Project>

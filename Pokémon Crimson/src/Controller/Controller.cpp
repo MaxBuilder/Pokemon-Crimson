@@ -68,23 +68,23 @@ void Controller::mapBagUpdate(int action) {
 				break;
 			case 2:
 				break;
-		case 3:
-			gameState.invCatId--;
-			if (gameState.invCatId < 0)
-				gameState.invCatId = 7;
-			break;
-		case 4:
-			gameState.invCatId++;
-			if (gameState.invCatId > 7)
-				gameState.invCatId = 0;
-			break;
-		case 6:	// Event "A" -> selection d'un objet
-			break;
-		case 7: // Event "E" -> retour vers le menu
-			gameState.invMode = false;
-			gameState.menuMode = true;
-			view->mapView.renderWorld();
-			return;
+			case 3:
+				gameState.invCatId--;
+				if (gameState.invCatId < 0)
+					gameState.invCatId = 7;
+				break;
+			case 4:
+				gameState.invCatId++;
+				if (gameState.invCatId > 7)
+					gameState.invCatId = 0;
+				break;
+			case 6:	// Event "A" -> selection d'un objet
+				break;
+			case 7: // Event "E" -> retour vers le menu
+				gameState.invMode = false;
+				gameState.menuMode = true;
+				view->mapView.renderWorld();
+				return;
 		}
 	}
 
@@ -114,22 +114,22 @@ void Controller::mapMenuUpdate(int action) {
 
 			case 6: // Event "A" -> confirmer
 				switch (gameState.menuId) {
-				case 0:	// Entrée dans le pokédex
-					break;
+					case 0:	// Entrée dans le pokédex
+						break;
 
-				case 1:	// Entrée dans l'équipe
-					break;
+					case 1:	// Entrée dans l'équipe
+						break;
 
-				case 2:	// Entrée dans l'inventaire
-					gameState.invMode = true;
-					gameState.menuMode = false;
-					break;
+					case 2:	// Entrée dans l'inventaire
+						gameState.invMode = true;
+						gameState.menuMode = false;
+						break;
 
-				case 6:
-					gameState.menuMode = false;
-					break;
+					case 6:
+						gameState.menuMode = false;
+						break;
 
-					// ... Carte de dresseur, save, options.
+						// ... Carte de dresseur, save, options.
 				}
 				break;
 
