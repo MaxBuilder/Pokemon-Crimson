@@ -4,7 +4,15 @@ void Inventory::loadInventory() {
 	std::ifstream inputFile("data/save/InventorySave.json");
 	json jsonSource;
 	jsonSource = json::parse(inputFile);
-
+	
+	// Old
+	/*for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < jsonSource[std::to_string(i)].size(); j++) {
+			int id = std::stoi(jsonSource[std::to_string(i)][std::to_string(j)]["id"].get<std::string>()) + i * 100;
+			int nb = std::stoi(jsonSource[std::to_string(i)][std::to_string(j)]["nb"].get<std::string>());
+			items.push_back({ id, nb });
+		}
+	}*/
 	for (auto i = 0; i < jsonSource.size(); i++) {
 		int id = jsonSource[std::to_string(i)]["id"].get<int>();
 		int nb = jsonSource[std::to_string(i)]["nb"].get<int>();

@@ -6,6 +6,24 @@ void MapView::init(sf::RenderWindow& target, MainModel& m) {
 	load();
 }
 
+void MapView::renderMenu() {
+	renderWorld();
+
+	// Reset de la view
+	window->setView(window->getDefaultView());
+
+	int id = model->getGameState().menuId;
+	sf::Sprite sp;
+	sp.setTexture(menu);
+
+	// Menu, selector, icons
+	drawImage(sp, 0, 0, 100, 180, 760.f, 20.f);
+	drawImage(sp, 102, 2, 92, 26, 780.f, 45 + id * 120.f);
+	drawImage(sp, 102 + (id >= 4) * 24, 32 + (id % 4) * 24, 24, 24, 800.f, 50.f + id * 120.f);
+
+	window->display();
+}
+
 void MapView::renderBag() {
 	int catId = model->getGameState().invCatId;
 	int itemId = model->getGameState().invItemId;
@@ -38,11 +56,11 @@ void MapView::renderBag() {
 			selecPos = itemId - 3;
 		else selecPos = maxId;
 	}
-	for (auto i = selecPos; i < selecPos+8; i++) {
+	for (auto i = selecPos; i < selecPos + 8; i++) {
 		if (i < maxId + 1 and i >= 0) {
 			drawText(model->itemData[ref + i].name, 560, 95 + (i - selecPos) * 80);
 			drawText("x", 1105 + xPos, 95 + (i - selecPos) * 80);
-			drawText(std::to_string((inv.itBegin+i)->nb), 1140 + xPos, 95 + (i - selecPos) * 80);
+			drawText(std::to_string((inv.itBegin + i)->nb), 1140 + xPos, 95 + (i - selecPos) * 80);
 		}
 	}
 	drawImage(sp, 0, 0, 256, 192);
@@ -68,7 +86,7 @@ void MapView::renderBag() {
 	// Description 
 	std::string toRender, description = model->itemData[ref + itemId].description;
 	int line = 0;
-	for (auto i = 0; i < description.size(); i++) {
+	for (unsigned int i = 0; i < description.size(); i++) {
 		if (description[i] != '|')
 			toRender.push_back(description[i]);
 		else {
@@ -77,7 +95,6 @@ void MapView::renderBag() {
 			line++;
 		}
 	}
-
 
 	// Render sub-menu 
 	if (model->getGameState().invMenu) {
@@ -95,32 +112,11 @@ void MapView::renderBag() {
 		if (catList.size() == 3) drawImage(sp, 144, 391, 69, 61, 925.f, 645.f);
 		else drawImage(sp, 144, 312, 69, 77, 925.f, 565.f);
 
-		for (auto i=0 ; i<catList.size() ; i++)
+		for (unsigned int i = 0; i < catList.size(); i++)
 			drawText(catList[i], 990, 855 - (i * 80));
 
-		drawImage(sp, 134, 312, 8, 12, 950, 850 - 80 * ((unsigned int)catList.size() - model->getGameState().invMenuId - 1));
+		drawImage(sp, 134, 312, 8, 12, 950.f, 850.f - 80 * ((unsigned int)catList.size() - model->getGameState().invMenuId - 1));
 	}
-
-
-
-
-	window->display();
-}
-
-void MapView::renderMenu() {
-	renderWorld();
-
-	// Reset de la view
-	window->setView(window->getDefaultView());
-
-	int id = model->getGameState().menuId;
-	sf::Sprite sp;
-	sp.setTexture(menu);
-
-	// Menu, selector, icons
-	drawImage(sp, 0, 0, 100, 180, 760.f, 20.f);
-	drawImage(sp, 102, 2, 92, 26, 780.f, 45 + id * 120.f);
-	drawImage(sp, 102 + (id >= 4) * 24, 32 + (id % 4) * 24, 24, 24, 800.f, 50.f + id * 120.f);
 
 	window->display();
 }
@@ -163,9 +159,9 @@ void MapView::load() {
 	menu.loadFromFile("data/menu.png");
 	bag.loadFromFile("data/bag.png");
 	items.loadFromFile("data/items.png");
-	fonts[0].loadFromFile("data/fonts/black-grey.png");
-	fonts[1].loadFromFile("data/fonts/black-lgrey.png");
-	fonts[2].loadFromFile("data/fonts/lblue-grey.png");
+	fonts[0].loadFromFile("data/fonts/black-gray.png");
+	fonts[1].loadFromFile("data/fonts/black-lgray.png");
+	fonts[2].loadFromFile("data/fonts/lblue-gray.png");
 	fonts[3].loadFromFile("data/fonts/white-black.png");
 	textMenu[0] = "      OBJETS";
     textMenu[1] = "   MEDICAMENTS";
@@ -177,13 +173,11 @@ void MapView::load() {
     textMenu[7] = "   OBJETS RARE";
 }
 
-// A AJUSTER
-//TO DO : Ajout du ratio en surcharge
-void MapView::drawText(std::string line, int cursor, int y, int color) {
+void MapView::drawText(std::string line, int cursor, int y, int color, float ratio) {
 	for (unsigned int i = 0; i < line.length(); i++) {
 		sf::Sprite sp;
 		sp.setTexture(fonts[color]);
-		sp.setScale(5.f, 5.f);
+		sp.setScale(ratio, ratio);
 
 		int id;
 		if (line[i] > 64 and line[i] < 91) id = line[i] - 65;
@@ -206,8 +200,8 @@ void MapView::drawText(std::string line, int cursor, int y, int color) {
 			cursor += 20;
 			continue;
 		}
-		sp.setTextureRect(sf::IntRect((id % 10) * 6, (int)(id / 10) * 10, 6, 10));
-		sp.setPosition((float)cursor + 5 * (line[i] == 39), (float)y + 10 * (line[i] == 'g' or line[i] == 'j' or line[i] == 'p' or line[i] == 'q' or line[i] == 'y'));
+		sp.setTextureRect(sf::IntRect((id % 10) * 6, (int)(id / 10) * 10 - (line[i] == 'j'), 6, 10 + (line[i] == 'j')));
+		sp.setPosition(((float)cursor + 5 * (line[i] == 39 or line[i] == '.' or line[i] == 44)) * ratio / 5, ((float)y + 10 * (line[i] == 'g' or line[i] == 'j' or line[i] == 'p' or line[i] == 'q' or line[i] == 'y' or line[i] == ',')) * ratio / 5);
 
 		if (line[i] == 'i' or line[i] == '!') cursor += 10;
 		else if (line[i] == 'l' or line[i] == 39) cursor += 15;
