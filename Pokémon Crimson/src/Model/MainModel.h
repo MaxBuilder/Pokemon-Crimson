@@ -24,6 +24,7 @@ struct GameState {
 	int invCatId;
 	int invItemId;
 	//bool invMenu;
+	int invMaxItemId;
 
 };
 

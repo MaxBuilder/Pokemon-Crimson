@@ -17,6 +17,7 @@ private:
 	sf::Texture bag;
 	sf::Texture items;
 	sf::Texture fonts[4];
+	std::string textMenu[8];
 
 
 public:

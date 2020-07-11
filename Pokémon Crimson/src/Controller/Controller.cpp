@@ -27,6 +27,15 @@ void Controller::update(int event) {
 	if (gameState.mapMode) 
 		mapUpdate(event);
 
+	// Test d'intégration
+	//Inventory& test = model->getCharacter().getInventory();
+	//test.setIterators(7);
+	//for (auto i = test.itBegin; i < test.itEnd; i++) {
+	//	std::string st = model->itemData[i-test.items.begin()].name;
+	//}
+	//int test2 = test.itBegin - test.itEnd;
+
+
 }
 
 // Fonction de mise à jour losque le joueur est dans la map
@@ -58,25 +67,36 @@ void Controller::mapUpdate(int event) {
 	prevEvent = event;
 }
 
-// TO DO
+// TO DO : ajouter le sous menu
 void Controller::mapBagUpdate(int action) {
 	GameState& gameState = model->getGameState();
+	Inventory& inventory = model->getCharacter().getInventory();
 
 	if (action != prevEvent) {
 		switch (action) {
 			case 1:
+				gameState.invItemId--;
+				if (gameState.invItemId < 0)
+					gameState.invItemId = 0;
 				break;
 			case 2:
+				gameState.invItemId++;
+				if (gameState.invItemId > gameState.invMaxItemId)
+					gameState.invItemId = gameState.invMaxItemId;
 				break;
 			case 3:
 				gameState.invCatId--;
 				if (gameState.invCatId < 0)
 					gameState.invCatId = 7;
+				gameState.invItemId = 0;
+				inventory.setIterators(gameState.invCatId);
 				break;
 			case 4:
 				gameState.invCatId++;
 				if (gameState.invCatId > 7)
 					gameState.invCatId = 0;
+				gameState.invItemId = 0;
+				inventory.setIterators(gameState.invCatId);
 				break;
 			case 6:	// Event "A" -> selection d'un objet
 				break;
@@ -86,6 +106,7 @@ void Controller::mapBagUpdate(int action) {
 				view->mapView.renderWorld();
 				return;
 		}
+		gameState.invMaxItemId = inventory.itEnd - inventory.itBegin;
 	}
 
 	// Item selection logic to go here, eventually modify model
@@ -123,6 +144,9 @@ void Controller::mapMenuUpdate(int action) {
 					case 2:	// Entrée dans l'inventaire
 						gameState.invMode = true;
 						gameState.menuMode = false;
+						gameState.invCatId = 0;
+						gameState.invItemId = 0;
+						model->getCharacter().getInventory().setIterators(0);
 						break;
 
 					case 6:

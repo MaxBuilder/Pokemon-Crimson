@@ -17,16 +17,18 @@ public:
 	// Initialisation du constructeur (obtention de la view principale)
 	void init(MainView& v, MainModel& m);
 
-	// Mise à jour du modèle en fonction de l'event passé en paramètre)
+	// Mise à jour du jeu :
 	void update(int event);
 
+	// Contrôleurs de la map :
 	void mapUpdate(int event);
 
-	// Fonctions secondaires du contrôleur de la map
 	void mapMovementUpdate(int movement);
 	void mapMenuUpdate(int action);
 	void mapBagUpdate(int action);
 
+	// Contrôleurs du combat :
+	//void combatUpdate();
 
 	// Constructeur et destructeur
 	Controller();
