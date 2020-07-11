@@ -23,9 +23,9 @@ struct GameState {
 	bool invMode;
 	int invCatId;
 	int invItemId;
-	//bool invMenu;
 	int invMaxItemId;
-
+	bool invMenu;
+	int invMenuId;
 };
 
 struct ItemData {

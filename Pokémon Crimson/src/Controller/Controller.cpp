@@ -67,57 +67,7 @@ void Controller::mapUpdate(int event) {
 	prevEvent = event;
 }
 
-// TO DO : ajouter le sous menu
-void Controller::mapBagUpdate(int action) {
-	GameState& gameState = model->getGameState();
-	Inventory& inventory = model->getCharacter().getInventory();
-
-	if (action != prevEvent) {
-		switch (action) {
-			case 1:
-				gameState.invItemId--;
-				if (gameState.invItemId < 0)
-					gameState.invItemId = 0;
-				break;
-			case 2:
-				gameState.invItemId++;
-				if (gameState.invItemId > gameState.invMaxItemId)
-					gameState.invItemId = gameState.invMaxItemId;
-				break;
-			case 3:
-				gameState.invCatId--;
-				if (gameState.invCatId < 0)
-					gameState.invCatId = 7;
-				gameState.invItemId = 0;
-				inventory.setIterators(gameState.invCatId);
-				break;
-			case 4:
-				gameState.invCatId++;
-				if (gameState.invCatId > 7)
-					gameState.invCatId = 0;
-				gameState.invItemId = 0;
-				inventory.setIterators(gameState.invCatId);
-				break;
-			case 6:	// Event "A" -> selection d'un objet
-				break;
-			case 7: // Event "E" -> retour vers le menu
-				gameState.invMode = false;
-				gameState.menuMode = true;
-				view->mapView.renderWorld();
-				return;
-		}
-		gameState.invMaxItemId = inventory.itEnd - inventory.itBegin;
-	}
-
-	// Item selection logic to go here, eventually modify model
-
-	view->mapView.renderBag();
-	sf::sleep(sf::milliseconds(50));
-}
-
-// Fonction de mise à jour en fonction d'un évènement dans le menu
-// Permet d'entrer dans les sous fonctions du menu mais pas d'en sortir 
-// Le retour se fait directement dans les sous-fonctions concernées
+// TO DO : Implémenter le reste des fonctions du menu
 void Controller::mapMenuUpdate(int action) {
 	GameState& gameState = model->getGameState();
 
@@ -144,6 +94,7 @@ void Controller::mapMenuUpdate(int action) {
 					case 2:	// Entrée dans l'inventaire
 						gameState.invMode = true;
 						gameState.menuMode = false;
+						gameState.invMenu = false;
 						gameState.invCatId = 0;
 						gameState.invItemId = 0;
 						model->getCharacter().getInventory().setIterators(0);
@@ -166,7 +117,76 @@ void Controller::mapMenuUpdate(int action) {
 	sf::sleep(sf::milliseconds(20));
 }
 
-// Fonction de déplacement dans la map
+// TO DO : Validation dans le sous menu
+void Controller::mapBagUpdate(int action) {
+	GameState& gameState = model->getGameState();
+	Inventory& inventory = model->getCharacter().getInventory();
+
+	if (action != prevEvent) {
+		switch (action) {
+		case 1:
+			if (!gameState.invMenu) {
+				gameState.invItemId--;
+				if (gameState.invItemId < 0)
+					gameState.invItemId = 0;
+			}
+			else {
+				gameState.invMenuId--;
+				if (gameState.invMenuId < 0)
+					gameState.invMenuId = 2 + (gameState.invCatId == 1 or gameState.invCatId == 4);
+			}
+			break;
+		case 2:
+			if (!gameState.invMenu) {
+				gameState.invItemId++;
+				if (gameState.invItemId > gameState.invMaxItemId)
+					gameState.invItemId = gameState.invMaxItemId;
+			}
+			else {
+				gameState.invMenuId++;
+				if (gameState.invMenuId > 2 + (gameState.invCatId == 1 or gameState.invCatId == 4))
+					gameState.invMenuId = 0;
+			}
+			break;
+		case 3:
+			gameState.invCatId--;
+			if (gameState.invCatId < 0)
+				gameState.invCatId = 7;
+			gameState.invItemId = 0;
+			inventory.setIterators(gameState.invCatId);
+			break;
+		case 4:
+			gameState.invCatId++;
+			if (gameState.invCatId > 7)
+				gameState.invCatId = 0;
+			gameState.invItemId = 0;
+			inventory.setIterators(gameState.invCatId);
+			break;
+		case 6:	// Event "A" -> validation
+			if (!gameState.invMenu) {
+				gameState.invMenu = true;
+				gameState.invMenuId = 0;
+			}
+			//  Validation dans le sous menu
+
+			break;
+		case 7: // Event "E" -> retour
+			if (!gameState.invMenu) {
+				gameState.invMode = false;
+				gameState.menuMode = true;
+				view->mapView.renderWorld();
+				return;
+			}
+			else gameState.invMenu = false;
+		}
+		gameState.invMaxItemId = inventory.itEnd - inventory.itBegin;
+	}
+
+	view->mapView.renderBag();
+	sf::sleep(sf::milliseconds(50));
+}
+
+// Fonction de déplacement dans la map (DONE)
 void Controller::mapMovementUpdate(int movement) {
 	Character& character = model->getCharacter(); // Syntax simp.
 

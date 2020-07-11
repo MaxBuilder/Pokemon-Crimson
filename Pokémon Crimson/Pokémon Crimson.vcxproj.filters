@@ -36,5 +36,6 @@
   <ItemGroup>
     <None Include="data\items.json" />
     <None Include="data\source.json" />
+    <None Include="data\save\InventorySave.json" />
   </ItemGroup>
 </Project>

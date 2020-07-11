@@ -38,7 +38,7 @@ void MapView::renderBag() {
 			selecPos = itemId - 3;
 		else selecPos = maxId;
 	}
-	for (int i = selecPos; i < selecPos+8; i++) {
+	for (auto i = selecPos; i < selecPos+8; i++) {
 		if (i < maxId + 1 and i >= 0) {
 			drawText(model->itemData[ref + i].name, 560, 95 + (i - selecPos) * 80);
 			drawText("x", 1105 + xPos, 95 + (i - selecPos) * 80);
@@ -65,12 +65,10 @@ void MapView::renderBag() {
 	int originY = (catId > 1) * 96 + (catId > 3) * 72 + (catId > 5) * 48 + itemId / 6 * 24;
 	drawImage(sp, originX, originY, 24, 24, 30, 775);
 
-
-
 	// Description 
 	std::string toRender, description = model->itemData[ref + itemId].description;
 	int line = 0;
-	for (int i = 0; i < description.size(); i++) {
+	for (auto i = 0; i < description.size(); i++) {
 		if (description[i] != '|')
 			toRender.push_back(description[i]);
 		else {
@@ -79,6 +77,32 @@ void MapView::renderBag() {
 			line++;
 		}
 	}
+
+
+	// Render sub-menu 
+	if (model->getGameState().invMenu) {
+		sp.setTexture(bag);
+		std::vector<std::string> catList;
+		catList.push_back("ANNULER");
+		if (catId != 3 and catId != 7)
+			catList.push_back("JETER");
+		if (catId == 7)
+			catList.push_back("ENREG.");
+		else catList.push_back("DONNER");
+		if (catId == 1 or catId == 3 or catId == 4 or catId == 7)
+			catList.push_back("UTILISER");
+
+		if (catList.size() == 3) drawImage(sp, 144, 391, 69, 61, 925.f, 645.f);
+		else drawImage(sp, 144, 312, 69, 77, 925.f, 565.f);
+
+		for (auto i=0 ; i<catList.size() ; i++)
+			drawText(catList[i], 990, 855 - (i * 80));
+
+		drawImage(sp, 134, 312, 8, 12, 950, 850 - 80 * ((unsigned int)catList.size() - model->getGameState().invMenuId - 1));
+	}
+
+
+
 
 	window->display();
 }

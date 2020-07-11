@@ -23,8 +23,13 @@ public:
 	// Contrôleurs de la map :
 	void mapUpdate(int event);
 
+	// Sous fonctions du contrôleur
 	void mapMovementUpdate(int movement);
 	void mapMenuUpdate(int action);
+
+	// Sous fonctions du contrôleur du menu
+	void mapPokedexUpdate(int action);
+	void mapTeamUpdate(int action);
 	void mapBagUpdate(int action);
 
 	// Contrôleurs du combat :

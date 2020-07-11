@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data\items.json" />
+    <None Include="data\save\InventorySave.json" />
     <None Include="data\source.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

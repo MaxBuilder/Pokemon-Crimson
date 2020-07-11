@@ -24,13 +24,13 @@ public:
 	// Sauvegarde l'inventaire dans un fichier de sauvegarde
 	void saveInventory();
 
-	// Fonction prenant en paramètre un item. Si l'item existe déja, la quantité est ajoutée, sinon l'item en lui même est ajouté à l'inventaire
+	// Ajoute un item / une quantité à l'inventaire
 	void addItem(const int id, const int quantity);
 
 	// Set les itérateurs sur le numéro de catégorie passé en paramètre
 	void setIterators(const int catId);
 
-	// Getter d'une case du vector
+	// Getter d'un item
 	Item& getItem(const int n);
 
 	// Itérateurs
