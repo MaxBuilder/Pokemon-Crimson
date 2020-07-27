@@ -8,9 +8,7 @@ void Game::launch() {
 }
 
 void Game::create() {
-	model.init();
-	view.initAll(model);
-	controller.init(view, model);
+	controller.init(); // Chargement des données, ...
 	run = true;
 }
 
@@ -27,7 +25,6 @@ void Game::quit() {
 	std::cout << "Normal closing " << std::endl;
 }
 
-Game::Game() {}
-
+Game::Game() : model(), view(model), controller(view, model) {}
 Game::~Game() {};
 

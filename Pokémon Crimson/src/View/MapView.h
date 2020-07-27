@@ -1,14 +1,14 @@
 #pragma once
 #include <SFML/graphics.hpp>
-#include "../Model/MainModel.h"
+#include "../Model/Model.h"
 #include <iostream>
 
 class MapView
 {
 
 private:
-	sf::RenderWindow* window;
-	MainModel* model;
+	sf::RenderWindow& window;
+	Model& model;
 
 	sf::View view;
 	sf::Texture map;
@@ -21,19 +21,18 @@ private:
 
 
 public:
-	// Initalisation de la view secondaire 
-	void init(sf::RenderWindow & target, MainModel& m);
+	// Initalisation de la view secondaire (deprecated)
+	void init();
 
 	// Chargement de toutes les textures 
 	void load();
 
-	// Render de la map (classique)
+	// Render de la map
 	void renderWorld(float x = -1, float y = -1, bool second = false);
 	// Render du menu
 	void renderMenu();
 	// Render de l'inventaire
 	void renderBag();
-
 	// TO DO : Animate transitions (parametre : x, y overide)
 
 
@@ -47,7 +46,7 @@ public:
 
 
 	// Constructeur et destructeur
-	MapView();
+	MapView(sf::RenderWindow& w, Model& m);
 	~MapView();
 };
 

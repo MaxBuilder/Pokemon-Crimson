@@ -1,14 +1,7 @@
 #include "MainView.h"
 
-void MainView::initAll(MainModel& m) {
-	window.setFramerateLimit(120);
-
-	mapView.init(window, m);
-	// ...
-
-}
-
 int MainView::handleEvents() {
+	sf::Event event;
 	window.pollEvent(event);
 
 	// Quit 
@@ -54,10 +47,10 @@ int MainView::handleEvents() {
 }
 
 void MainView::close() {
-	std::cout << "Main view closing ... ";
 	window.close();
-	std::cout << "Done" << std::endl;
 }
 
-MainView::MainView() : window(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close) {}
+MainView::MainView(Model& m) : window(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close), mapView(window, m) {
+	window.setFramerateLimit(120);
+}
 MainView::~MainView() {}

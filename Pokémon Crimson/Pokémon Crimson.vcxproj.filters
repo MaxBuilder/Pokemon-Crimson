@@ -3,24 +3,24 @@
   <ItemGroup>
     <ClCompile Include="src\Controller\Controller.cpp" />
     <ClCompile Include="src\Model\Character.cpp" />
-    <ClCompile Include="src\Model\MainModel.cpp" />
     <ClCompile Include="src\Model\Map.cpp" />
     <ClCompile Include="src\View\MainView.cpp" />
     <ClCompile Include="src\View\MapView.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Model\Inventory.cpp" />
+    <ClCompile Include="src\Model\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Controller\Controller.h" />
     <ClInclude Include="src\Model\Character.h" />
-    <ClInclude Include="src\Model\MainModel.h" />
     <ClInclude Include="src\Model\Map.h" />
     <ClInclude Include="src\View\MainView.h" />
     <ClInclude Include="src\View\MapView.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Model\Inventory.h" />
     <ClInclude Include="libraries\json.hpp" />
+    <ClInclude Include="src\Model\Model.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\city.png" />

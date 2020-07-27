@@ -5,14 +5,6 @@ void Inventory::loadInventory() {
 	json jsonSource;
 	jsonSource = json::parse(inputFile);
 	
-	// Old
-	/*for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < jsonSource[std::to_string(i)].size(); j++) {
-			int id = std::stoi(jsonSource[std::to_string(i)][std::to_string(j)]["id"].get<std::string>()) + i * 100;
-			int nb = std::stoi(jsonSource[std::to_string(i)][std::to_string(j)]["nb"].get<std::string>());
-			items.push_back({ id, nb });
-		}
-	}*/
 	for (auto i = 0; i < jsonSource.size(); i++) {
 		int id = jsonSource[std::to_string(i)]["id"].get<int>();
 		int nb = jsonSource[std::to_string(i)]["nb"].get<int>();
@@ -40,6 +32,7 @@ void Inventory::saveInventory() {
 // Prends en paramètre l'id de l'item. Si il existe déja, seule la quantité est ajoutée
 // sinon l'instance de l'item est ajoutée dans le vector. Un tri est effectué suite à cet ajout
 // pour conserver les id dans un ordre croissant (itérateurs).
+// TO DO
 void Inventory::addItem(const int id, const int quantity) {
 	return;
 }

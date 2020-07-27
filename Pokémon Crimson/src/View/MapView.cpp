@@ -1,18 +1,14 @@
 #include "MapView.h"
 
-void MapView::init(sf::RenderWindow& target, MainModel& m) {
-	window = &target;
-	model = &m;
-	load();
-}
+// Render functions
 
 void MapView::renderMenu() {
 	renderWorld();
 
 	// Reset de la view
-	window->setView(window->getDefaultView());
+	window.setView(window.getDefaultView());
 
-	int id = model->getGameState().menuId;
+	int id = model.getGameState().menuId;
 	sf::Sprite sp;
 	sp.setTexture(menu);
 
@@ -21,15 +17,15 @@ void MapView::renderMenu() {
 	drawImage(sp, 102, 2, 92, 26, 780.f, 45 + id * 120.f);
 	drawImage(sp, 102 + (id >= 4) * 24, 32 + (id % 4) * 24, 24, 24, 800.f, 50.f + id * 120.f);
 
-	window->display();
+	window.display();
 }
 
 void MapView::renderBag() {
-	int catId = model->getGameState().invCatId;
-	int itemId = model->getGameState().invItemId;
-	int maxId = model->getGameState().invMaxItemId;
-	Inventory& inv = model->getCharacter().getInventory();
-	window->clear();
+	int catId = model.getGameState().invCatId;
+	int itemId = model.getGameState().invItemId;
+	int maxId = model.getGameState().invMaxItemId;
+	Inventory& inv = model.getCharacter().getInventory();
+	window.clear();
 	sf::Sprite sp;
 	sp.setTexture(bag);
 
@@ -42,13 +38,13 @@ void MapView::renderBag() {
 	int ref = inv.itBegin - inv.itRef;
 	if (itemId < 4 or maxId < 7) selecPos = 0;
 	else if (itemId > maxId - 3) {
-		drawText(model->itemData[ref + maxId - 7].name, 560, 15);
+		drawText(model.itemData[ref + maxId - 7].name, 560, 15);
 		drawText("x", 1105 + xPos, 15);
 		drawText(std::to_string((inv.itBegin + maxId - 7)->nb), 1140 + xPos, 15);
 		selecPos = maxId - 6;
 	}
 	else {
-		drawText(model->itemData[ref + itemId - 4].name, 560, 15);
+		drawText(model.itemData[ref + itemId - 4].name, 560, 15);
 		drawText("x", 1105 + xPos, 15);
 		drawText(std::to_string((inv.itBegin + itemId - 4)->nb), 1140 + xPos, 15);
 
@@ -58,7 +54,7 @@ void MapView::renderBag() {
 	}
 	for (auto i = selecPos; i < selecPos + 8; i++) {
 		if (i < maxId + 1 and i >= 0) {
-			drawText(model->itemData[ref + i].name, 560, 95 + (i - selecPos) * 80);
+			drawText(model.itemData[ref + i].name, 560, 95 + (i - selecPos) * 80);
 			drawText("x", 1105 + xPos, 95 + (i - selecPos) * 80);
 			drawText(std::to_string((inv.itBegin + i)->nb), 1140 + xPos, 95 + (i - selecPos) * 80);
 		}
@@ -84,7 +80,7 @@ void MapView::renderBag() {
 	drawImage(sp, originX, originY, 24, 24, 30, 775);
 
 	// Description 
-	std::string toRender, description = model->itemData[ref + itemId].description;
+	std::string toRender, description = model.itemData[ref + itemId].description;
 	int line = 0;
 	for (unsigned int i = 0; i < description.size(); i++) {
 		if (description[i] != '|')
@@ -97,7 +93,7 @@ void MapView::renderBag() {
 	}
 
 	// Render sub-menu 
-	if (model->getGameState().invMenu) {
+	if (model.getGameState().invMenu) {
 		sp.setTexture(bag);
 		std::vector<std::string> catList;
 		catList.push_back("ANNULER");
@@ -115,42 +111,42 @@ void MapView::renderBag() {
 		for (unsigned int i = 0; i < catList.size(); i++)
 			drawText(catList[i], 990, 855 - (i * 80));
 
-		drawImage(sp, 134, 312, 8, 12, 950.f, 850.f - 80 * ((unsigned int)catList.size() - model->getGameState().invMenuId - 1));
+		drawImage(sp, 134, 312, 8, 12, 950.f, 850.f - 80 * ((unsigned int)catList.size() - model.getGameState().invMenuId - 1));
 	}
 
-	window->display();
+	window.display();
 }
 
 void MapView::renderWorld(float x, float y, bool second) {
 	// Camera coord selection
 	float camPosX, camPosY;
-	x == -1 ? camPosX = model->getCharacter().posX * 16.f + 16 : camPosX = x;
-	y == -1 ? camPosY = model->getCharacter().posY * 16.f + 16 : camPosY = y;
+	x == -1 ? camPosX = model.getCharacter().posX * 16.f + 16 : camPosX = x;
+	y == -1 ? camPosY = model.getCharacter().posY * 16.f + 16 : camPosY = y;
 
 	// Camera
 	view.setCenter(camPosX+16, camPosY+16);
 	view.setSize(256, 192);
-	window->setView(view);
+	window.setView(view);
 
-	window->clear();
+	window.clear();
 	
 	// Map
 	sf::Sprite sp;
 	sp.setTexture(map);
-	window->draw(sp); 
+	window.draw(sp); 
 
 	// Character
-	if (model->getCharacter().moveCount > 0) {
-		if (!model->getCharacter().sprint)
-			second ? sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 2) * 64 + 32, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY)) : sp.setTextureRect(sf::IntRect(0, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
-		else sp.setTextureRect(sf::IntRect((model->getCharacter().moveCount % 4) * 32 + 128, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+	if (model.getCharacter().moveCount > 0) {
+		if (!model.getCharacter().sprint)
+			second ? sp.setTextureRect(sf::IntRect((model.getCharacter().moveCount % 2) * 64 + 32, model.getCharacter().direction * 32, model.getCharacter().sizeX, model.getCharacter().sizeY)) : sp.setTextureRect(sf::IntRect(0, model.getCharacter().direction * 32, model.getCharacter().sizeX, model.getCharacter().sizeY));
+		else sp.setTextureRect(sf::IntRect((model.getCharacter().moveCount % 4) * 32 + 128, model.getCharacter().direction * 32, model.getCharacter().sizeX, model.getCharacter().sizeY));
 	}
-	else sp.setTextureRect(sf::IntRect(0, model->getCharacter().direction * 32, model->getCharacter().sizeX, model->getCharacter().sizeY));
+	else sp.setTextureRect(sf::IntRect(0, model.getCharacter().direction * 32, model.getCharacter().sizeX, model.getCharacter().sizeY));
 	sp.setTexture(character);
 	sp.setPosition(camPosX, camPosY);
-	window->draw(sp);
+	window.draw(sp);
 	
-	window->display();
+	window.display();
 }
 
 void MapView::load() {
@@ -172,6 +168,8 @@ void MapView::load() {
     textMenu[6] = " OBJETS COMBAT";
     textMenu[7] = "   OBJETS RARE";
 }
+
+// Drawing functions
 
 void MapView::drawText(std::string line, int cursor, int y, int color, float ratio) {
 	for (unsigned int i = 0; i < line.length(); i++) {
@@ -209,7 +207,7 @@ void MapView::drawText(std::string line, int cursor, int y, int color, float rat
 		else if (line[i] == 'f' or line[i] == 't' or line[i] == '1') cursor += 25;
 		else cursor += 30;
 
-		window->draw(sp);
+		window.draw(sp);
 	}
 }
 
@@ -217,8 +215,11 @@ void MapView::drawImage(sf::Sprite& sp, const int xo, const int yo, const int si
 	sp.setTextureRect(sf::IntRect(xo, yo, sizex, sizey));
 	sp.setPosition(posx, posy);
 	sp.setScale(scale, scale);
-	window->draw(sp);
+	window.draw(sp);
 }
 
-MapView::MapView() {}
+MapView::MapView(sf::RenderWindow& w, Model& m) : model(m), window(w) {
+load();
+}
+
 MapView::~MapView() {}

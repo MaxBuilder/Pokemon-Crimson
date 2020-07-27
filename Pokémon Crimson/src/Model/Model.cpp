@@ -1,6 +1,6 @@
-#include "MainModel.h"
+#include "Model.h"
 
-void MainModel::init() {
+void Model::init() {
 	gameState.mapMode = true;
 	gameState.menuMode = false;
 
@@ -9,11 +9,11 @@ void MainModel::init() {
 	//atkInit();
 }
 
-Character& MainModel::getCharacter() { return character; }
-Map& MainModel::getMap() { return map; }
-GameState& MainModel::getGameState() { return gameState; }
+Character& Model::getCharacter() { return character; }
+Map& Model::getMap() { return map; }
+GameState& Model::getGameState() { return gameState; }
 
-void MainModel::itemInit() {
+void Model::itemInit() {
 	std::ifstream input("data/items.json");
 	json jsonFile;
 	jsonFile = json::parse(input);
@@ -33,5 +33,5 @@ void MainModel::itemInit() {
 	return;
 }
 
-MainModel::MainModel() {}
-MainModel::~MainModel() {}
+Model::Model() {}
+Model::~Model() {}

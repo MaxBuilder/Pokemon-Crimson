@@ -3,12 +3,11 @@
 #include <iostream>
 #include "View/MainView.h"
 #include "Controller/Controller.h"
-#include "Model/MainModel.h"
 
 class Game {
 
 private:
-	MainModel model;
+	Model model;
 	MainView view;
 	Controller controller;
 	bool run;

@@ -1,12 +1,10 @@
 #include "Controller.h"
 
-void Controller::init(MainView& v, MainModel& m) {
-	view = &v;
-	model = &m;
-	model->init();
+void Controller::init() {
+	model.init();
 
 	// Test initialization, future serialization
-	Character& chara = model->getCharacter();
+	Character& chara = model.getCharacter();
 	chara.posX = 45;
 	chara.posY = 45;
 	chara.sizeX = 32;
@@ -21,17 +19,17 @@ void Controller::init(MainView& v, MainModel& m) {
 
 // Fonction de mise à jour du jeu à la réception d'un évènement
 void Controller::update(int event) {
-	GameState& gameState = model->getGameState();
+	GameState& gameState = model.getGameState();
 
 	// Détection de l'état du jeu global
 	if (gameState.mapMode) 
 		mapUpdate(event);
 
 	// Test d'intégration
-	//Inventory& test = model->getCharacter().getInventory();
+	//Inventory& test = model.getCharacter().getInventory();
 	//test.setIterators(7);
 	//for (auto i = test.itBegin; i < test.itEnd; i++) {
-	//	std::string st = model->itemData[i-test.items.begin()].name;
+	//	std::string st = model.itemData[i-test.items.begin()].name;
 	//}
 	//int test2 = test.itBegin - test.itEnd;
 
@@ -40,16 +38,16 @@ void Controller::update(int event) {
 
 // Fonction de mise à jour losque le joueur est dans la map
 void Controller::mapUpdate(int event) {
-	GameState& gameState = model->getGameState();
+	GameState& gameState = model.getGameState();
 
 	// Entrée dans le menu
 	if (event == 5 and !gameState.menuMode and prevEvent != 5) { // Event "X"
 		gameState.menuMode = true;
 		gameState.menuId = 0;
 		// Reset des mouvements lors de l'ouverture du menu
-		model->getCharacter().sprint = false;
-		model->getCharacter().moveCount = 0;
-		view->mapView.renderWorld();
+		model.getCharacter().sprint = false;
+		model.getCharacter().moveCount = 0;
+		view.mapView.renderWorld();
 	}
 	else if (gameState.menuMode and event == 5 and prevEvent != 5) // Anti spam "X"
 		gameState.menuMode = false;
@@ -69,21 +67,21 @@ void Controller::mapUpdate(int event) {
 
 // TO DO : Implémenter le reste des fonctions du menu
 void Controller::mapMenuUpdate(int action) {
-	GameState& gameState = model->getGameState();
+	GameState& gameState = model.getGameState();
 
 	if (action != prevEvent) {
 		switch (action) {
-			case 1:	// Event "Z" -> up + anti-spam
+			case 1:	// Event "Z" . up + anti-spam
 				gameState.menuId--;
 				if (gameState.menuId < 0) gameState.menuId = 6;
 				break;
 
-			case 2: // Event "S" -> down + anti-spam
+			case 2: // Event "S" . down + anti-spam
 				gameState.menuId++;
 				if (gameState.menuId > 6) gameState.menuId = 0;
 				break;
 
-			case 6: // Event "A" -> confirmer
+			case 6: // Event "A" . confirmer
 				switch (gameState.menuId) {
 					case 0:	// Entrée dans le pokédex
 						break;
@@ -97,7 +95,7 @@ void Controller::mapMenuUpdate(int action) {
 						gameState.invMenu = false;
 						gameState.invCatId = 0;
 						gameState.invItemId = 0;
-						model->getCharacter().getInventory().setIterators(0);
+						model.getCharacter().getInventory().setIterators(0);
 						break;
 
 					case 6:
@@ -113,14 +111,14 @@ void Controller::mapMenuUpdate(int action) {
 				break;
 		}
 	}
-	view->mapView.renderMenu();
+	view.mapView.renderMenu();
 	sf::sleep(sf::milliseconds(20));
 }
 
 // TO DO : Validation dans le sous menu
 void Controller::mapBagUpdate(int action) {
-	GameState& gameState = model->getGameState();
-	Inventory& inventory = model->getCharacter().getInventory();
+	GameState& gameState = model.getGameState();
+	Inventory& inventory = model.getCharacter().getInventory();
 
 	if (action != prevEvent) {
 		switch (action) {
@@ -162,7 +160,7 @@ void Controller::mapBagUpdate(int action) {
 			gameState.invItemId = 0;
 			inventory.setIterators(gameState.invCatId);
 			break;
-		case 6:	// Event "A" -> validation
+		case 6:	// Event "A" . validation
 			if (!gameState.invMenu) {
 				gameState.invMenu = true;
 				gameState.invMenuId = 0;
@@ -170,11 +168,11 @@ void Controller::mapBagUpdate(int action) {
 			//  Validation dans le sous menu
 
 			break;
-		case 7: // Event "E" -> retour
+		case 7: // Event "E" . retour
 			if (!gameState.invMenu) {
 				gameState.invMode = false;
 				gameState.menuMode = true;
-				view->mapView.renderWorld();
+				view.mapView.renderWorld();
 				return;
 			}
 			else gameState.invMenu = false;
@@ -182,13 +180,13 @@ void Controller::mapBagUpdate(int action) {
 		gameState.invMaxItemId = inventory.itEnd - inventory.itBegin;
 	}
 
-	view->mapView.renderBag();
+	view.mapView.renderBag();
 	sf::sleep(sf::milliseconds(50));
 }
 
 // Fonction de déplacement dans la map (DONE)
 void Controller::mapMovementUpdate(int movement) {
-	Character& character = model->getCharacter(); // Syntax simp.
+	Character& character = model.getCharacter(); // Syntax simp.
 
 	switch (movement) {
 	case 0:
@@ -199,7 +197,7 @@ void Controller::mapMovementUpdate(int movement) {
 		break;
 
 	case 1:
-		if (model->getCharacter().direction == 1)
+		if (model.getCharacter().direction == 1)
 			character.moveCount++;
 		else {
 			character.moveCount = 0;
@@ -210,7 +208,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posY--;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.renderWorld(-1, (character.posY * 16 + 16 - (i - 19.0f) * 0.8f), (i > 9));
+				view.mapView.renderWorld(-1, (character.posY * 16 + 16 - (i - 19.0f) * 0.8f), (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -229,7 +227,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posY++;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.renderWorld(-1, (character.posY * 16 + 16 + (i - 19.0f) * 0.8f), (i > 9));
+				view.mapView.renderWorld(-1, (character.posY * 16 + 16 + (i - 19.0f) * 0.8f), (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -248,7 +246,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posX--;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.renderWorld((character.posX * 16 + 16 - (i - 19.0f) * 0.8f), -1, (i > 9));
+				view.mapView.renderWorld((character.posX * 16 + 16 - (i - 19.0f) * 0.8f), -1, (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -267,7 +265,7 @@ void Controller::mapMovementUpdate(int movement) {
 			character.posX++;
 			character.sprint = false;
 			for (float i = 0; i < 20; i++) {
-				view->mapView.renderWorld((character.posX * 16 + 16 + (i - 19.0f) * 0.8f), -1, (i > 9));
+				view.mapView.renderWorld((character.posX * 16 + 16 + (i - 19.0f) * 0.8f), -1, (i > 9));
 				sf::sleep(sf::milliseconds(15));
 			}
 		}
@@ -283,7 +281,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posY--;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.renderWorld(-1, (character.posY * 16 + 16 - (i - 9.0f) * 1.6f), (i < 4));
+			view.mapView.renderWorld(-1, (character.posY * 16 + 16 - (i - 9.0f) * 1.6f), (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -297,7 +295,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posY++;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.renderWorld(-1, (character.posY * 16 + 16 + (i - 9.0f) * 1.6f), (i < 4));
+			view.mapView.renderWorld(-1, (character.posY * 16 + 16 + (i - 9.0f) * 1.6f), (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -311,7 +309,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posX--;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.renderWorld((character.posX * 16 + 16 - (i - 9.0f) * 1.6f), -1, (i < 4));
+			view.mapView.renderWorld((character.posX * 16 + 16 - (i - 9.0f) * 1.6f), -1, (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -325,7 +323,7 @@ void Controller::mapMovementUpdate(int movement) {
 		character.posX++;
 		character.sprint = true;
 		for (float i = 0; i < 10; i++) {
-			view->mapView.renderWorld((character.posX * 16 + 16 + (i - 9.0f) * 1.6f), -1, (i < 4));
+			view.mapView.renderWorld((character.posX * 16 + 16 + (i - 9.0f) * 1.6f), -1, (i < 4));
 			if (i == 4) character.moveCount++;
 			sf::sleep(sf::milliseconds(12));
 		}
@@ -333,8 +331,8 @@ void Controller::mapMovementUpdate(int movement) {
 		break;
 	}
 	if (movement != 0) sf::sleep(sf::milliseconds(30));
-	view->mapView.renderWorld();
+	view.mapView.renderWorld();
 }
 
-Controller::Controller() {}
+Controller::Controller(MainView& v, Model& m) : view(v), model(m) {}
 Controller::~Controller() {}

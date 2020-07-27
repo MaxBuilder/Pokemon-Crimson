@@ -29,19 +29,19 @@ struct GameState {
 };
 
 struct ItemData {
-	std::string name;
-	std::string description;
-	int id;
-	int catId;
-	int effect;
+	std::string name = "";
+	std::string description = "";
+	int id = 0;
+	int catId = 0;
+	int effect = 0;
 };
 
-class MainModel
+class Model
 {
 public:
 	// Constructeur et destructeur
-	MainModel();
-	~MainModel();
+	Model();
+	~Model();
 
 	// Fonction d'initalisation
 	void init();

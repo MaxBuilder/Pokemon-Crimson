@@ -7,15 +7,15 @@ class Controller
 {
 
 private:
-	MainView * view;
-	MainModel * model;
+	MainView& view;
+	Model& model;
 	sf::Clock clock;
 	int prevEvent;
 
 public:
 	
-	// Initialisation du constructeur (obtention de la view principale)
-	void init(MainView& v, MainModel& m);
+	// Initialisation du contrôleur
+	void init();
 
 	// Mise à jour du jeu :
 	void update(int event);
@@ -36,7 +36,7 @@ public:
 	//void combatUpdate();
 
 	// Constructeur et destructeur
-	Controller();
+	Controller(MainView& v, Model& m);
 	~Controller();
 };
 
