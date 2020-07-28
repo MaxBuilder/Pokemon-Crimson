@@ -20,6 +20,21 @@ void MapView::renderMenu() {
 	window.display();
 }
 
+// TO DO : Finir affichage
+void MapView::renderCard() {
+	Character& chara = model.getCharacter();
+	window.clear();
+	sf::Sprite sp;
+	sp.setTexture(card);
+	drawImage(sp, 0, 352, 256, 192, 0, 0);
+	drawImage(sp, (chara.stars % 3) * 240, (chara.stars > 2) * 176, 240, 176, 40, 40);
+
+	// Render du text
+	
+	window.display();
+}
+
+// TO DO : Animate transitions(parametre : x, y overide) + choix selection sous menu
 void MapView::renderBag() {
 	int catId = model.getGameState().invCatId;
 	int itemId = model.getGameState().invItemId;
@@ -155,6 +170,7 @@ void MapView::load() {
 	menu.loadFromFile("data/menu.png");
 	bag.loadFromFile("data/bag.png");
 	items.loadFromFile("data/items.png");
+	card.loadFromFile("data/card.png");
 	fonts[0].loadFromFile("data/fonts/black-gray.png");
 	fonts[1].loadFromFile("data/fonts/black-lgray.png");
 	fonts[2].loadFromFile("data/fonts/lblue-gray.png");

@@ -32,10 +32,10 @@
     <Image Include="data\fonts\black-lgrey.png" />
     <Image Include="data\fonts\lblue-grey.png" />
     <Image Include="data\fonts\white-black.png" />
+    <Image Include="data\card.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\items.json" />
-    <None Include="data\source.json" />
     <None Include="data\save\InventorySave.json" />
   </ItemGroup>
 </Project>

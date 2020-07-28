@@ -26,6 +26,9 @@ struct GameState {
 	int invMaxItemId;
 	bool invMenu;
 	int invMenuId;
+
+	// Trainer card gamestates
+	bool cardMode;
 };
 
 struct ItemData {

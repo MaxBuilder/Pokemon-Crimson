@@ -16,14 +16,12 @@ private:
 	sf::Texture menu;
 	sf::Texture bag;
 	sf::Texture items;
+	sf::Texture card;
 	sf::Texture fonts[4];
 	std::string textMenu[8];
 
 
 public:
-	// Initalisation de la view secondaire (deprecated)
-	void init();
-
 	// Chargement de toutes les textures 
 	void load();
 
@@ -31,9 +29,10 @@ public:
 	void renderWorld(float x = -1, float y = -1, bool second = false);
 	// Render du menu
 	void renderMenu();
-	// Render de l'inventaire
+	// Render de l'inventaire 
 	void renderBag();
-	// TO DO : Animate transitions (parametre : x, y overide)
+	// Render de la carte de dresseur
+	void renderCard();
 
 
 	// Fonctions auxiliaires

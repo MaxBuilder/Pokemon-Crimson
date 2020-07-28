@@ -11,6 +11,10 @@ void Controller::init() {
 	chara.sizeY = 32;
 	chara.direction = 0;
 	chara.sprint = false;
+	chara.noId = 24056;
+	chara.name = "Raphael";
+	chara.money = 256;
+	chara.stars = 0;
 	chara.getInventory().loadInventory();
 
 
@@ -60,6 +64,8 @@ void Controller::mapUpdate(int event) {
 		mapMenuUpdate(event);
 	else if (gameState.invMode)
 		mapBagUpdate(event);
+	else if (gameState.cardMode)
+		mapCardUpdate(event);
 	else mapMovementUpdate(event); // Default mode
 
 	prevEvent = event;
@@ -71,17 +77,17 @@ void Controller::mapMenuUpdate(int action) {
 
 	if (action != prevEvent) {
 		switch (action) {
-			case 1:	// Event "Z" . up + anti-spam
+			case 1:	// Event "Z" -> up + anti-spam
 				gameState.menuId--;
 				if (gameState.menuId < 0) gameState.menuId = 6;
 				break;
 
-			case 2: // Event "S" . down + anti-spam
+			case 2: // Event "S" -> down + anti-spam
 				gameState.menuId++;
 				if (gameState.menuId > 6) gameState.menuId = 0;
 				break;
 
-			case 6: // Event "A" . confirmer
+			case 6: // Event "A" -> confirmer
 				switch (gameState.menuId) {
 					case 0:	// Entrée dans le pokédex
 						break;
@@ -98,6 +104,11 @@ void Controller::mapMenuUpdate(int action) {
 						model.getCharacter().getInventory().setIterators(0);
 						break;
 
+					case 3:
+						gameState.cardMode = true;
+						gameState.menuMode = false;
+						break;
+
 					case 6:
 						gameState.menuMode = false;
 						break;
@@ -106,13 +117,25 @@ void Controller::mapMenuUpdate(int action) {
 				}
 				break;
 
-			case 7:
+			case 7: // Event "E" -> retour
 				gameState.menuMode = false;
 				break;
 		}
 	}
 	view.mapView.renderMenu();
 	sf::sleep(sf::milliseconds(20));
+}
+
+void Controller::mapCardUpdate(int action) {
+	if (action == 7) {
+		model.getGameState().cardMode = false;
+		model.getGameState().menuMode = true;
+		view.mapView.renderWorld();
+	}
+	else {
+		view.mapView.renderCard();
+		sf::sleep(sf::milliseconds(50));
+	}
 }
 
 // TO DO : Validation dans le sous menu
@@ -160,15 +183,14 @@ void Controller::mapBagUpdate(int action) {
 			gameState.invItemId = 0;
 			inventory.setIterators(gameState.invCatId);
 			break;
-		case 6:	// Event "A" . validation
+		case 6:	// Event "A" -> validation
 			if (!gameState.invMenu) {
 				gameState.invMenu = true;
 				gameState.invMenuId = 0;
 			}
 			//  Validation dans le sous menu
-
 			break;
-		case 7: // Event "E" . retour
+		case 7: // Event "E" -> retour
 			if (!gameState.invMenu) {
 				gameState.invMode = false;
 				gameState.menuMode = true;
