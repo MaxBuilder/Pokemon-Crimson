@@ -41,20 +41,21 @@
     <ClInclude Include="src\View\MapView.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="data\bag.png" />
-    <Image Include="data\card.png" />
-    <Image Include="data\character.png" />
-    <Image Include="data\city.png" />
+    <Image Include="assets\bag.png" />
+    <Image Include="assets\card.png" />
+    <Image Include="assets\character.png" />
+    <Image Include="assets\city.png" />
     <Image Include="data\fonts\black-grey.png" />
     <Image Include="data\fonts\black-lgrey.png" />
     <Image Include="data\fonts\lblue-grey.png" />
-    <Image Include="data\fonts\white-black.png" />
-    <Image Include="data\items.png" />
-    <Image Include="data\menu.png" />
+    <Image Include="assets\fonts\white-black.png" />
+    <Image Include="assets\items.png" />
+    <Image Include="assets\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="data\items.json" />
-    <None Include="data\save\InventorySave.json" />
+    <None Include="assets\data\items.json" />
+    <None Include="assets\data\pokemons.json" />
+    <None Include="assets\save\InventorySave.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

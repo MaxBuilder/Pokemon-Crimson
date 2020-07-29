@@ -1,7 +1,7 @@
 #include "Inventory.h"
 
 void Inventory::loadInventory() {
-	std::ifstream inputFile("data/save/InventorySave.json");
+	std::ifstream inputFile("assets/save/InventorySave.json");
 	json jsonSource;
 	jsonSource = json::parse(inputFile);
 	
@@ -18,7 +18,7 @@ void Inventory::loadInventory() {
 // Called by save functions in controller
 void Inventory::saveInventory() {
 	json jsonOutput;
-	std::ofstream outputFile("data/InventorySave.json");
+	std::ofstream outputFile("assets/save/InventorySaveOut.json");
 
 	for (auto i = 0; i < items.size(); i++) {
 		jsonOutput[std::to_string(i)]["id"] = items[i].id;
@@ -59,4 +59,4 @@ Item& Inventory::getItem(const int n) {
 }
 
 Inventory::Inventory() {}
-Inventory::~Inventory() {}
+Inventory::~Inventory() { saveInventory(); }

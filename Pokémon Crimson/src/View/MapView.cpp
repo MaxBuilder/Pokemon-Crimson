@@ -165,16 +165,16 @@ void MapView::renderWorld(float x, float y, bool second) {
 }
 
 void MapView::load() {
-	map.loadFromFile("data/city.png");
-	character.loadFromFile("data/character.png");
-	menu.loadFromFile("data/menu.png");
-	bag.loadFromFile("data/bag.png");
-	items.loadFromFile("data/items.png");
-	card.loadFromFile("data/card.png");
-	fonts[0].loadFromFile("data/fonts/black-gray.png");
-	fonts[1].loadFromFile("data/fonts/black-lgray.png");
-	fonts[2].loadFromFile("data/fonts/lblue-gray.png");
-	fonts[3].loadFromFile("data/fonts/white-black.png");
+	map.loadFromFile("assets/city.png");
+	character.loadFromFile("assets/character.png");
+	menu.loadFromFile("assets/menu.png");
+	bag.loadFromFile("assets/bag.png");
+	items.loadFromFile("assets/items.png");
+	card.loadFromFile("assets/card.png");
+	fonts[0].loadFromFile("assets/fonts/black-gray.png");
+	fonts[1].loadFromFile("assets/fonts/black-lgray.png");
+	fonts[2].loadFromFile("assets/fonts/lblue-gray.png");
+	fonts[3].loadFromFile("assets/fonts/white-black.png");
 	textMenu[0] = "      OBJETS";
     textMenu[1] = "   MEDICAMENTS";
     textMenu[2] = "       BALLS";

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <array>
 #include <json.hpp>
 
 using json = nlohmann::json;
@@ -35,8 +36,24 @@ struct ItemData {
 	std::string name = "";
 	std::string description = "";
 	int id = 0;
-	int catId = 0;
+	int cat_id = 0;
 	int effect = 0;
+};
+
+struct PkmnData {
+	std::string name = "";
+	std::string type1 = "", type2 = "";
+	std::string pokedex_entry = "";
+	float gender_ratio = 0.f;
+	int catch_rate = 0;
+	std::string height = "", weight = "";
+	std::array<int, 6> base_stats;
+	std::string category = "";
+	std::string color = "";
+	std::string leveling_rate = "";
+	int exp_yield = 0;
+	std::array<int, 6> ev_yield;
+
 };
 
 class Model
@@ -61,7 +78,7 @@ public:
 
 	// Donnéees 
 	std::vector <ItemData> itemData;
-	//std::vector <PkmnData> pkmnData;
+	std::vector <PkmnData> pkmnData;
 	//std::vector <AtkData> atkData;
 
 private:
