@@ -40,8 +40,8 @@ void Model::pkmnInit() {
 		PkmnData pkmn;
 		std::string index = std::to_string(i+1);
 		pkmn.name = jsonFile[index]["name"].get<std::string>();
-		pkmn.type1 = jsonFile[index]["type1"].get<std::string>();
-		pkmn.type2 = jsonFile[index]["type2"].get<std::string>();
+		pkmn.type1 = typeToInt(jsonFile[index]["type1"].get<std::string>());
+		pkmn.type2 = typeToInt(jsonFile[index]["type2"].get<std::string>());
 		pkmn.pokedex_entry = jsonFile[index]["pokedex_entries"].get<std::string>();
 		pkmn.gender_ratio = jsonFile[index]["gender_ratio"].get<float>();
 		pkmn.catch_rate = jsonFile[index]["catch_rate"].get<int>();
@@ -68,9 +68,50 @@ void Model::pkmnInit() {
 	}
 }
 
+// TO DO
 void Model::atkInit() {
 	return;
 }
 
 Model::Model() {}
 Model::~Model() {}
+
+int Model::typeToInt(std::string type) {
+	if (type == "Acier")
+		return 1;
+	else if (type == "Combat")
+		return 2;
+	else if (type == "Dragon")
+		return 3;
+	else if (type == "Eau")
+		return 4;
+	else if (type == "Electrik")
+		return 5;
+	else if (type == "Fee")
+		return 6;
+	else if (type == "Feu")
+		return 7;
+	else if (type == "Glace")
+		return 8;
+	else if (type == "Insecte")
+		return 9;
+	else if (type == "Normal")
+		return 10;
+	else if (type == "Plante")
+		return 11;
+	else if (type == "Poison")
+		return 12;
+	else if (type == "Psy")
+		return 13;
+	else if (type == "Roche")
+		return 14;
+	else if (type == "Sol")
+		return 15;
+	else if (type == "Spectre")
+		return 16;
+	else if (type == "Tenebre")
+		return 17;
+	else if (type == "Vol")
+		return 18;
+	else return 0;
+}

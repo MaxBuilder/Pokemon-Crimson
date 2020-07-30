@@ -62,6 +62,8 @@ void Controller::mapUpdate(int event) {
 	// Détection des états puis envoi de l'évènement aux sous-fonctions
 	if (gameState.menuMode)
 		mapMenuUpdate(event);
+	else if (gameState.pkdxMode)
+		mapPokedexUpdate(event);
 	else if (gameState.invMode)
 		mapBagUpdate(event);
 	else if (gameState.cardMode)
@@ -90,6 +92,9 @@ void Controller::mapMenuUpdate(int action) {
 			case 6: // Event "A" -> confirmer
 				switch (gameState.menuId) {
 					case 0:	// Entrée dans le pokédex
+						gameState.pkdxMode = true;
+						gameState.menuMode = false;
+						gameState.pkdxId = 0;
 						break;
 
 					case 1:	// Entrée dans l'équipe
@@ -124,6 +129,47 @@ void Controller::mapMenuUpdate(int action) {
 	}
 	view.mapView.renderMenu();
 	sf::sleep(sf::milliseconds(20));
+}
+
+void Controller::mapPokedexUpdate(int action) {
+	GameState& gameState = model.getGameState();
+
+	switch (action) {
+		case 1:
+			gameState.pkdxId--;
+			if (gameState.pkdxId < 0)
+				gameState.pkdxId = 0;
+			break;
+
+		case 2:
+			gameState.pkdxId++;
+			if (gameState.pkdxId > 492)
+				gameState.pkdxId = 492;
+			break;
+
+		case 3:
+			gameState.pkdxId -= 10;
+			if (gameState.pkdxId < 0)
+				gameState.pkdxId = 0;
+			break;
+
+		case 4:
+			if (gameState.pkdxId == 0)
+				gameState.pkdxId = 9;
+			else gameState.pkdxId += 10;
+			if (gameState.pkdxId > 492)
+				gameState.pkdxId = 492;
+			break;
+
+		case 7:
+			model.getGameState().menuMode = true;
+			model.getGameState().pkdxMode = false;
+			view.mapView.renderWorld();
+			return;
+	}
+
+	view.mapView.renderPokedex();
+	sf::sleep(sf::milliseconds(100));
 }
 
 void Controller::mapCardUpdate(int action) {

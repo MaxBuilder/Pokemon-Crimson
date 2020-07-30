@@ -17,6 +17,9 @@ private:
 	sf::Texture bag;
 	sf::Texture items;
 	sf::Texture card;
+	sf::Texture pokedex;
+	sf::Texture pkmnSprite;
+	sf::Texture footprints;
 	sf::Texture fonts[4];
 	std::string textMenu[8];
 
@@ -33,6 +36,8 @@ public:
 	void renderBag();
 	// Render de la carte de dresseur
 	void renderCard();
+	// Render du pokédex
+	void renderPokedex();
 
 
 	// Fonctions auxiliaires

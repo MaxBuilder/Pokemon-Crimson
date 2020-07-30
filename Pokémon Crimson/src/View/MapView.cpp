@@ -20,6 +20,65 @@ void MapView::renderMenu() {
 	window.display();
 }
 
+// TO DO : Animations et cri + sons + lambda
+void MapView::renderPokedex() {
+	window.clear();
+	sf::Sprite sp;
+
+	// Background
+	sp.setTexture(pokedex);
+	drawImage(sp, 0, 0, 256, 192);
+	int id = model.getGameState().pkdxId;
+	PkmnData pkmn = model.pkmnData[id];
+	
+	// Informations générales
+	drawText(pkmn.name, 785, 135, 1);
+	drawText(pkmn.category, 680, 225, 1);
+	drawText(pkmn.height, 935, 455);
+	drawText(pkmn.weight, 935, 535);
+	drawImage(sp, ((pkmn.type1 - 1) % 4) * 48, 192 + ((pkmn.type1 - 1) / 4) * 16, 48, 16, 730, 320);
+	if(pkmn.type2 != 0) drawImage(sp, ((pkmn.type2 - 1) % 4) * 48, 192 + ((pkmn.type2 -1 )/ 4) * 16, 48, 16, 980, 320);
+
+	// Sprite + footprints
+	sp.setTexture(pkmnSprite);
+	drawImage(sp, (id % 28) * 80, (id / 28) * 80, 80, 80, 40, 160);
+	sp.setTexture(footprints);
+	drawImage(sp, (id % 31) * 16, (id / 31) * 16, 16, 16, 560, 400);
+
+	// id
+	int a = 0, b = 0, c = 0; id++;
+	if (id > 99) a = id / 100;
+	drawText(std::to_string(a), 650 + (a == 1) * 10, 135, 1);
+	if (id - a * 100 > 9) b = (id - a * 100) / 10;
+	drawText(std::to_string(b), 685 + (b == 1) * 5, 135, 1);
+	c = id - a * 100 - b * 10;
+	drawText(std::to_string(c), 720, 135, 1);
+
+	// Pokedex entry
+	std::string desc = pkmn.pokedex_entry, curr = {}, render = {};
+	int line = 0;
+	for (int i = 0; i < desc.size(); i++) {
+		if (desc.at(i) != ' ')
+			curr.push_back(desc.at(i));
+		else {
+			if (render.size() + curr.size() > 35) {
+				drawText(render, 145, 695 + line * 80);
+				render.clear();
+				render.append(curr + " ");
+				line++;
+			}
+			else {
+				render.append(curr);
+				render.push_back(' ');
+			}
+			curr.clear();
+		}
+		drawText(render + curr, 145, 695 + line * 80);
+	}
+
+	window.display();
+}
+
 // TO DO : Finir affichage
 void MapView::renderCard() {
 	Character& chara = model.getCharacter();
@@ -171,6 +230,9 @@ void MapView::load() {
 	bag.loadFromFile("assets/bag.png");
 	items.loadFromFile("assets/items.png");
 	card.loadFromFile("assets/card.png");
+	pokedex.loadFromFile("assets/pokedex.png");
+	pkmnSprite.loadFromFile("assets/pkmn-sprites-front.png");
+	footprints.loadFromFile("assets/footprints.png");
 	fonts[0].loadFromFile("assets/fonts/black-gray.png");
 	fonts[1].loadFromFile("assets/fonts/black-lgray.png");
 	fonts[2].loadFromFile("assets/fonts/lblue-gray.png");

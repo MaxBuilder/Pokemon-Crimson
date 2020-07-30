@@ -28,7 +28,7 @@ public:
 	void mapMenuUpdate(int action);
 
 	// Sous fonctions du contrôleur du menu
-	void mapPokedexUpdate(int action);
+	void mapPokedexUpdate(int action); // TO DO
 	void mapTeamUpdate(int action); // TO DO
 	void mapBagUpdate(int action);
 	void mapCardUpdate(int action);

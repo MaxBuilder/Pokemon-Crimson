@@ -30,6 +30,10 @@ struct GameState {
 
 	// Trainer card gamestates
 	bool cardMode;
+
+	// Pokédex gamestates
+	bool pkdxMode;
+	int pkdxId;
 };
 
 struct ItemData {
@@ -42,17 +46,17 @@ struct ItemData {
 
 struct PkmnData {
 	std::string name = "";
-	std::string type1 = "", type2 = "";
+	int type1 = 0, type2 = 0;
 	std::string pokedex_entry = "";
 	float gender_ratio = 0.f;
 	int catch_rate = 0;
 	std::string height = "", weight = "";
-	std::array<int, 6> base_stats;
+	std::array<int, 6> base_stats = {};
 	std::string category = "";
 	std::string color = "";
 	std::string leveling_rate = "";
 	int exp_yield = 0;
-	std::array<int, 6> ev_yield;
+	std::array<int, 6> ev_yield = {};
 
 };
 
@@ -86,6 +90,9 @@ private:
 	Character character;
 
 	GameState gameState;
+
+	// Fonction de conversion du type de string à int
+	int typeToInt(std::string type);
 
 	
 

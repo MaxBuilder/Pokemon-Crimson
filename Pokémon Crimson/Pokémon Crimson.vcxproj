@@ -45,6 +45,9 @@
     <Image Include="assets\card.png" />
     <Image Include="assets\character.png" />
     <Image Include="assets\city.png" />
+    <Image Include="assets\footprints.png" />
+    <Image Include="assets\pkmn-sprites-front.png" />
+    <Image Include="assets\pokedex.png" />
     <Image Include="data\fonts\black-grey.png" />
     <Image Include="data\fonts\black-lgrey.png" />
     <Image Include="data\fonts\lblue-grey.png" />
