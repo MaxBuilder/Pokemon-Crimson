@@ -28,7 +28,7 @@ void MapView::renderPokedex() {
 	// Background
 	sp.setTexture(pokedex);
 	drawImage(sp, 0, 0, 256, 192);
-	int id = model.getGameState().pkdxId;
+	int id = model.getGameState().pkdxId + 1;
 	PkmnData pkmn = model.pkmnData[id];
 	
 	// Informations générales
@@ -41,12 +41,12 @@ void MapView::renderPokedex() {
 
 	// Sprite + footprints
 	sp.setTexture(pkmnSprite);
-	drawImage(sp, (id % 28) * 80, (id / 28) * 80, 80, 80, 40, 160);
+	drawImage(sp, ((id - 1) % 28) * 80, ((id - 1) / 28) * 80, 80, 80, 40, 160);
 	sp.setTexture(footprints);
-	drawImage(sp, (id % 31) * 16, (id / 31) * 16, 16, 16, 560, 400);
+	drawImage(sp, ((id - 1) % 31) * 16, ((id - 1) / 31) * 16, 16, 16, 560, 400);
 
 	// id
-	int a = 0, b = 0, c = 0; id++;
+	int a = 0, b = 0, c = 0;
 	if (id > 99) a = id / 100;
 	drawText(std::to_string(a), 650 + (a == 1) * 10, 135, 1);
 	if (id - a * 100 > 9) b = (id - a * 100) / 10;

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Model\PkmnTeam.cpp" />
     <ClCompile Include="src\Model\Inventory.cpp" />
     <ClCompile Include="src\View\MainView.cpp" />
     <ClCompile Include="src\Model\Model.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libraries\json.hpp" />
+    <ClInclude Include="src\Model\PkmnTeam.h" />
     <ClInclude Include="src\Model\Inventory.h" />
     <ClInclude Include="src\View\MainView.h" />
     <ClInclude Include="src\Model\Model.h" />

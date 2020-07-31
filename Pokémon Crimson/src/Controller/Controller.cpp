@@ -28,16 +28,6 @@ void Controller::update(int event) {
 	// Détection de l'état du jeu global
 	if (gameState.mapMode) 
 		mapUpdate(event);
-
-	// Test d'intégration
-	//Inventory& test = model.getCharacter().getInventory();
-	//test.setIterators(7);
-	//for (auto i = test.itBegin; i < test.itEnd; i++) {
-	//	std::string st = model.itemData[i-test.items.begin()].name;
-	//}
-	//int test2 = test.itBegin - test.itEnd;
-
-
 }
 
 // Fonction de mise à jour losque le joueur est dans la map

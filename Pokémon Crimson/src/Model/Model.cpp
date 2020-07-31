@@ -36,6 +36,12 @@ void Model::pkmnInit() {
 	json jsonFile;
 	jsonFile = json::parse(input);
 
+	PkmnData first;
+	first.name = "error";
+	first.type1 = -1;
+	first.type2 = -1;
+	pkmnData.push_back(first);
+
 	for (unsigned int i = 0; i < jsonFile.size(); i++) {
 		PkmnData pkmn;
 		std::string index = std::to_string(i+1);

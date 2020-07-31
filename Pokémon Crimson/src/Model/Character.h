@@ -1,5 +1,6 @@
 #pragma once
 #include "Inventory.h"
+#include "PkmnTeam.h"
 
 class Character
 {
@@ -22,11 +23,11 @@ public:
 
 private:
 	Inventory inventory;
-	// PkmnTeam team;
+	PkmnTeam team;
 
 public:
 	Inventory& getInventory();
-	//PkmnTeam& getPkmnTeam();
+	PkmnTeam& getPkmnTeam();
 
 	// Constructeur et destructeur 
 	Character();
