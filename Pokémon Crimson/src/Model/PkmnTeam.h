@@ -9,7 +9,7 @@
 using json = nlohmann::json;
 
 struct Pkmn {
-	std::string name = {};
+	std::string name = "";
 	int id;
 	std::array<int, 6> stats = {};
 	std::array<int, 4> attacks = {};
@@ -37,7 +37,7 @@ public:
 	void saveTeam();
 
 	// Retourne un pokémon de l'équipe
-	Pkmn& getPkmn(int id);
+	Pkmn& getPkmn(int emp);
 
 	// Ajoute un pokémon à l'équipe
 	bool addPokemon(Pkmn& pkmn);

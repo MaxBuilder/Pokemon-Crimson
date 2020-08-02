@@ -20,6 +20,18 @@ void MapView::renderMenu() {
 	window.display();
 }
 
+// TO DO : Animations + sub menu select
+void MapView::renderTeam() {
+	window.clear();
+	sf::Sprite sp;
+
+	// Background
+	sp.setTexture(team);
+	drawImage(sp, 0, 0, 256, 192);
+
+	window.display();
+}
+
 // TO DO : Animations et cri + sons + lambda
 void MapView::renderPokedex() {
 	window.clear();
@@ -233,6 +245,7 @@ void MapView::load() {
 	pokedex.loadFromFile("assets/pokedex.png");
 	pkmnSprite.loadFromFile("assets/pkmn-sprites-front.png");
 	footprints.loadFromFile("assets/footprints.png");
+	team.loadFromFile("assets/team.png");
 	fonts[0].loadFromFile("assets/fonts/black-gray.png");
 	fonts[1].loadFromFile("assets/fonts/black-lgray.png");
 	fonts[2].loadFromFile("assets/fonts/lblue-gray.png");

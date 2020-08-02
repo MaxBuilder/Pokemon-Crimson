@@ -34,6 +34,11 @@ struct GameState {
 	// Pokédex gamestates
 	bool pkdxMode;
 	int pkdxId;
+
+	// Team gamestates
+	bool teamMode;
+	int teamId;
+
 };
 
 struct ItemData {

@@ -54,6 +54,8 @@ void Controller::mapUpdate(int event) {
 		mapMenuUpdate(event);
 	else if (gameState.pkdxMode)
 		mapPokedexUpdate(event);
+	else if (gameState.teamMode)
+		mapTeamUpdate(event);
 	else if (gameState.invMode)
 		mapBagUpdate(event);
 	else if (gameState.cardMode)
@@ -88,6 +90,9 @@ void Controller::mapMenuUpdate(int action) {
 						break;
 
 					case 1:	// Entrée dans l'équipe
+						gameState.teamMode = true;
+						gameState.menuMode = false;
+						gameState.teamId = 0;
 						break;
 
 					case 2:	// Entrée dans l'inventaire
@@ -108,7 +113,7 @@ void Controller::mapMenuUpdate(int action) {
 						gameState.menuMode = false;
 						break;
 
-						// ... Carte de dresseur, save, options.
+						// save, options.
 				}
 				break;
 
@@ -119,6 +124,27 @@ void Controller::mapMenuUpdate(int action) {
 	}
 	view.mapView.renderMenu();
 	sf::sleep(sf::milliseconds(20));
+}
+
+void Controller::mapTeamUpdate(int action) {
+	GameState& gameState = model.getGameState();
+
+	switch (action) {
+		case 1:
+			break;
+
+		case 2:
+			break;
+
+		case 7:
+			gameState.menuMode = true;
+			gameState.teamMode = false;
+			view.mapView.renderWorld();
+			return;
+	}
+
+	view.mapView.renderTeam();
+	sf::sleep(sf::milliseconds(100));
 }
 
 void Controller::mapPokedexUpdate(int action) {
@@ -152,8 +178,8 @@ void Controller::mapPokedexUpdate(int action) {
 			break;
 
 		case 7:
-			model.getGameState().menuMode = true;
-			model.getGameState().pkdxMode = false;
+			gameState.menuMode = true;
+			gameState.pkdxMode = false;
 			view.mapView.renderWorld();
 			return;
 	}
@@ -392,5 +418,5 @@ void Controller::mapMovementUpdate(int movement) {
 	view.mapView.renderWorld();
 }
 
-Controller::Controller(MainView& v, Model& m) : view(v), model(m) {}
+Controller::Controller(MainView& v, Model& m) : view(v), model(m), prevEvent(0) {}
 Controller::~Controller() {}

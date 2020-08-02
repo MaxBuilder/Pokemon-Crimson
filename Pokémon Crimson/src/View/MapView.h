@@ -20,6 +20,7 @@ private:
 	sf::Texture pokedex;
 	sf::Texture pkmnSprite;
 	sf::Texture footprints;
+	sf::Texture team;
 	sf::Texture fonts[4];
 	std::string textMenu[8];
 
@@ -32,6 +33,8 @@ public:
 	void renderWorld(float x = -1, float y = -1, bool second = false);
 	// Render du menu
 	void renderMenu();
+	// Render de l'équipe
+	void renderTeam();
 	// Render de l'inventaire 
 	void renderBag();
 	// Render de la carte de dresseur

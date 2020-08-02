@@ -21,8 +21,8 @@ void Inventory::saveInventory() {
 	std::ofstream outputFile("assets/save/InventorySaveOut.json");
 
 	for (auto i = 0; i < items.size(); i++) {
-		jsonOutput[std::to_string(i)]["id"] = items[i].id;
-		jsonOutput[std::to_string(i)]["nb"] = items[i].nb;
+		jsonOutput[std::to_string(i)]["id"] = items.at(i).id;
+		jsonOutput[std::to_string(i)]["nb"] = items.at(i).nb;
 	}
 
 	outputFile << jsonOutput;
