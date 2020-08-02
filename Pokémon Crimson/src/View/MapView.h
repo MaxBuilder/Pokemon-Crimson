@@ -21,8 +21,9 @@ private:
 	sf::Texture pkmnSprite;
 	sf::Texture footprints;
 	sf::Texture team;
-	sf::Texture fonts[4];
-	std::string textMenu[8];
+	sf::Texture box_sprites;
+	std::array<sf::Texture, 5> fonts;
+	std::array<std::string, 8> textMenu;
 
 
 public:
@@ -42,15 +43,22 @@ public:
 	// Render du pokédex
 	void renderPokedex();
 
+private:
+	// Fonction de render :
 
-	// Fonctions auxiliaires
+	// Render 
 
-	// Render de texte
+
+	// Fonction de draw :
+
+	// Draw de texte
 	void drawText(std::string line, int cursor, int y, int color = 0, float ratio = 5.f);
-
-	// Render d'une image (allègement de la syntaxe)
+	// Draw d'une image
 	void drawImage(sf::Sprite& sp, const int xo, const int yo, const int sizex, const int sizey, const float posx = 0, const float posy = 0, const float scale = 5.f);
+	// Draw de chiffres
+	void drawNum(int num, int cursor, int y);
 
+public:
 
 	// Constructeur et destructeur
 	MapView(sf::RenderWindow& w, Model& m);

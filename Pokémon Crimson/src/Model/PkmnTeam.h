@@ -8,12 +8,16 @@
 
 using json = nlohmann::json;
 
+// TO DO : Add enum to stats
 struct Pkmn {
 	std::string name = "";
-	int id;
+	int id = 0;
 	std::array<int, 6> stats = {};
+	int maxHp = 0;
 	std::array<int, 4> attacks = {};
 	int status = 0;
+	int gender = 0;
+	int level = 0;
 
 	// Later
 	/*std::array<int, 6> debuf = {};
@@ -22,6 +26,18 @@ struct Pkmn {
 	int ball = 0;
 	+ IV and EV
 	*/
+
+	int getHp() {
+		return stats.at(0);
+	}
+
+	int getMaxHp() {
+		return maxHp;
+	}
+
+	bool isKo() {
+		return stats.at(0) == 0;
+	}
 };
 
 class PkmnTeam
@@ -38,6 +54,8 @@ public:
 
 	// Retourne un pokémon de l'équipe
 	Pkmn& getPkmn(int emp);
+
+	int size();
 
 	// Ajoute un pokémon à l'équipe
 	bool addPokemon(Pkmn& pkmn);

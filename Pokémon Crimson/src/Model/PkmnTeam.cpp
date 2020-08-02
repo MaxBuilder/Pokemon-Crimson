@@ -1,11 +1,11 @@
 #include "PkmnTeam.h"
 
 void PkmnTeam::loadTeam() {
-	std::ifstream inputFile("assets/save/TeamSave.json");
+	std::ifstream inputFile("assets/save/TeamSaveDef.json");
 	json jsonSource;
 	jsonSource = json::parse(inputFile);
 
-	for (int i = 0; i < jsonSource.size(); i++) {
+	for (unsigned int i = 0; i < jsonSource.size(); i++) {
 		Pkmn pkmn;
 		pkmn.name = jsonSource[std::to_string(i)]["name"].get<std::string>();
 		pkmn.id = jsonSource[std::to_string(i)]["id"].get<int>();
@@ -20,6 +20,9 @@ void PkmnTeam::loadTeam() {
 		pkmn.attacks.at(0) = jsonSource[std::to_string(i)]["attack"]["2"].get<int>();
 		pkmn.attacks.at(0) = jsonSource[std::to_string(i)]["attack"]["3"].get<int>();
 		pkmn.status = jsonSource[std::to_string(i)]["status"].get<int>();
+		pkmn.gender = jsonSource[std::to_string(i)]["gender"].get<int>();
+		pkmn.level = jsonSource[std::to_string(i)]["level"].get<int>();
+		pkmn.maxHp = jsonSource[std::to_string(i)]["max_hp"].get<int>();
 
 		pkmns.push_back(pkmn);
 	}
@@ -29,9 +32,9 @@ void PkmnTeam::loadTeam() {
 
 void PkmnTeam::saveTeam() {
 	json jsonOutput;
-	std::ofstream outputFile("assets/save/TeamSaveOut.json");
+	std::ofstream outputFile("assets/save/TeamSaveDef.json");
 
-	for (int i = 0; i < pkmns.size(); i++) {
+	for (unsigned int i = 0; i < pkmns.size(); i++) {
 		jsonOutput[std::to_string(i)]["name"] = pkmns.at(i).name;
 		jsonOutput[std::to_string(i)]["id"] = pkmns.at(i).id;
 		jsonOutput[std::to_string(i)]["stats"]["hp"] = pkmns.at(i).stats.at(0);
@@ -45,10 +48,17 @@ void PkmnTeam::saveTeam() {
 		jsonOutput[std::to_string(i)]["attack"]["2"] = pkmns.at(i).attacks.at(2);
 		jsonOutput[std::to_string(i)]["attack"]["3"] = pkmns.at(i).attacks.at(3);
 		jsonOutput[std::to_string(i)]["status"] = pkmns.at(i).status;
+		jsonOutput[std::to_string(i)]["gender"] = pkmns.at(i).gender;
+		jsonOutput[std::to_string(i)]["level"] = pkmns.at(i).level;
+		jsonOutput[std::to_string(i)]["max_hp"] = pkmns.at(i).maxHp;
 	}
 
 	outputFile << jsonOutput;
 	outputFile.close();
+}
+
+int PkmnTeam::size() {
+	return pkmns.size();
 }
 
 Pkmn& PkmnTeam::getPkmn(int emp) {
@@ -56,20 +66,20 @@ Pkmn& PkmnTeam::getPkmn(int emp) {
 	return pkmns.at(emp);
 }
 
-PkmnTeam::PkmnTeam() {/*
-	Pkmn pkmn = { "Arceus", 493, {120, 120, 120, 120, 120, 120}, {1, 2, 3, 4}, 0 };
+PkmnTeam::PkmnTeam() {
+	Pkmn pkmn = { "Arceus", 493, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 0, 75 };
 	pkmns.push_back(pkmn);
-	pkmn = { "Dialga", 483, {120, 120, 120, 120, 120, 120}, {1, 2, 3, 4}, 0 };
+	pkmn = { "Dialga", 483, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 0, 89 };
 	pkmns.push_back(pkmn);
-	pkmn = { "Palkia", 484, {120, 120, 120, 120, 120, 120}, {1, 2, 3, 4}, 0 };
+	pkmn = { "Palkia", 484, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 0, 56 };
 	pkmns.push_back(pkmn);
-	pkmn = { "Torterra", 389, {120, 120, 120, 120, 120, 120}, {1, 2, 3, 4}, 0 };
+	pkmn = { "Torterra", 389, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 2, 38 };
 	pkmns.push_back(pkmn);
-	pkmn = { "Simiabraz", 492, {120, 120, 120, 120, 120, 120}, {1, 2, 3, 4}, 0 };
+	pkmn = { "Simiabraz", 392, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 1, 63 };
 	pkmns.push_back(pkmn);
-	pkmn = { u8"Pingoléon", 495, {120, 120, 120, 120, 120, 120}, {1, 2, 3, 4}, 0 };
-	pkmns.push_back(pkmn);*/
-	loadTeam();
+	pkmn = { u8"Pingoléon", 395, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 1, 61 };
+	pkmns.push_back(pkmn);
+	//loadTeam();
 	
 }
 PkmnTeam::~PkmnTeam() { saveTeam(); }

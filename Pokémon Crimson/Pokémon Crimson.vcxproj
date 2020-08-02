@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Util\ResourceHolder.cpp" />
     <ClCompile Include="src\Model\PkmnTeam.cpp" />
     <ClCompile Include="src\Model\Inventory.cpp" />
     <ClCompile Include="src\View\MainView.cpp" />
@@ -32,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libraries\json.hpp" />
+    <ClInclude Include="src\Util\ResourceHolder.h" />
     <ClInclude Include="src\Model\PkmnTeam.h" />
     <ClInclude Include="src\Model\Inventory.h" />
     <ClInclude Include="src\View\MainView.h" />
@@ -44,12 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\bag.png" />
+    <Image Include="assets\box-sprites.png" />
     <Image Include="assets\card.png" />
     <Image Include="assets\character.png" />
     <Image Include="assets\city.png" />
     <Image Include="assets\footprints.png" />
     <Image Include="assets\pkmn-sprites-front.png" />
     <Image Include="assets\pokedex.png" />
+    <Image Include="assets\team.png" />
     <Image Include="data\fonts\black-grey.png" />
     <Image Include="data\fonts\black-lgrey.png" />
     <Image Include="data\fonts\lblue-grey.png" />

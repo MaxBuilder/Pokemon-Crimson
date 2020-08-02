@@ -23,12 +23,81 @@ void MapView::renderMenu() {
 // TO DO : Animations + sub menu select
 void MapView::renderTeam() {
 	window.clear();
+	PkmnTeam& pkmnTeam = model.getCharacter().getPkmnTeam();
 	sf::Sprite sp;
+	sf::Sprite spb;
 
 	// Background
 	sp.setTexture(team);
+	spb.setTexture(box_sprites);
 	drawImage(sp, 0, 0, 256, 192);
 
+	// Test 
+	pkmnTeam.getPkmn(0).stats.at(0) = 9;
+	pkmnTeam.getPkmn(0).gender = 2;
+	pkmnTeam.getPkmn(1).gender = 2;
+	pkmnTeam.getPkmn(2).gender = 2;
+
+	// Render infos
+	drawText(pkmnTeam.getPkmn(0).name, 240, 55, 4);
+	drawNum(pkmnTeam.getPkmn(0).level, 105, 175);
+	if (pkmnTeam.getPkmn(0).gender == 1) drawImage(sp, 59, 352, 6, 10, 560, 55);
+	else if (pkmnTeam.getPkmn(0).gender == 2) drawImage(sp, 66, 352, 6, 10, 560, 55);
+	drawImage(spb, (pkmnTeam.getPkmn(0).id - 1) % 25 * 32, (pkmnTeam.getPkmn(0).id - 1) / 25 * 32, 32, 32, 64, 16);
+	drawNum(pkmnTeam.getPkmn(0).getHp(), 300 + (pkmnTeam.getPkmn(0).getHp() < 100) * 40 + (pkmnTeam.getPkmn(0).getHp() < 10) * 40, 175);
+	drawNum(pkmnTeam.getPkmn(0).getMaxHp(), 460, 175);
+
+	if (pkmnTeam.size() > 1) {
+		drawImage(sp, 0, 192, 126, 45, 645, 55);
+		drawText(pkmnTeam.getPkmn(1).name, 880, 95, 4);
+		drawNum(pkmnTeam.getPkmn(1).level, 745, 215);
+		if (pkmnTeam.getPkmn(1).gender == 1) drawImage(sp, 59, 352, 6, 10, 1200, 95);
+		else if (pkmnTeam.getPkmn(1).gender == 2) drawImage(sp, 66, 352, 6, 10, 1200, 95);
+		drawImage(spb, (pkmnTeam.getPkmn(1).id - 1) % 25 * 32, (pkmnTeam.getPkmn(1).id - 1) / 25 * 32, 32, 32, 710, 65);
+		drawNum(pkmnTeam.getPkmn(1).getHp(), 940 + (pkmnTeam.getPkmn(1).getHp() < 100) * 40 + (pkmnTeam.getPkmn(1).getHp() < 10) * 40, 215);
+		drawNum(pkmnTeam.getPkmn(1).getMaxHp(), 1100, 215);
+	}
+	if (pkmnTeam.size() > 2) {
+		drawImage(sp, 0, 192, 126, 45, 5, 255);
+		drawText(pkmnTeam.getPkmn(2).name, 240, 295, 4);
+		drawNum(pkmnTeam.getPkmn(2).level, 105, 415);
+		if (pkmnTeam.getPkmn(2).gender == 1) drawImage(sp, 59, 352, 6, 10, 560, 295);
+		else if (pkmnTeam.getPkmn(2).gender == 2) drawImage(sp, 66, 352, 6, 10, 560, 295);
+		drawImage(spb, (pkmnTeam.getPkmn(2).id - 1) % 25 * 32, (pkmnTeam.getPkmn(2).id - 1) / 25 * 32, 32, 32, 64, 265);
+		drawNum(pkmnTeam.getPkmn(2).getHp(), 300 + (pkmnTeam.getPkmn(2).getHp() < 100) * 40 + (pkmnTeam.getPkmn(2).getHp() < 10) * 40, 415);
+		drawNum(pkmnTeam.getPkmn(2).getMaxHp(), 460, 415);
+	}
+	if (pkmnTeam.size() > 3) {
+		drawImage(sp, 0, 192, 126, 45, 645, 295);
+		drawText(pkmnTeam.getPkmn(3).name, 880, 335, 4);
+		drawNum(pkmnTeam.getPkmn(3).level, 745, 455);
+		if (pkmnTeam.getPkmn(3).gender == 1) drawImage(sp, 59, 352, 6, 10, 1200, 335);
+		else if (pkmnTeam.getPkmn(3).gender == 2) drawImage(sp, 66, 352, 6, 10, 1200, 335);
+		drawImage(spb, (pkmnTeam.getPkmn(3).id - 1) % 25 * 32, (pkmnTeam.getPkmn(3).id - 1) / 25 * 32, 32, 32, 710, 300);
+		drawNum(pkmnTeam.getPkmn(3).getHp(), 940 + (pkmnTeam.getPkmn(3).getHp() < 100) * 40 + (pkmnTeam.getPkmn(3).getHp() < 10) * 40, 455);
+		drawNum(pkmnTeam.getPkmn(3).getMaxHp(), 1100, 455);
+	}
+	if (pkmnTeam.size() > 4) {
+		drawImage(sp, 0, 192, 126, 45, 5, 495);
+		drawText(pkmnTeam.getPkmn(4).name, 240, 535, 4);
+		drawNum(pkmnTeam.getPkmn(4).level, 105, 655);
+		if (pkmnTeam.getPkmn(4).gender == 1) drawImage(sp, 59, 352, 6, 10, 560, 535);
+		else if (pkmnTeam.getPkmn(4).gender == 2) drawImage(sp, 66, 352, 6, 10, 560, 535);
+		drawImage(spb, (pkmnTeam.getPkmn(4).id - 1) % 25 * 32, (pkmnTeam.getPkmn(4).id - 1) / 25 * 32, 32, 32, 64, 505);
+		drawNum(pkmnTeam.getPkmn(4).getHp(), 300 + (pkmnTeam.getPkmn(4).getHp() < 100) * 40 + (pkmnTeam.getPkmn(4).getHp() < 10) * 40, 655);
+		drawNum(pkmnTeam.getPkmn(4).getMaxHp(), 460, 655);
+	}
+	if (pkmnTeam.size() > 5) {
+		drawImage(sp, 0, 192, 126, 45, 645, 535);
+		drawText(pkmnTeam.getPkmn(5).name, 880, 575, 4);
+		drawNum(pkmnTeam.getPkmn(5).level, 745, 695);
+		if (pkmnTeam.getPkmn(5).gender == 1) drawImage(sp, 59, 352, 6, 10, 1200, 575);
+		else if (pkmnTeam.getPkmn(5).gender == 2) drawImage(sp, 66, 352, 6, 10, 1200, 575);
+		drawImage(spb, (pkmnTeam.getPkmn(5).id - 1) % 25 * 32, (pkmnTeam.getPkmn(5).id - 1) / 25 * 32, 32, 32, 710, 535);
+		drawNum(pkmnTeam.getPkmn(5).getHp(), 940 + (pkmnTeam.getPkmn(5).getHp() < 100) * 40 + (pkmnTeam.getPkmn(5).getHp() < 10) * 40, 695);
+		drawNum(pkmnTeam.getPkmn(5).getMaxHp(), 1100, 695);
+	}
+	
 	window.display();
 }
 
@@ -69,7 +138,7 @@ void MapView::renderPokedex() {
 	// Pokedex entry
 	std::string desc = pkmn.pokedex_entry, curr = {}, render = {};
 	int line = 0;
-	for (int i = 0; i < desc.size(); i++) {
+	for (unsigned int i = 0; i < desc.size(); i++) {
 		if (desc.at(i) != ' ')
 			curr.push_back(desc.at(i));
 		else {
@@ -246,28 +315,58 @@ void MapView::load() {
 	pkmnSprite.loadFromFile("assets/pkmn-sprites-front.png");
 	footprints.loadFromFile("assets/footprints.png");
 	team.loadFromFile("assets/team.png");
-	fonts[0].loadFromFile("assets/fonts/black-gray.png");
-	fonts[1].loadFromFile("assets/fonts/black-lgray.png");
-	fonts[2].loadFromFile("assets/fonts/lblue-gray.png");
-	fonts[3].loadFromFile("assets/fonts/white-black.png");
-	textMenu[0] = "      OBJETS";
-    textMenu[1] = "   MEDICAMENTS";
-    textMenu[2] = "       BALLS";
-    textMenu[3] = "         CT";
-    textMenu[4] = "       BERRY";
-    textMenu[5] = "      LETTRE";
-    textMenu[6] = " OBJETS COMBAT";
-    textMenu[7] = "   OBJETS RARE";
+	box_sprites.loadFromFile("assets/box-sprites.png");
+	fonts.at(0).loadFromFile("assets/fonts/black-gray.png");
+	fonts.at(1).loadFromFile("assets/fonts/black-lgray.png");
+	fonts.at(2).loadFromFile("assets/fonts/lblue-gray.png");
+	fonts.at(3).loadFromFile("assets/fonts/white-black.png");
+	fonts.at(4).loadFromFile("assets/fonts/white-grey.png");
+	textMenu.at(0) = "      OBJETS";
+    textMenu.at(1) = "   MEDICAMENTS";
+    textMenu.at(2) = "       BALLS";
+    textMenu.at(3) = "         CT";
+    textMenu.at(4) = "       BERRY";
+    textMenu.at(5) = "      LETTRE";
+    textMenu.at(6) = " OBJETS COMBAT";
+    textMenu.at(7) = "   OBJETS RARE";
 }
 
-// Drawing functions
+// Drawing functions :
+
+void MapView::drawNum(int num, int cursor, int y) {
+	sf::Sprite sp;
+	sp.setTexture(team);
+	sp.setScale(5.f, 5.f);
+
+	int a = 0, b = 0, c = 0, d = 0;
+	a = num / 1000 % 10;
+	if (a > 0) {
+		drawImage(sp, 9 + a * 8 + a, 372, 8, 7, (float)cursor, (float)y);
+		cursor += 40;
+	}
+	b = num / 100 % 10;
+	if (b > 0 or a != 0) {
+		drawImage(sp, 9 + b * 8 + b, 372, 8, 7, (float)cursor, (float)y);
+		cursor += 40;
+	}
+	c = num / 10 % 10; 
+	if (c > 0 or b != 0 or a != 0) {
+		drawImage(sp, 9 + c * 8 + c, 372, 8, 7, (float)cursor, (float)y);
+		cursor += 40;
+	}
+	d = num % 10;
+	if (d > 0 or c != 0 or b != 0 or a != 0) {
+		drawImage(sp, 9 + d * 8 + d, 372, 8 , 7, (float)cursor, (float)y);
+		cursor += 40;
+	}
+}
 
 void MapView::drawText(std::string line, int cursor, int y, int color, float ratio) {
-	for (unsigned int i = 0; i < line.length(); i++) {
-		sf::Sprite sp;
-		sp.setTexture(fonts[color]);
-		sp.setScale(ratio, ratio);
+	sf::Sprite sp;
+	sp.setTexture(fonts.at(color));
+	sp.setScale(ratio, ratio);
 
+	for (unsigned int i = 0; i < line.length(); i++) {
 		int id;
 		if (line[i] > 64 and line[i] < 91) id = line[i] - 65;
 		else if (line[i] > 96 and line[i] < 123) id = line[i] - 67;
