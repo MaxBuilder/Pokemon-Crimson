@@ -1,6 +1,6 @@
 #pragma once
 
-#include"../Util/ResourceHolder.h"
+#include"../util/ResourceHolder.h"
 #include "MapView.h"
 #include "Texture.h"
 #include <iostream>

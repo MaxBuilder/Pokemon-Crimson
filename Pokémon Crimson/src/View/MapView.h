@@ -1,8 +1,8 @@
 #pragma once
 
 #include <SFML/graphics.hpp>
-#include "../Model/Model.h"
-#include"../Util/ResourceHolder.h"
+#include "../model/Model.h"
+#include"../util/ResourceHolder.h"
 #include "Texture.h"
 
 class MapView
