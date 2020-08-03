@@ -8,8 +8,8 @@ void Game::launch() {
 }
 
 void Game::create() {
-	controller.init(); // Chargement des données, ...
-	run = true;
+	controller.init();	// Chargement des données
+	view.load();		// Chargement des ressources graphiques
 }
 
 void Game::loop() {
@@ -25,6 +25,6 @@ void Game::quit() {
 	std::cout << "Normal closing " << std::endl;
 }
 
-Game::Game() : model(), view(model), controller(view, model) {}
+Game::Game() : model(), view(model), controller(view, model), run(true) {}
 Game::~Game() {};
 

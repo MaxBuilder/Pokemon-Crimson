@@ -1,7 +1,9 @@
 #pragma once
+
 #include <SFML/graphics.hpp>
 #include "../Model/Model.h"
-#include <iostream>
+#include"../Util/ResourceHolder.h"
+#include "Texture.h"
 
 class MapView
 {
@@ -9,27 +11,15 @@ class MapView
 private:
 	sf::RenderWindow& window;
 	Model& model;
+	ResourceHolder<sf::Texture, texture::id>& textureHolder;
 
 	sf::View view;
-	sf::Texture map;
-	sf::Texture character;
-	sf::Texture menu;
-	sf::Texture bag;
-	sf::Texture items;
-	sf::Texture card;
-	sf::Texture pokedex;
-	sf::Texture pkmnSprite;
-	sf::Texture footprints;
-	sf::Texture team;
-	sf::Texture box_sprites;
-	std::array<sf::Texture, 5> fonts;
+
+	//  TO REDO
 	std::array<std::string, 8> textMenu;
 
 
 public:
-	// Chargement de toutes les textures 
-	void load();
-
 	// Render de la map
 	void renderWorld(float x = -1, float y = -1, bool second = false);
 	// Render du menu
@@ -44,11 +34,6 @@ public:
 	void renderPokedex();
 
 private:
-	// Fonction de render :
-
-	// Render 
-
-
 	// Fonction de draw :
 
 	// Draw de texte
@@ -61,7 +46,7 @@ private:
 public:
 
 	// Constructeur et destructeur
-	MapView(sf::RenderWindow& w, Model& m);
+	MapView(sf::RenderWindow& w, Model& m, ResourceHolder<sf::Texture, texture::id>& t);
 	~MapView();
 };
 

@@ -5,7 +5,7 @@ void Inventory::loadInventory() {
 	json jsonSource;
 	jsonSource = json::parse(inputFile);
 	
-	for (auto i = 0; i < jsonSource.size(); i++) {
+	for (unsigned i = 0; i < jsonSource.size(); i++) {
 		int id = jsonSource[std::to_string(i)]["id"].get<int>();
 		int nb = jsonSource[std::to_string(i)]["nb"].get<int>();
 		items.push_back({ id, nb });
@@ -20,7 +20,7 @@ void Inventory::saveInventory() {
 	json jsonOutput;
 	std::ofstream outputFile("assets/save/InventorySaveOut.json");
 
-	for (auto i = 0; i < items.size(); i++) {
+	for (unsigned i = 0; i < items.size(); i++) {
 		jsonOutput[std::to_string(i)]["id"] = items.at(i).id;
 		jsonOutput[std::to_string(i)]["nb"] = items.at(i).nb;
 	}
@@ -39,7 +39,7 @@ void Inventory::addItem(const int id, const int quantity) {
 
 void Inventory::setIterators(const int catId) {
 	bool begin = false;
-	for (int i = 0; i < items.size(); i++) {
+	for (unsigned int i = 0; i < items.size(); i++) {
 		if (!begin) {
 			if (items[i].id >= catId * 100) {
 				itBegin = items.begin() + i;

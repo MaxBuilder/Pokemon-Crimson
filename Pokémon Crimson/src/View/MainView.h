@@ -1,21 +1,28 @@
 #pragma once
+
+#include"../Util/ResourceHolder.h"
 #include "MapView.h"
+#include "Texture.h"
+#include <iostream>
 
 class MainView
 {
 
 private:
+	ResourceHolder<sf::Texture, texture::id> textureHolder;
 	sf::RenderWindow window;
 
 public:
 	MapView mapView;
 	// CombatView combatView;
-	// etc ...
+
+	// Chargement de toutes les ressources graphiques
+	void load();
 
 	// Fermeture de la view principale
 	void close();
 
-	// Récuperation des évènements
+	// Récuperation des évenements
 	int handleEvents();
 
 

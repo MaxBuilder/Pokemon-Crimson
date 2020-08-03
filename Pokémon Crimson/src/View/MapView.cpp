@@ -10,7 +10,7 @@ void MapView::renderMenu() {
 
 	int id = model.getGameState().menuId;
 	sf::Sprite sp;
-	sp.setTexture(menu);
+	sp.setTexture(textureHolder.get(texture::guiMenu));
 
 	// Menu, selector, icons
 	drawImage(sp, 0, 0, 100, 180, 760.f, 20.f);
@@ -28,8 +28,8 @@ void MapView::renderTeam() {
 	sf::Sprite spb;
 
 	// Background
-	sp.setTexture(team);
-	spb.setTexture(box_sprites);
+	sp.setTexture(textureHolder.get(texture::guiTeam));
+	spb.setTexture(textureHolder.get(texture::spritePkmnBox));
 	drawImage(sp, 0, 0, 256, 192);
 
 	// Test 
@@ -107,7 +107,7 @@ void MapView::renderPokedex() {
 	sf::Sprite sp;
 
 	// Background
-	sp.setTexture(pokedex);
+	sp.setTexture(textureHolder.get(texture::guiPokedex));
 	drawImage(sp, 0, 0, 256, 192);
 	int id = model.getGameState().pkdxId + 1;
 	PkmnData pkmn = model.pkmnData[id];
@@ -121,9 +121,9 @@ void MapView::renderPokedex() {
 	if(pkmn.type2 != 0) drawImage(sp, ((pkmn.type2 - 1) % 4) * 48, 192 + ((pkmn.type2 -1 )/ 4) * 16, 48, 16, 980, 320);
 
 	// Sprite + footprints
-	sp.setTexture(pkmnSprite);
+	sp.setTexture(textureHolder.get(texture::spritePkmnFront));
 	drawImage(sp, ((id - 1) % 28) * 80, ((id - 1) / 28) * 80, 80, 80, 40, 160);
-	sp.setTexture(footprints);
+	sp.setTexture(textureHolder.get(texture::spriteFootprints));
 	drawImage(sp, ((id - 1) % 31) * 16, ((id - 1) / 31) * 16, 16, 16, 560, 400);
 
 	// id
@@ -165,7 +165,7 @@ void MapView::renderCard() {
 	Character& chara = model.getCharacter();
 	window.clear();
 	sf::Sprite sp;
-	sp.setTexture(card);
+	sp.setTexture(textureHolder.get(texture::guiCard));
 	drawImage(sp, 0, 352, 256, 192, 0, 0);
 	drawImage(sp, (chara.stars % 3) * 240, (chara.stars > 2) * 176, 240, 176, 40, 40);
 
@@ -182,7 +182,7 @@ void MapView::renderBag() {
 	Inventory& inv = model.getCharacter().getInventory();
 	window.clear();
 	sf::Sprite sp;
-	sp.setTexture(bag);
+	sp.setTexture(textureHolder.get(texture::guiBag));
 
 	// Background + name + quantity
 	drawImage(sp, 0, 326, 142, 126, 540.f, 35.f);
@@ -229,7 +229,7 @@ void MapView::renderBag() {
 	drawText(textMenu[catId], 40, 545);
 
 	// Icons
-	sp.setTexture(items);
+	sp.setTexture(textureHolder.get(texture::spriteItem));
 	int originX = catId % 2 * 144 + (itemId % 6) * 24;
 	int originY = (catId > 1) * 96 + (catId > 3) * 72 + (catId > 5) * 48 + itemId / 6 * 24;
 	drawImage(sp, originX, originY, 24, 24, 30, 775);
@@ -249,7 +249,7 @@ void MapView::renderBag() {
 
 	// Render sub-menu 
 	if (model.getGameState().invMenu) {
-		sp.setTexture(bag);
+		sp.setTexture(textureHolder.get(texture::guiBag));
 		std::vector<std::string> catList;
 		catList.push_back("ANNULER");
 		if (catId != 3 and catId != 7)
@@ -287,7 +287,7 @@ void MapView::renderWorld(float x, float y, bool second) {
 	
 	// Map
 	sf::Sprite sp;
-	sp.setTexture(map);
+	sp.setTexture(textureHolder.get(texture::tileCity));
 	window.draw(sp); 
 
 	// Character
@@ -297,45 +297,18 @@ void MapView::renderWorld(float x, float y, bool second) {
 		else sp.setTextureRect(sf::IntRect((model.getCharacter().moveCount % 4) * 32 + 128, model.getCharacter().direction * 32, model.getCharacter().sizeX, model.getCharacter().sizeY));
 	}
 	else sp.setTextureRect(sf::IntRect(0, model.getCharacter().direction * 32, model.getCharacter().sizeX, model.getCharacter().sizeY));
-	sp.setTexture(character);
+	sp.setTexture(textureHolder.get(texture::spriteCharacter));
 	sp.setPosition(camPosX, camPosY);
 	window.draw(sp);
 	
 	window.display();
 }
 
-void MapView::load() {
-	map.loadFromFile("assets/city.png");
-	character.loadFromFile("assets/character.png");
-	menu.loadFromFile("assets/menu.png");
-	bag.loadFromFile("assets/bag.png");
-	items.loadFromFile("assets/items.png");
-	card.loadFromFile("assets/card.png");
-	pokedex.loadFromFile("assets/pokedex.png");
-	pkmnSprite.loadFromFile("assets/pkmn-sprites-front.png");
-	footprints.loadFromFile("assets/footprints.png");
-	team.loadFromFile("assets/team.png");
-	box_sprites.loadFromFile("assets/box-sprites.png");
-	fonts.at(0).loadFromFile("assets/fonts/black-gray.png");
-	fonts.at(1).loadFromFile("assets/fonts/black-lgray.png");
-	fonts.at(2).loadFromFile("assets/fonts/lblue-gray.png");
-	fonts.at(3).loadFromFile("assets/fonts/white-black.png");
-	fonts.at(4).loadFromFile("assets/fonts/white-grey.png");
-	textMenu.at(0) = "      OBJETS";
-    textMenu.at(1) = "   MEDICAMENTS";
-    textMenu.at(2) = "       BALLS";
-    textMenu.at(3) = "         CT";
-    textMenu.at(4) = "       BERRY";
-    textMenu.at(5) = "      LETTRE";
-    textMenu.at(6) = " OBJETS COMBAT";
-    textMenu.at(7) = "   OBJETS RARE";
-}
-
 // Drawing functions :
 
 void MapView::drawNum(int num, int cursor, int y) {
 	sf::Sprite sp;
-	sp.setTexture(team);
+	sp.setTexture(textureHolder.get(texture::guiTeam));
 	sp.setScale(5.f, 5.f);
 
 	int a = 0, b = 0, c = 0, d = 0;
@@ -363,7 +336,11 @@ void MapView::drawNum(int num, int cursor, int y) {
 
 void MapView::drawText(std::string line, int cursor, int y, int color, float ratio) {
 	sf::Sprite sp;
-	sp.setTexture(fonts.at(color));
+	if (color == 0) sp.setTexture(textureHolder.get(texture::fontBlackGray));
+	else if(color == 1) sp.setTexture(textureHolder.get(texture::fontBlackLgray));
+	else if(color == 2) sp.setTexture(textureHolder.get(texture::fontLblueGray));
+	else if(color == 3) sp.setTexture(textureHolder.get(texture::fontWhiteBlack));
+	else if(color == 4) sp.setTexture(textureHolder.get(texture::fontWhiteGrey));
 	sp.setScale(ratio, ratio);
 
 	for (unsigned int i = 0; i < line.length(); i++) {
@@ -408,8 +385,15 @@ void MapView::drawImage(sf::Sprite& sp, const int xo, const int yo, const int si
 	window.draw(sp);
 }
 
-MapView::MapView(sf::RenderWindow& w, Model& m) : model(m), window(w) {
-load();
+MapView::MapView(sf::RenderWindow& w, Model& m, ResourceHolder<sf::Texture, texture::id>& t) : model(m), window(w), textureHolder(t) {
+	// TO REDO
+	textMenu.at(0) = "      OBJETS";
+	textMenu.at(1) = "   MEDICAMENTS";
+	textMenu.at(2) = "       BALLS";
+	textMenu.at(3) = "         CT";
+	textMenu.at(4) = "       BERRY";
+	textMenu.at(5) = "      LETTRE";
+	textMenu.at(6) = " OBJETS COMBAT";
+	textMenu.at(7) = "   OBJETS RARE";
 }
-
 MapView::~MapView() {}

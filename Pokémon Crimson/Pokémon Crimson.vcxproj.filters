@@ -11,7 +11,6 @@
     <ClCompile Include="src\Model\Inventory.cpp" />
     <ClCompile Include="src\Model\Model.cpp" />
     <ClCompile Include="src\Model\PkmnTeam.cpp" />
-    <ClCompile Include="src\Util\ResourceHolder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Controller\Controller.h" />
@@ -25,27 +24,36 @@
     <ClInclude Include="src\Model\Model.h" />
     <ClInclude Include="src\Model\PkmnTeam.h" />
     <ClInclude Include="src\Util\ResourceHolder.h" />
+    <ClInclude Include="src\View\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\fonts\black-grey.png" />
     <Image Include="data\fonts\black-lgrey.png" />
     <Image Include="data\fonts\lblue-grey.png" />
     <Image Include="assets\fonts\white-black.png" />
-    <Image Include="assets\bag.png" />
-    <Image Include="assets\card.png" />
-    <Image Include="assets\character.png" />
-    <Image Include="assets\city.png" />
-    <Image Include="assets\items.png" />
-    <Image Include="assets\menu.png" />
-    <Image Include="assets\pkmn-sprites-front.png" />
-    <Image Include="assets\pokedex.png" />
-    <Image Include="assets\footprints.png" />
-    <Image Include="assets\box-sprites.png" />
-    <Image Include="assets\team.png" />
+    <Image Include="assets\fonts\black-gray.png" />
+    <Image Include="assets\fonts\black-lgray.png" />
+    <Image Include="assets\fonts\lblue-gray.png" />
+    <Image Include="assets\fonts\white-grey.png" />
+    <Image Include="assets\textures\sprites\pkmn-front-1.png" />
+    <Image Include="assets\textures\sprites\pkmn-box.png" />
+    <Image Include="assets\textures\gui\team.png" />
+    <Image Include="assets\textures\gui\pokedex.png" />
+    <Image Include="assets\textures\gui\menu.png" />
+    <Image Include="assets\textures\gui\card.png" />
+    <Image Include="assets\textures\gui\bag.png" />
+    <Image Include="assets\textures\sprites\character.png" />
+    <Image Include="assets\textures\tile\city.png" />
+    <Image Include="assets\textures\sprites\footprints.png" />
+    <Image Include="assets\textures\sprites\items.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\save\InventorySave.json" />
     <None Include="assets\data\items.json" />
     <None Include="assets\data\pokemons.json" />
+    <None Include="assets\save\InventorySaveOut.json" />
+    <None Include="assets\save\TeamSave.json" />
+    <None Include="assets\save\TeamSaveDef.json" />
+    <None Include="assets\save\TeamSaveOut.json" />
   </ItemGroup>
 </Project>

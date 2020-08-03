@@ -2,7 +2,13 @@
 
 int main()
 {
-    Game game;
-    game.launch();
-    return 0;
+	try
+	{
+		Game game;
+		game.launch();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << "\nEXCEPTION: " << e.what() << std::endl;
+	}
 }

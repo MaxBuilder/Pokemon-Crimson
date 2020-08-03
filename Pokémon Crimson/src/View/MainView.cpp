@@ -46,11 +46,33 @@ int MainView::handleEvents() {
 	return 0;
 }
 
+void MainView::load() {
+	textureHolder.load(texture::guiBag, "assets/textures/gui/bag.png");
+	textureHolder.load(texture::guiCard, "assets/textures/gui/card.png");
+	textureHolder.load(texture::guiMenu, "assets/textures/gui/menu.png");
+	textureHolder.load(texture::guiPokedex, "assets/textures/gui/pokedex.png");
+	textureHolder.load(texture::guiTeam, "assets/textures/gui/team.png");
+
+	textureHolder.load(texture::spriteCharacter, "assets/textures/sprites/character.png");
+	textureHolder.load(texture::spriteFootprints, "assets/textures/sprites/footprints.png");
+	textureHolder.load(texture::spriteItem, "assets/textures/sprites/items.png");
+	textureHolder.load(texture::spritePkmnBox, "assets/textures/sprites/pkmn-box.png");
+	textureHolder.load(texture::spritePkmnFront, "assets/textures/sprites/pkmn-front-1.png");
+
+	textureHolder.load(texture::tileCity, "assets/textures/tile/city.png"); // TO CHANGE
+
+	textureHolder.load(texture::fontBlackGray, "assets/fonts/black-gray.png");
+	textureHolder.load(texture::fontBlackLgray, "assets/fonts/black-lgray.png");
+	textureHolder.load(texture::fontLblueGray, "assets/fonts/lblue-gray.png");
+	textureHolder.load(texture::fontWhiteBlack, "assets/fonts/white-black.png");
+	textureHolder.load(texture::fontWhiteGrey, "assets/fonts/white-grey.png");
+}
+
 void MainView::close() {
 	window.close();
 }
 
-MainView::MainView(Model& m) : window(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close), mapView(window, m) {
+MainView::MainView(Model& m) : window(sf::VideoMode(1280, 960), "Pokemon Crimson", sf::Style::Close), mapView(window, m, textureHolder) {
 	window.setFramerateLimit(120);
 }
 MainView::~MainView() {}
