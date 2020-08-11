@@ -11,6 +11,8 @@
     <ClCompile Include="src\model\PkmnTeam.cpp" />
     <ClCompile Include="src\view\MainView.cpp" />
     <ClCompile Include="src\view\MapView.cpp" />
+    <ClCompile Include="src\controller\SoundManager.cpp" />
+    <ClCompile Include="src\controller\MusicManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
@@ -25,6 +27,9 @@
     <ClInclude Include="src\view\MainView.h" />
     <ClInclude Include="src\view\MapView.h" />
     <ClInclude Include="src\view\Texture.h" />
+    <ClInclude Include="src\util\Random.h" />
+    <ClInclude Include="src\controller\SoundManager.h" />
+    <ClInclude Include="src\controller\MusicManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\fonts\black-grey.png" />

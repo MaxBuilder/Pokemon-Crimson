@@ -104,12 +104,12 @@ void Controller::mapMenuUpdate(int action) {
 						model.getCharacter().getInventory().setIterators(0);
 						break;
 
-					case 3:
+					case 3: // Entrée dans la carte de dresseur
 						gameState.cardMode = true;
 						gameState.menuMode = false;
 						break;
 
-					case 6:
+					case 6: // Sortie du menu
 						gameState.menuMode = false;
 						break;
 
@@ -131,9 +131,15 @@ void Controller::mapTeamUpdate(int action) {
 
 	switch (action) {
 		case 1:
+			gameState.teamId++;
+			if (gameState.teamId == model.getCharacter().getPkmnTeam().size())
+				gameState.teamId == 1;
 			break;
 
 		case 2:
+			gameState.teamId--;
+			if (gameState.teamId == 0)
+				gameState.teamId = model.getCharacter().getPkmnTeam().size() + 1;
 			break;
 
 		case 7:
@@ -414,7 +420,7 @@ void Controller::mapMovementUpdate(int movement) {
 		clock.restart();
 		break;
 	}
-	if (movement != 0) sf::sleep(sf::milliseconds(30));
+	if (movement != 0 and character.sprint) sf::sleep(sf::milliseconds(30));
 	view.mapView.renderWorld();
 }
 

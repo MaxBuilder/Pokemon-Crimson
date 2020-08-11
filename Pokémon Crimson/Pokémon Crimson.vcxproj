@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\controller\MusicManager.cpp" />
+    <ClCompile Include="src\controller\SoundManager.cpp" />
     <ClCompile Include="src\model\PkmnTeam.cpp" />
     <ClCompile Include="src\model\Inventory.cpp" />
     <ClCompile Include="src\view\MainView.cpp" />
@@ -32,6 +34,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libraries\json.hpp" />
+    <ClInclude Include="src\controller\MusicManager.h" />
+    <ClInclude Include="src\controller\SoundManager.h" />
+    <ClInclude Include="src\util\Random.h" />
     <ClInclude Include="src\util\ResourceHolder.h" />
     <ClInclude Include="src\model\PkmnTeam.h" />
     <ClInclude Include="src\model\Inventory.h" />
