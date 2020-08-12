@@ -38,6 +38,8 @@ struct GameState {
 	// Team gamestates
 	bool teamMode;
 	int teamId;
+	//bool teamMenu;
+	//int teamMenuId;
 
 };
 
@@ -62,6 +64,9 @@ struct PkmnData {
 	std::string leveling_rate = "";
 	int exp_yield = 0;
 	std::array<int, 6> ev_yield = {};
+};
+
+class AtkData {
 
 };
 

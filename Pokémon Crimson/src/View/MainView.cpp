@@ -34,7 +34,7 @@ int MainView::handleEvents() {
 			return 4;
 	}
 
-	// TO DO : A, E, X, ...
+	// Other
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 		return 5;
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))

@@ -26,7 +26,6 @@ void PkmnTeam::loadTeam() {
 
 		pkmns.push_back(pkmn);
 	}
-
 	inputFile.close();
 }
 
@@ -52,7 +51,6 @@ void PkmnTeam::saveTeam() {
 		jsonOutput[std::to_string(i)]["level"] = pkmns.at(i).level;
 		jsonOutput[std::to_string(i)]["max_hp"] = pkmns.at(i).maxHp;
 	}
-
 	outputFile << jsonOutput;
 	outputFile.close();
 }
@@ -80,6 +78,5 @@ PkmnTeam::PkmnTeam() {
 	pkmn = { u8"Pingoléon", 395, {381, 372, 372, 372, 372, 372}, 381, {1, 2, 3, 4}, 0, 1, 61 };
 	pkmns.push_back(pkmn);
 	//loadTeam();
-	
 }
 PkmnTeam::~PkmnTeam() { saveTeam(); }

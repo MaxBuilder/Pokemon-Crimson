@@ -55,6 +55,7 @@ public:
 	// Retourne un pokémon de l'équipe
 	Pkmn& getPkmn(int emp);
 
+	// Retourne la taille de l'équipe 
 	int size();
 
 	// Ajoute un pokémon à l'équipe

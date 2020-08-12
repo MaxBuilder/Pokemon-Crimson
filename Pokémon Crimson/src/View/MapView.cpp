@@ -41,8 +41,37 @@ void MapView::renderTeam() {
 	pkmnTeam.getPkmn(1).gender = 2;
 	pkmnTeam.getPkmn(2).gender = 2;
 
+	// Render selected
+	int pkmnId = model.getGameState().teamId;
+	if (pkmnId == 0) {
+		if (!pkmnTeam.getPkmn(0).isKo()) drawImage(sp, 0, 237, 128, 49);
+		else drawImage(sp, 129, 282, 128, 49);
+	}
+	else if (pkmnId == 1 and pkmnTeam.size() > 1) {
+		if (!pkmnTeam.getPkmn(1).isKo()) drawImage(sp, 0, 286, 128, 49, 640, 40);
+		else drawImage(sp, 128, 331, 128, 49, 640, 40);
+	}
+	else if (pkmnId == 2 and pkmnTeam.size() > 2) {
+		if (!pkmnTeam.getPkmn(2).isKo()) drawImage(sp, 0, 286, 128, 49, 0, 240);
+		else drawImage(sp, 128, 331, 128, 49, 0, 240);
+	}
+	else if (pkmnId == 3 and pkmnTeam.size() > 3) {
+		if (!pkmnTeam.getPkmn(3).isKo()) drawImage(sp, 0, 286, 128, 49, 640, 280);
+		else drawImage(sp, 128, 331, 128, 49, 640, 280);
+	}
+	else if (pkmnId == 4 and pkmnTeam.size() > 4) {
+		if (!pkmnTeam.getPkmn(4).isKo()) drawImage(sp, 0, 286, 128, 49, 0, 480);
+		else drawImage(sp, 128, 331, 128, 49, 0, 480);
+	}
+	else if (pkmnId == 5 and pkmnTeam.size() > 5) {
+		if (!pkmnTeam.getPkmn(5).isKo()) drawImage(sp, 0, 286, 128, 49, 640, 520);
+		else drawImage(sp, 128, 331, 128, 49, 640, 520);
+	}
+	else if (pkmnId == pkmnTeam.size()) drawImage(sp, 0, 336, 58, 26, 990, 815);             
+
+
 	// Render infos
-	if (pkmnTeam.getPkmn(0).isKo()) drawImage(sp, 129, 192, 126, 45, 5, 15);
+	if (pkmnTeam.getPkmn(0).isKo() and pkmnId != 0) drawImage(sp, 129, 192, 126, 45, 5, 15);
 	drawText(pkmnTeam.getPkmn(0).name, 240, 55, 4);
 	drawNum(pkmnTeam.getPkmn(0).level, 105, 175);
 	if (pkmnTeam.getPkmn(0).gender == 1) drawImage(sp, 59, 352, 6, 10, 560, 55);
@@ -52,8 +81,10 @@ void MapView::renderTeam() {
 	drawNum(pkmnTeam.getPkmn(0).getMaxHp(), 460, 175);
 
 	if (pkmnTeam.size() > 1) {
-		if (pkmnTeam.getPkmn(1).isKo()) drawImage(sp, 129, 237, 126, 45, 645, 55);
-		else drawImage(sp, 0, 192, 126, 45, 645, 55);
+		if (pkmnId != 1) {
+			if (pkmnTeam.getPkmn(1).isKo()) drawImage(sp, 129, 237, 126, 45, 645, 55);
+			else drawImage(sp, 0, 192, 126, 45, 645, 55);
+		}
 		drawText(pkmnTeam.getPkmn(1).name, 880, 95, 4);
 		drawNum(pkmnTeam.getPkmn(1).level, 745, 215);
 		if (pkmnTeam.getPkmn(1).gender == 1) drawImage(sp, 59, 352, 6, 10, 1200, 95);
@@ -63,8 +94,10 @@ void MapView::renderTeam() {
 		drawNum(pkmnTeam.getPkmn(1).getMaxHp(), 1100, 215);
 	}
 	if (pkmnTeam.size() > 2) {
-		if (pkmnTeam.getPkmn(2).isKo()) drawImage(sp, 129, 237, 126, 45, 5, 255);
-		else drawImage(sp, 0, 192, 126, 45, 5, 255);
+		if (pkmnId != 2) {
+			if (pkmnTeam.getPkmn(2).isKo()) drawImage(sp, 129, 237, 126, 45, 5, 255);
+			else drawImage(sp, 0, 192, 126, 45, 5, 255);
+		}
 		drawText(pkmnTeam.getPkmn(2).name, 240, 295, 4);
 		drawNum(pkmnTeam.getPkmn(2).level, 105, 415);
 		if (pkmnTeam.getPkmn(2).gender == 1) drawImage(sp, 59, 352, 6, 10, 560, 295);
@@ -74,8 +107,10 @@ void MapView::renderTeam() {
 		drawNum(pkmnTeam.getPkmn(2).getMaxHp(), 460, 415);
 	}
 	if (pkmnTeam.size() > 3) {
-		if(pkmnTeam.getPkmn(3).isKo()) drawImage(sp, 129, 237, 126, 45, 645, 295);
-		else drawImage(sp, 0, 192, 126, 45, 645, 295);
+		if (pkmnId != 3) {
+			if (pkmnTeam.getPkmn(3).isKo()) drawImage(sp, 129, 237, 126, 45, 645, 295);
+			else drawImage(sp, 0, 192, 126, 45, 645, 295);
+		}
 		drawText(pkmnTeam.getPkmn(3).name, 880, 335, 4);
 		drawNum(pkmnTeam.getPkmn(3).level, 745, 455);
 		if (pkmnTeam.getPkmn(3).gender == 1) drawImage(sp, 59, 352, 6, 10, 1200, 335);
@@ -85,8 +120,10 @@ void MapView::renderTeam() {
 		drawNum(pkmnTeam.getPkmn(3).getMaxHp(), 1100, 455);
 	}
 	if (pkmnTeam.size() > 4) {
-		if(pkmnTeam.getPkmn(4).isKo()) drawImage(sp, 129, 237, 126, 45, 5, 495);
-		else drawImage(sp, 0, 192, 126, 45, 5, 495);
+		if (pkmnId != 4) {
+			if (pkmnTeam.getPkmn(4).isKo()) drawImage(sp, 129, 237, 126, 45, 5, 495);
+			else drawImage(sp, 0, 192, 126, 45, 5, 495);
+		}
 		drawText(pkmnTeam.getPkmn(4).name, 240, 535, 4);
 		drawNum(pkmnTeam.getPkmn(4).level, 105, 655);
 		if (pkmnTeam.getPkmn(4).gender == 1) drawImage(sp, 59, 352, 6, 10, 560, 535);
@@ -96,8 +133,10 @@ void MapView::renderTeam() {
 		drawNum(pkmnTeam.getPkmn(4).getMaxHp(), 460, 655);
 	}
 	if (pkmnTeam.size() > 5) {
-		if(pkmnTeam.getPkmn(5).isKo()) drawImage(sp, 129, 237, 126, 45, 645, 535);
-		else drawImage(sp, 0, 192, 126, 45, 645, 535);
+		if (pkmnId != 5) {
+			if (pkmnTeam.getPkmn(5).isKo()) drawImage(sp, 129, 237, 126, 45, 645, 535);
+			else drawImage(sp, 0, 192, 126, 45, 645, 535);
+		}
 		drawText(pkmnTeam.getPkmn(5).name, 880, 575, 4);
 		drawNum(pkmnTeam.getPkmn(5).level, 745, 695);
 		if (pkmnTeam.getPkmn(5).gender == 1) drawImage(sp, 59, 352, 6, 10, 1200, 575);

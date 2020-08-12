@@ -126,20 +126,31 @@ void Controller::mapMenuUpdate(int action) {
 	sf::sleep(sf::milliseconds(20));
 }
 
+// TO DO : Améliorer système de navigation dans l'interface
 void Controller::mapTeamUpdate(int action) {
 	GameState& gameState = model.getGameState();
 
-	switch (action) {
+	if (action != prevEvent) {
+		switch (action) {
 		case 1:
-			gameState.teamId++;
-			if (gameState.teamId == model.getCharacter().getPkmnTeam().size())
-				gameState.teamId == 1;
+			gameState.teamId--;
+			if (gameState.teamId < 0)
+				gameState.teamId = model.getCharacter().getPkmnTeam().size();
 			break;
 
 		case 2:
-			gameState.teamId--;
-			if (gameState.teamId == 0)
-				gameState.teamId = model.getCharacter().getPkmnTeam().size() + 1;
+			gameState.teamId++;
+			if (gameState.teamId == model.getCharacter().getPkmnTeam().size() + 1)
+				gameState.teamId = 0;
+			break;
+
+		case 6: // Action à effectuer
+			if (gameState.teamId == model.getCharacter().getPkmnTeam().size()) {
+				gameState.menuMode = true;
+				gameState.teamMode = false;
+				view.mapView.renderWorld();
+				return;
+			}
 			break;
 
 		case 7:
@@ -147,10 +158,11 @@ void Controller::mapTeamUpdate(int action) {
 			gameState.teamMode = false;
 			view.mapView.renderWorld();
 			return;
+		}
 	}
 
 	view.mapView.renderTeam();
-	sf::sleep(sf::milliseconds(100));
+	sf::sleep(sf::milliseconds(30));
 }
 
 void Controller::mapPokedexUpdate(int action) {
