@@ -10,8 +10,8 @@ public:
 	int noId;
 	int money;
 	int stars;
-	// int pokedex; // Nombre de pokémons capturés
-	// int score;	// ???
+	int pokedex;
+	int score;
 	// TO DO : durée jeu, début
 
 	// Logic

@@ -224,16 +224,20 @@ void MapView::renderCard() {
 	drawImage(sp, 256, 352, 36, 66, 925, 275);
 	
 	// Render du text
-	drawText("No. ID", 16*5, 35*5, 5);
-	drawText("NOM", 16*5, 51*5, 5);
-	drawText("ARGENT", 16*5, 75*5, 5);
-	drawText(u8"POKÈDEX", 16*5, 99*5, 5);
-	drawText("SCORE", 16*5, 123*5, 5);
-	drawText("DUREE DE JEU", 16*5, 147*5, 5);
-	drawText("DEBUT DE L'AVENTURE", 16*5, 163*5, 5);
-	drawText(std::to_string(chara.noId), 152 * 5, 35 * 5, 5, true);
+	drawText("No. ID", 16 * 5, 35 * 5, 5);
+	drawText("NOM", 16 * 5, 51 * 5, 5);
+	drawText("ARGENT", 16 * 5, 75 * 5, 5);
+	drawText(u8"POKÈDEX", 16 * 5, 99 * 5, 5);
+	drawText("SCORE", 16 * 5, 123 * 5, 5);
+	drawText("DUREE DE JEU", 16 * 5, 147 * 5, 5);
+	drawText("DEBUT DE L'AVENTURE", 16 * 5, 163 * 5, 5);
+	drawText(std::to_string(chara.noId), 152  *  5, 35  *  5, 5, true);
 	drawText(chara.name, 152 * 5, 51 * 5, 5, true);
 	drawText(std::to_string(chara.money) + "$", 152*5, 75*5, 5, true);
+	drawText(std::to_string(chara.pokedex), 152 * 5, 99 * 5, 5, true);
+	drawText(std::to_string(chara.score), 152 * 5, 123 * 5, 5, true);
+	drawText("48:88", 240 * 5, 147 * 5, 5, true);
+	drawText("11 Juin 2020", 240 * 5, 163 * 5, 5, true);
 
 	window.display();
 }
@@ -466,8 +470,9 @@ void MapView::drawText(const std::string& line, int cursor, int y, int color, bo
 		for (size_t i = 0; i < line.length(); i++) {
 			if (line[i] == 'i' or line[i] == '!') cursor -= 10;
 			else if (line[i] == 'l' or line[i] == 39) cursor -= 15;
-			else if (line[i] == 'j' or line[i] == 'I') cursor -= 20;
+			else if (line[i] == 'j' or line[i] == 'I' or line[i] == 32) cursor -= 20;
 			else if (line[i] == 'f' or line[i] == 't' or line[i] == '1') cursor -= 25;
+			else if (line[i] == ':') cursor -= 40;
 			else cursor -= 30;
 		}
 	}
@@ -495,13 +500,14 @@ void MapView::drawText(const std::string& line, int cursor, int y, int color, bo
 			cursor += 20;
 			continue;
 		}
-		sp.setTextureRect(sf::IntRect((id % 10) * 6, (int)(id / 10) * 10 - (line[i] == 'j'), 6, 10 + (line[i] == 'j' or line[i] == '$')));
-		sp.setPosition(((float)cursor + 5 * (line[i] == 39 or line[i] == '.' or line[i] == 44)) * ratio / 5, ((float)y + 10 * (line[i] == 'g' or line[i] == 'j' or line[i] == 'p' or line[i] == 'q' or line[i] == 'y' or line[i] == ',')) * ratio / 5);
+		sp.setTextureRect(sf::IntRect((id % 10) * 6, (int)(id / 10) * 10 - (line[i] == 'j') + (line[i] == 'i'), 6, 10 + (line[i] == 'j' or line[i] == '$')));
+		sp.setPosition(((float)cursor + 5 * (line[i] == 39 or line[i] == '.' or line[i] == 44)) * ratio / 5, ((float)y + 10 * (line[i] == 'g' or line[i] == 'j' or line[i] == 'p' or line[i] == 'q' or line[i] == 'y' or line[i] == ',') + 5 * (line[i] == 'i')) * ratio / 5);
 
 		if (line[i] == 'i' or line[i] == '!') cursor += 10;
 		else if (line[i] == 'l' or line[i] == 39) cursor += 15;
 		else if (line[i] == 'j' or line[i] == 'I') cursor += 20;
 		else if (line[i] == 'f' or line[i] == 't' or line[i] == '1') cursor += 25;
+		else if (line[i] == ':') cursor += 40;
 		else cursor += 30;
 
 		window.draw(sp);
