@@ -192,7 +192,7 @@ void MapView::renderPokedex() {
 	// Pokedex entry
 	std::string desc = pkmn.pokedex_entry, curr = {}, render = {};
 	int line = 0;
-	for (unsigned int i = 0; i < desc.size(); i++) {
+	for (size_t i = 0; i < desc.size(); i++) {
 		if (desc.at(i) != ' ')
 			curr.push_back(desc.at(i));
 		else {
@@ -210,11 +210,10 @@ void MapView::renderPokedex() {
 		}
 		drawText(render + curr, 145, 695 + line * 80);
 	}
-
+	
 	window.display();
 }
 
-// TO DO : Finir affichage
 void MapView::renderCard() {
 	Character& chara = model.getCharacter();
 	window.clear();
@@ -222,9 +221,20 @@ void MapView::renderCard() {
 	sp.setTexture(textureHolder.get(texture::guiCard));
 	drawImage(sp, 0, 352, 256, 192, 0, 0);
 	drawImage(sp, (chara.stars % 3) * 240, (chara.stars > 2) * 176, 240, 176, 40, 40);
-
-	// Render du text
+	drawImage(sp, 256, 352, 36, 66, 925, 275);
 	
+	// Render du text
+	drawText("No. ID", 16*5, 35*5, 5);
+	drawText("NOM", 16*5, 51*5, 5);
+	drawText("ARGENT", 16*5, 75*5, 5);
+	drawText(u8"POKÈDEX", 16*5, 99*5, 5);
+	drawText("SCORE", 16*5, 123*5, 5);
+	drawText("DUREE DE JEU", 16*5, 147*5, 5);
+	drawText("DEBUT DE L'AVENTURE", 16*5, 163*5, 5);
+	drawText(std::to_string(chara.noId), 152 * 5, 35 * 5, 5, true);
+	drawText(chara.name, 152 * 5, 51 * 5, 5, true);
+	drawText(std::to_string(chara.money) + "$", 152*5, 75*5, 5, true);
+
 	window.display();
 }
 
@@ -291,7 +301,7 @@ void MapView::renderBag() {
 	// Description 
 	std::string toRender, description = model.itemData[ref + itemId].description;
 	int line = 0;
-	for (unsigned int i = 0; i < description.size(); i++) {
+	for (size_t i = 0; i < description.size(); i++) {
 		if (description[i] != '|')
 			toRender.push_back(description[i]);
 		else {
@@ -426,16 +436,43 @@ void MapView::drawNum(int num, int cursor, int y) {
 	}
 }
 
-void MapView::drawText(std::string line, int cursor, int y, int color, float ratio) {
+void MapView::drawText(const std::string& line, int cursor, int y, int color, bool reverse, float ratio) {
 	sf::Sprite sp;
-	if (color == 0) sp.setTexture(textureHolder.get(texture::fontBlackGray));
-	else if(color == 1) sp.setTexture(textureHolder.get(texture::fontBlackLgray));
-	else if(color == 2) sp.setTexture(textureHolder.get(texture::fontLblueGray));
-	else if(color == 3) sp.setTexture(textureHolder.get(texture::fontWhiteBlack));
-	else if(color == 4) sp.setTexture(textureHolder.get(texture::fontWhiteGrey));
+	switch (color) {
+	case 0:
+		sp.setTexture(textureHolder.get(texture::fontBlackGray));
+		break;
+	case 1:
+		sp.setTexture(textureHolder.get(texture::fontBlackLgray));
+		break;
+	case 2:
+		sp.setTexture(textureHolder.get(texture::fontLblueGray));
+		break;
+	case 3:
+		sp.setTexture(textureHolder.get(texture::fontWhiteBlack));
+		break;
+	case 4:
+		sp.setTexture(textureHolder.get(texture::fontWhiteGrey));
+		break;
+	case 5:
+		sp.setTexture(textureHolder.get(texture::fontMain));
+		break;
+	default:
+		throw std::string("Bad color code trying to draw : " + line + " color code used : " + std::to_string(color));
+	}
 	sp.setScale(ratio, ratio);
 
-	for (unsigned int i = 0; i < line.length(); i++) {
+	if (reverse) {
+		for (size_t i = 0; i < line.length(); i++) {
+			if (line[i] == 'i' or line[i] == '!') cursor -= 10;
+			else if (line[i] == 'l' or line[i] == 39) cursor -= 15;
+			else if (line[i] == 'j' or line[i] == 'I') cursor -= 20;
+			else if (line[i] == 'f' or line[i] == 't' or line[i] == '1') cursor -= 25;
+			else cursor -= 30;
+		}
+	}
+
+	for (size_t i = 0; i < line.length(); i++) {
 		int id;
 		if (line[i] > 64 and line[i] < 91) id = line[i] - 65;
 		else if (line[i] > 96 and line[i] < 123) id = line[i] - 67;
@@ -453,11 +490,12 @@ void MapView::drawText(std::string line, int cursor, int y, int color, float rat
 		else if (line[i] == -88) id = 57;
 		else if (line[i] == -86) id = 58;
 		else if (line[i] == -96) id = 59;
+		else if (line[i] == 36) id = 28;
 		else { // Espace
 			cursor += 20;
 			continue;
 		}
-		sp.setTextureRect(sf::IntRect((id % 10) * 6, (int)(id / 10) * 10 - (line[i] == 'j'), 6, 10 + (line[i] == 'j')));
+		sp.setTextureRect(sf::IntRect((id % 10) * 6, (int)(id / 10) * 10 - (line[i] == 'j'), 6, 10 + (line[i] == 'j' or line[i] == '$')));
 		sp.setPosition(((float)cursor + 5 * (line[i] == 39 or line[i] == '.' or line[i] == 44)) * ratio / 5, ((float)y + 10 * (line[i] == 'g' or line[i] == 'j' or line[i] == 'p' or line[i] == 'q' or line[i] == 'y' or line[i] == ',')) * ratio / 5);
 
 		if (line[i] == 'i' or line[i] == '!') cursor += 10;

@@ -14,11 +14,10 @@ void Controller::init() {
 	chara.noId = 24056;
 	chara.name = "Raphael";
 	chara.money = 256;
-	chara.stars = 0;
+	chara.stars = 2;
+	chara.score = 10864;
+	chara.pokedex = 108;
 	chara.getInventory().loadInventory();
-
-
-	prevEvent = 0;
 }
 
 // Fonction de mise à jour du jeu à la réception d'un évènement
@@ -28,6 +27,8 @@ void Controller::update(int event) {
 	// Détection de l'état du jeu global
 	if (gameState.mapMode) 
 		mapUpdate(event);
+
+	prevEvent = event;
 }
 
 // Fonction de mise à jour losque le joueur est dans la map
@@ -61,8 +62,6 @@ void Controller::mapUpdate(int event) {
 	else if (gameState.cardMode)
 		mapCardUpdate(event);
 	else mapMovementUpdate(event); // Default mode
-
-	prevEvent = event;
 }
 
 // TO DO : Implémenter le reste des fonctions du menu

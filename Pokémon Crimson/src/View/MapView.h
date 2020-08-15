@@ -38,7 +38,7 @@ private:
 	// Fonction de draw :
 
 	// Draw de texte
-	void drawText(std::string line, int cursor, int y, int color = 0, float ratio = 5.f);
+	void drawText(const std::string& line, int cursor, int y, int color = 0, bool reverse = false, float ratio = 5.f);
 	// Draw d'une image
 	void drawImage(sf::Sprite& sp, const int xo, const int yo, const int sizex, const int sizey, const float posx = 0, const float posy = 0, const float scale = 5.f);
 	// Draw de chiffres

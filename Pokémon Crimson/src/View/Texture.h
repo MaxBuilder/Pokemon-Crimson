@@ -16,6 +16,7 @@ namespace texture {
 
 		tileCity,
 
+		fontMain,
 		fontBlackGray,
 		fontBlackLgray,
 		fontLblueGray,

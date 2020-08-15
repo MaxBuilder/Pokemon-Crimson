@@ -61,6 +61,7 @@ void MainView::load() {
 
 	textureHolder.load(texture::tileCity, "assets/textures/tile/city.png"); // TO CHANGE
 
+	textureHolder.load(texture::fontMain, "assets/fonts/main.png");
 	textureHolder.load(texture::fontBlackGray, "assets/fonts/black-gray.png");
 	textureHolder.load(texture::fontBlackLgray, "assets/fonts/black-lgray.png");
 	textureHolder.load(texture::fontLblueGray, "assets/fonts/lblue-gray.png");
