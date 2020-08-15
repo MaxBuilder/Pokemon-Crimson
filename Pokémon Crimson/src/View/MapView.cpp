@@ -35,8 +35,8 @@ void MapView::renderTeam() {
 	// Test 
 	pkmnTeam.getPkmn(2).stats.at(0) = 0;
 	pkmnTeam.getPkmn(3).stats.at(0) = 0;
-	pkmnTeam.getPkmn(4).stats.at(0) = 0;
-	pkmnTeam.getPkmn(5).stats.at(0) = 0;
+	pkmnTeam.getPkmn(4).stats.at(0) = 230;
+	pkmnTeam.getPkmn(5).stats.at(0) = 10;
 	pkmnTeam.getPkmn(0).gender = 2;
 	pkmnTeam.getPkmn(1).gender = 2;
 	pkmnTeam.getPkmn(2).gender = 2;
@@ -79,6 +79,7 @@ void MapView::renderTeam() {
 	drawImage(spb, (pkmnTeam.getPkmn(0).id - 1) % 25 * 32, (pkmnTeam.getPkmn(0).id - 1) / 25 * 32, 32, 32, 64, 16);
 	drawNum(pkmnTeam.getPkmn(0).getHp(), 300 + (pkmnTeam.getPkmn(0).getHp() < 100) * 40 + (pkmnTeam.getPkmn(0).getHp() < 10) * 40, 175);
 	drawNum(pkmnTeam.getPkmn(0).getMaxHp(), 460, 175);
+	drawHp(0);
 
 	if (pkmnTeam.size() > 1) {
 		if (pkmnId != 1) {
@@ -92,6 +93,7 @@ void MapView::renderTeam() {
 		drawImage(spb, (pkmnTeam.getPkmn(1).id - 1) % 25 * 32, (pkmnTeam.getPkmn(1).id - 1) / 25 * 32, 32, 32, 710, 65);
 		drawNum(pkmnTeam.getPkmn(1).getHp(), 940 + (pkmnTeam.getPkmn(1).getHp() < 100) * 40 + (pkmnTeam.getPkmn(1).getHp() < 10) * 40, 215);
 		drawNum(pkmnTeam.getPkmn(1).getMaxHp(), 1100, 215);
+		drawHp(1);
 	}
 	if (pkmnTeam.size() > 2) {
 		if (pkmnId != 2) {
@@ -105,6 +107,7 @@ void MapView::renderTeam() {
 		drawImage(spb, (pkmnTeam.getPkmn(2).id - 1) % 25 * 32, (pkmnTeam.getPkmn(2).id - 1) / 25 * 32, 32, 32, 64, 265);
 		drawNum(pkmnTeam.getPkmn(2).getHp(), 300 + (pkmnTeam.getPkmn(2).getHp() < 100) * 40 + (pkmnTeam.getPkmn(2).getHp() < 10) * 40, 415);
 		drawNum(pkmnTeam.getPkmn(2).getMaxHp(), 460, 415);
+		drawHp(2);
 	}
 	if (pkmnTeam.size() > 3) {
 		if (pkmnId != 3) {
@@ -118,6 +121,7 @@ void MapView::renderTeam() {
 		drawImage(spb, (pkmnTeam.getPkmn(3).id - 1) % 25 * 32, (pkmnTeam.getPkmn(3).id - 1) / 25 * 32, 32, 32, 710, 300);
 		drawNum(pkmnTeam.getPkmn(3).getHp(), 940 + (pkmnTeam.getPkmn(3).getHp() < 100) * 40 + (pkmnTeam.getPkmn(3).getHp() < 10) * 40, 455);
 		drawNum(pkmnTeam.getPkmn(3).getMaxHp(), 1100, 455);
+		drawHp(3);
 	}
 	if (pkmnTeam.size() > 4) {
 		if (pkmnId != 4) {
@@ -131,6 +135,7 @@ void MapView::renderTeam() {
 		drawImage(spb, (pkmnTeam.getPkmn(4).id - 1) % 25 * 32, (pkmnTeam.getPkmn(4).id - 1) / 25 * 32, 32, 32, 64, 505);
 		drawNum(pkmnTeam.getPkmn(4).getHp(), 300 + (pkmnTeam.getPkmn(4).getHp() < 100) * 40 + (pkmnTeam.getPkmn(4).getHp() < 10) * 40, 655);
 		drawNum(pkmnTeam.getPkmn(4).getMaxHp(), 460, 655);
+		drawHp(4);
 	}
 	if (pkmnTeam.size() > 5) {
 		if (pkmnId != 5) {
@@ -144,6 +149,7 @@ void MapView::renderTeam() {
 		drawImage(spb, (pkmnTeam.getPkmn(5).id - 1) % 25 * 32, (pkmnTeam.getPkmn(5).id - 1) / 25 * 32, 32, 32, 710, 535);
 		drawNum(pkmnTeam.getPkmn(5).getHp(), 940 + (pkmnTeam.getPkmn(5).getHp() < 100) * 40 + (pkmnTeam.getPkmn(5).getHp() < 10) * 40, 695);
 		drawNum(pkmnTeam.getPkmn(5).getMaxHp(), 1100, 695);
+		drawHp(5);
 	}
 	
 	window.display();
@@ -353,6 +359,44 @@ void MapView::renderWorld(float x, float y, bool second) {
 }
 
 // Drawing functions :
+
+void MapView::drawHp(int id) {
+	sf::Sprite sp;
+	sp.setTexture(textureHolder.get(texture::guiTeam));
+	Pkmn& pkmn = model.getCharacter().getPkmnTeam().getPkmn(id);
+	int pourcHp = (int)ceil(((float)pkmn.getHp() / (float)pkmn.getMaxHp()) * 100);
+	int len = (int)ceil(((float)pourcHp / 100) * 250);
+
+	switch (id) {
+	case 0:
+		sp.setPosition(315, 130);
+		break;
+	case 1:
+		sp.setPosition(955, 170);
+		break;
+	case 2:
+		sp.setPosition(315, 370);
+		break;
+	case 3:
+		sp.setPosition(955, 410);
+		break;
+	case 4:
+		sp.setPosition(315, 610);
+		break;
+	case 5:
+		sp.setPosition(955, 650);
+		break;
+	}
+
+	sp.setScale((float)len, 5);
+	if (pourcHp > 49)
+		sp.setTextureRect(sf::IntRect(0, 371, 1, 4));
+	else if (pourcHp > 9)
+		sp.setTextureRect(sf::IntRect(0, 367, 1, 4));
+	else sp.setTextureRect(sf::IntRect(0, 363, 1, 4));
+
+	window.draw(sp);
+}
 
 void MapView::drawNum(int num, int cursor, int y) {
 	sf::Sprite sp;

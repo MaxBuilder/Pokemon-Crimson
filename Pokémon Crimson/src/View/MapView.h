@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <SFML/graphics.hpp>
 #include "../model/Model.h"
 #include"../util/ResourceHolder.h"
@@ -42,6 +43,8 @@ private:
 	void drawImage(sf::Sprite& sp, const int xo, const int yo, const int sizex, const int sizey, const float posx = 0, const float posy = 0, const float scale = 5.f);
 	// Draw de chiffres
 	void drawNum(int num, int cursor, int y);
+	// Draw de la barre d'hp
+	void drawHp(int id);
 
 public:
 
