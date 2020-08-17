@@ -51,6 +51,8 @@
     <Image Include="assets\textures\tile\city.png" />
     <Image Include="assets\textures\sprites\footprints.png" />
     <Image Include="assets\textures\sprites\items.png" />
+    <Image Include="assets\fonts\main.png" />
+    <Image Include="assets\textures\gui\textbox.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\save\InventorySave.json" />

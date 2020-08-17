@@ -50,7 +50,9 @@
     <ClInclude Include="src\view\MapView.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\fonts\main.png" />
     <Image Include="assets\textures\gui\bag.png" />
+    <Image Include="assets\textures\gui\textbox.png" />
     <Image Include="assets\textures\sprites\pkmn-box.png" />
     <Image Include="assets\textures\gui\card.png" />
     <Image Include="assets\textures\sprites\character.png" />
