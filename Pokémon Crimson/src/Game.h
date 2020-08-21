@@ -7,10 +7,11 @@
 class Game {
 
 private:
-	Model model;
-	MainView view;
-	Controller controller;
-	bool run;
+	Model mModel;
+	MainView mView;
+	Controller mController;
+	bool mRun;
+	bool mHasFocus;
 
 public:
 	// Constructeur et destructeur

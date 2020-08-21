@@ -2,29 +2,40 @@
 
 void Game::launch() {
 	create();
-	while(run)
+	while(mRun)
 		loop();
 	quit();
 }
 
 void Game::create() {
-	controller.init();	// Chargement des données
-	view.load();		// Chargement des ressources graphiques
+	mController.init();	// Chargement des données
+	mView.load();		// Chargement des ressources graphiques
 }
 
 void Game::loop() {
-	int a = view.handleEvents();
+	int event = mView.handleEvents();
 
-	if (a == -1)
-		run = false;
-	else controller.update(a);
+	switch (event) {
+	case -1:
+		mRun = false;
+		break;
+	case 10:
+		mHasFocus = false;
+		break;
+	case 11:
+		mHasFocus = true;
+		break;
+	}
+	
+	if(mHasFocus)
+		mController.update(event);
 }
 
 void Game::quit() {
-	view.close();
+	mView.close();
 	std::cout << "Normal closing " << std::endl;
 }
 
-Game::Game() : model(), view(model), controller(view, model), run(true) {}
+Game::Game() : mModel(), mView(mModel), mController(mView, mModel), mRun(true), mHasFocus(true) {}
 Game::~Game() {};
 

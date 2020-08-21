@@ -9,6 +9,10 @@ int MainView::handleEvents() {
 		return -1;
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		return -1;
+	else if (event.type == sf::Event::LostFocus)
+		return 10;
+	else if (event.type == sf::Event::GainedFocus)
+		return 11;
 
 	// Shift pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
