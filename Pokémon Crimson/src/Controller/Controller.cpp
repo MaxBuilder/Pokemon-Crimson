@@ -221,6 +221,7 @@ void Controller::mapCardUpdate(int action) {
 void Controller::mapBagUpdate(int action) {
 	GameState& gameState = model.getGameState();
 	Inventory& inventory = model.getCharacter().getInventory();
+	bool quit = false;
 
 	if (action != prevEvent) {
 		switch (action) {
@@ -263,25 +264,61 @@ void Controller::mapBagUpdate(int action) {
 			inventory.setIterators(gameState.invCatId);
 			break;
 		case 6:	// Event "A" -> validation
+			if(inventory.getItem(inventory.itBegin - inventory.itRef + gameState.invItemId).id == 127) {
+				quit = true;
+			}
 			if (!gameState.invMenu) {
 				gameState.invMenu = true;
 				gameState.invMenuId = 0;
 			}
-			//  Validation dans le sous menu
 			break;
 		case 7: // Event "E" -> retour
-			if (!gameState.invMenu) {
-				gameState.invMode = false;
-				gameState.menuMode = true;
-				view.mapView.renderWorld();
-				return;
-			}
+			if (!gameState.invMenu) 
+				quit = true;
 			else gameState.invMenu = false;
 		}
-		gameState.invMaxItemId = inventory.itEnd - inventory.itBegin;
 	}
 
-	view.mapView.renderBag();
+	if (quit) {
+		gameState.invMode = false;
+		gameState.menuMode = true;
+		view.mapView.renderWorld();
+		return;
+	}
+
+	// Détermination et selection des catégories secondaires
+	std::vector<std::string> subCat;
+	if (gameState.invMenu) {
+		int catId = gameState.invCatId;
+		subCat.push_back("ANNULER");
+		if (catId != 3 and catId != 7)
+			subCat.push_back("JETER");
+		if (catId == 7)
+			subCat.push_back("ENREG.");
+		else subCat.push_back("DONNER");
+		if (catId == 1 or catId == 3 or catId == 4 or catId == 7)
+			subCat.push_back("UTILISER");
+
+		if (action == 6 and prevEvent != 6) {
+			int id = subCat.size() - gameState.invMenuId - 1;
+			// Fermeture du sous menu
+			if (subCat.at(id) == "ANNULER")
+				gameState.invMenu = false;
+			// Suppression de l'item (chiant)
+			else if (subCat.at(id) == "JETER") {
+				// Stack supprimé
+				if (inventory.removeItem(std::distance(inventory.itRef, inventory.itBegin) + gameState.invItemId, -1)) {
+					if (gameState.invItemId == gameState.invMaxItemId)
+						gameState.invItemId--;
+					gameState.invMenu = false;
+					inventory.setIterators(gameState.invCatId);
+				}
+			}
+		}
+	}
+
+	gameState.invMaxItemId = inventory.itEnd - inventory.itBegin;
+	view.mapView.renderBag(subCat);
 	sf::sleep(sf::milliseconds(50));
 }
 

@@ -7,6 +7,7 @@
 #include <fstream>
 #include <array>
 #include <json.hpp>
+#include <unordered_map>
 
 using json = nlohmann::json;
 
@@ -46,7 +47,7 @@ struct GameState {
 struct ItemData {
 	std::string name = "";
 	std::string description = "";
-	int id = 0;
+	int id = -1;
 	int cat_id = 0;
 	int effect = 0;
 };
@@ -94,6 +95,9 @@ public:
 	std::vector <ItemData> itemData;
 	std::vector <PkmnData> pkmnData;
 	//std::vector <AtkData> atkData;
+
+	// Link itemId / itemData index
+	std::unordered_map<int, int> link;
 
 private:
 	Map map;

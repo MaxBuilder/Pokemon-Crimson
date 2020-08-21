@@ -4,7 +4,6 @@
 #include <json.hpp>
 #include <algorithm>
 #include <fstream>
-
 using json = nlohmann::json;
 
 struct Item {
@@ -27,6 +26,9 @@ public:
 	// Ajoute un item / une quantité à l'inventaire
 	void addItem(const int id, const int quantity);
 
+	// Enlève un item de l'inventaire
+	bool removeItem(const int id, const int quantity);
+
 	// Set les itérateurs sur le numéro de catégorie passé en paramètre
 	void setIterators(const int catId);
 
@@ -37,6 +39,9 @@ public:
 	std::vector<Item>::iterator itRef;
 	std::vector<Item>::iterator itBegin;
 	std::vector<Item>::iterator itEnd;
+
+	// Item retour
+	Item ret = {127, 0};
 
 	// Constructeur et destructeur
 	Inventory();

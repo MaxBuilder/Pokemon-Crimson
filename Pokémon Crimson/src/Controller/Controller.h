@@ -2,6 +2,7 @@
 
 #include "SFML/System.hpp"
 #include "../View/MainView.h"
+#include <iostream>
 
 class Controller
 {

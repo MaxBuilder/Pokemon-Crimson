@@ -18,6 +18,12 @@ void Model::itemInit() {
 	json jsonFile;
 	jsonFile = json::parse(input);
 
+	ItemData ret;
+	ret.name = "FERMER";
+	ret.description = "Fermer le sac.|";
+	ret.id = 3;
+	itemData.push_back(ret);
+
 	for (unsigned int i=0 ; i<jsonFile.size() ; i++) {
 		ItemData item;
 		std::string index = std::to_string(i);
@@ -29,6 +35,10 @@ void Model::itemInit() {
 
 		itemData.push_back(item);
 	}
+	for (int i = 0; i < 8; i++)
+		link.insert(std::make_pair(127, 0));
+	for (size_t i = 1; i < itemData.size(); i++) 
+		link.insert(std::make_pair(itemData.at(i).id, (int)i));
 }
 
 void Model::pkmnInit() {

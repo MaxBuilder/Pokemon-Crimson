@@ -28,7 +28,7 @@ public:
 	// Render de l'équipe
 	void renderTeam();
 	// Render de l'inventaire 
-	void renderBag();
+	void renderBag(std::vector<std::string>& subCat);
 	// Render de la carte de dresseur
 	void renderCard();
 	// Render du pokédex

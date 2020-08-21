@@ -10,6 +10,10 @@ void Inventory::loadInventory() {
 		int nb = jsonSource[std::to_string(i)]["nb"].get<int>();
 		items.push_back({ id, nb });
 	}
+	for (int i = 0; i < 8; i++) {
+		items.push_back({i * 100 + 99, 0});
+	}
+	std::sort(items.begin(), items.end(), [](Item a, Item b) { return a.id < b.id; });
 
 	itRef = items.begin();
 	inputFile.close();
@@ -29,16 +33,28 @@ void Inventory::saveInventory() {
 	outputFile.close();
 }
 
-// Prends en paramètre l'id de l'item. Si il existe déja, seule la quantité est ajoutée
-// sinon l'instance de l'item est ajoutée dans le vector. Un tri est effectué suite à cet ajout
-// pour conserver les id dans un ordre croissant (itérateurs).
+// Supprime un item. Si le stack est vide, l'item est enlevé 
+bool Inventory::removeItem(const int id, const int quantity) {
+	Item& item = items.at(id);
+	item.nb += quantity;
+	if (item.nb == 0) {
+		items.erase(items.begin() + id);
+		setIterators(id / 100);
+		return true;
+	}
+	else return false;
+}
+
 // TO DO
-void Inventory::addItem(const int id, const int quantity) {
+void addItem(const int id, const int quantity) {
+	// Si l'item n'existe pas, l'ajouter (basé sur les data d'items)
+	// Puis trier le tableau
 	return;
 }
 
 void Inventory::setIterators(const int catId) {
 	bool begin = false;
+	itRef = items.begin();
 	for (unsigned int i = 0; i < items.size(); i++) {
 		if (!begin) {
 			if (items[i].id >= catId * 100) {
@@ -47,7 +63,7 @@ void Inventory::setIterators(const int catId) {
 			}
 		}
 		if (items[i].id > catId * 100 + 99 and begin) {
-			itEnd = itRef + i - 1;
+			itEnd = itRef + i - 1; 
 			return;
 		}
 	}
@@ -55,7 +71,9 @@ void Inventory::setIterators(const int catId) {
 }
 
 Item& Inventory::getItem(const int n) {
-	return items[n];
+	if (items.at(n).id % 100 == 99) 
+		return ret;
+	else return items[n];
 }
 
 Inventory::Inventory() {}

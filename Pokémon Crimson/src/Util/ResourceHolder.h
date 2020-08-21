@@ -1,6 +1,6 @@
 #pragma once
 
-#include<map>
+#include<unordered_map>
 #include<string>
 #include<memory>
 #include <stdexcept>
@@ -18,7 +18,7 @@ public:
 	const Resource& get(Identifier id) const;
 
 private:
-	std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
+	std::unordered_map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 
 template <typename Resource, typename Identifier>

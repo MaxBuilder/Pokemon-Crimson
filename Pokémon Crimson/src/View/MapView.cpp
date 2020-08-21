@@ -243,7 +243,7 @@ void MapView::renderCard() {
 }
 
 // TO DO : Animate transitions(parametre : x, y overide) + choix selection sous menu
-void MapView::renderBag() {
+void MapView::renderBag(std::vector<std::string>& subCat) {
 	int catId = model.getGameState().invCatId;
 	int itemId = model.getGameState().invItemId;
 	int maxId = model.getGameState().invMaxItemId;
@@ -261,13 +261,13 @@ void MapView::renderBag() {
 	int ref = inv.itBegin - inv.itRef;
 	if (itemId < 4 or maxId < 7) selecPos = 0;
 	else if (itemId > maxId - 3) {
-		drawText(model.itemData[ref + maxId - 7].name, 560, 15);
+		drawText(model.itemData[model.link.find(inv.getItem(ref + maxId - 7).id)->second].name, 560, 15);
 		drawText("x", 1105 + xPos, 15);
 		drawText(std::to_string((inv.itBegin + maxId - 7)->nb), 1140 + xPos, 15);
 		selecPos = maxId - 6;
 	}
 	else {
-		drawText(model.itemData[ref + itemId - 4].name, 560, 15);
+		drawText(model.itemData[model.link.find(inv.getItem(ref + itemId - 4).id)->second].name, 560, 15);
 		drawText("x", 1105 + xPos, 15);
 		drawText(std::to_string((inv.itBegin + itemId - 4)->nb), 1140 + xPos, 15);
 
@@ -277,9 +277,12 @@ void MapView::renderBag() {
 	}
 	for (auto i = selecPos; i < selecPos + 8; i++) {
 		if (i < maxId + 1 and i >= 0) {
-			drawText(model.itemData[ref + i].name, 560, 95 + (i - selecPos) * 80);
-			drawText("x", 1105 + xPos, 95 + (i - selecPos) * 80);
-			drawText(std::to_string((inv.itBegin + i)->nb), 1140 + xPos, 95 + (i - selecPos) * 80);
+			int id = model.link.find(inv.getItem(ref + i).id)->second;
+			drawText(model.itemData[id].name, 560, 95 + (i - selecPos) * 80);
+			if (id != 0) {
+				drawText("x", 1105 + xPos, 95 + (i - selecPos) * 80);
+				drawText(std::to_string((inv.itBegin + i)->nb), 1140 + xPos, 95 + (i - selecPos) * 80);
+			}
 		}
 	}
 	drawImage(sp, 0, 0, 256, 192);
@@ -297,13 +300,16 @@ void MapView::renderBag() {
 	drawText(textMenu[catId], 40, 545);
 
 	// Icons
+	int itemIcon = inv.getItem(ref + itemId).id;
+	if (itemIcon != 127) itemIcon -= catId * 100;
 	sp.setTexture(textureHolder.get(texture::spriteItem));
-	int originX = catId % 2 * 144 + (itemId % 6) * 24;
-	int originY = (catId > 1) * 96 + (catId > 3) * 72 + (catId > 5) * 48 + itemId / 6 * 24;
+	int originX = catId % 2 * 144 + (itemIcon % 6) * 24;
+	int originY = (catId > 1) * 96 + (catId > 3) * 72 + (catId > 5) * 48 + itemIcon / 6 * 24;
 	drawImage(sp, originX, originY, 24, 24, 30, 775);
+	if (itemIcon == 127) drawImage(sp, 144, 240, 24, 24, 30, 775);
 
 	// Description 
-	std::string toRender, description = model.itemData[ref + itemId].description;
+	std::string toRender, description = model.itemData[model.link.find(inv.getItem(ref + itemId).id)->second].description;
 	int line = 0;
 	for (size_t i = 0; i < description.size(); i++) {
 		if (description[i] != '|')
@@ -316,25 +322,16 @@ void MapView::renderBag() {
 	}
 
 	// Render sub-menu 
-	if (model.getGameState().invMenu) {
+	if (subCat.size() > 0) {
 		sp.setTexture(textureHolder.get(texture::guiBag));
-		std::vector<std::string> catList;
-		catList.push_back("ANNULER");
-		if (catId != 3 and catId != 7)
-			catList.push_back("JETER");
-		if (catId == 7)
-			catList.push_back("ENREG.");
-		else catList.push_back("DONNER");
-		if (catId == 1 or catId == 3 or catId == 4 or catId == 7)
-			catList.push_back("UTILISER");
 
-		if (catList.size() == 3) drawImage(sp, 144, 391, 69, 61, 925.f, 645.f);
+		if (subCat.size() == 3) drawImage(sp, 144, 391, 69, 61, 925.f, 645.f);
 		else drawImage(sp, 144, 312, 69, 77, 925.f, 565.f);
 
-		for (unsigned int i = 0; i < catList.size(); i++)
-			drawText(catList[i], 990, 855 - (i * 80));
+		for (size_t i = 0; i < subCat.size(); i++)
+			drawText(subCat.at(i), 990, 855 - (i * 80));
 
-		drawImage(sp, 134, 312, 8, 12, 950.f, 850.f - 80 * ((unsigned int)catList.size() - model.getGameState().invMenuId - 1));
+		drawImage(sp, 134, 312, 8, 12, 950.f, 850.f - 80 * ((unsigned int)subCat.size() - model.getGameState().invMenuId - 1));
 	}
 
 	window.display();
