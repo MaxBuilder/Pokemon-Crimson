@@ -31,6 +31,7 @@ void MapView::renderTeam() {
 	sp.setTexture(textureHolder.get(texture::guiTeam));
 	spb.setTexture(textureHolder.get(texture::spritePkmnBox));
 	drawImage(sp, 0, 0, 256, 192);
+	if (!model.getGameState().teamMenu) drawImage(sp, 256, 0, 253, 28, 15, 810);
 
 	// Test 
 	pkmnTeam.getPkmn(2).stats.at(0) = 0;
@@ -152,6 +153,12 @@ void MapView::renderTeam() {
 		drawHp(5);
 	}
 	
+	// Render du sous menu
+	if (model.getGameState().teamMenu) {
+		drawImage(sp, 256, 28, 254, 77, 5, 570);
+		// Render titres + selecteur
+	}
+
 	window.display();
 }
 
@@ -242,7 +249,7 @@ void MapView::renderCard() {
 	window.display();
 }
 
-// TO DO : Animate transitions(parametre : x, y overide) + choix selection sous menu
+// TO DO : Animate transitions(parametre : x, y overide)
 void MapView::renderBag(std::vector<std::string>& subCat) {
 	int catId = model.getGameState().invCatId;
 	int itemId = model.getGameState().invItemId;

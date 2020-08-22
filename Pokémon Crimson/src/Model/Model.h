@@ -39,8 +39,8 @@ struct GameState {
 	// Team gamestates
 	bool teamMode;
 	int teamId;
-	//bool teamMenu;
-	//int teamMenuId;
+	bool teamMenu;
+	int teamMenuId;
 
 };
 
@@ -68,7 +68,16 @@ struct PkmnData {
 };
 
 class AtkData {
-
+	int id = 0;
+	std::string name = "";
+	int dmg = 0;
+	int type;
+	bool target = 0;
+	int precision = 0;
+	int category = 0;
+	int pp;
+	std::string description = "";
+	int specialEffect = 0;
 };
 
 class Model
@@ -94,7 +103,7 @@ public:
 	// Donnéees 
 	std::vector <ItemData> itemData;
 	std::vector <PkmnData> pkmnData;
-	//std::vector <AtkData> atkData;
+	std::vector <AtkData> atkData;
 
 	// Link itemId / itemData index
 	std::unordered_map<int, int> link;

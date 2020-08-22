@@ -91,6 +91,8 @@ void Controller::mapMenuUpdate(int action) {
 					case 1:	// Entrée dans l'équipe
 						gameState.teamMode = true;
 						gameState.menuMode = false;
+						gameState.teamMenu = false;
+						gameState.teamMenuId = 0;
 						gameState.teamId = 0;
 						break;
 
@@ -108,11 +110,15 @@ void Controller::mapMenuUpdate(int action) {
 						gameState.menuMode = false;
 						break;
 
+					case 4: // Entrée dans le menu de sauvegarde
+						break;
+
+					case 5: // Entrée dans les options
+						break;
+
 					case 6: // Sortie du menu
 						gameState.menuMode = false;
 						break;
-
-						// save, options.
 				}
 				break;
 
@@ -128,36 +134,55 @@ void Controller::mapMenuUpdate(int action) {
 // TO DO : Améliorer système de navigation dans l'interface
 void Controller::mapTeamUpdate(int action) {
 	GameState& gameState = model.getGameState();
+	bool quit = false;
 
 	if (action != prevEvent) {
 		switch (action) {
 		case 1:
-			gameState.teamId--;
-			if (gameState.teamId < 0)
-				gameState.teamId = model.getCharacter().getPkmnTeam().size();
-			break;
-
-		case 2:
-			gameState.teamId++;
-			if (gameState.teamId == model.getCharacter().getPkmnTeam().size() + 1)
-				gameState.teamId = 0;
-			break;
-
-		case 6: // Action à effectuer
-			if (gameState.teamId == model.getCharacter().getPkmnTeam().size()) {
-				gameState.menuMode = true;
-				gameState.teamMode = false;
-				view.mapView.renderWorld();
-				return;
+			if (!gameState.teamMenu) {
+				gameState.teamId--;
+				if (gameState.teamId < 0)
+					gameState.teamId = model.getCharacter().getPkmnTeam().size();
+			}
+			else {
+				gameState.teamMenuId--;
+				if (gameState.teamMenuId < 0)
+					gameState.teamMenuId = 3;
 			}
 			break;
 
+		case 2:
+			if (!gameState.teamMenu) {
+				gameState.teamId++;
+				if (gameState.teamId == model.getCharacter().getPkmnTeam().size() + 1)
+					gameState.teamId = 0;
+			}
+			else {
+				gameState.teamMenuId++;
+				if (gameState.teamMenuId == 3)
+					gameState.teamMenuId = 0;
+			}
+			break;
+
+		case 6: // Action à effectuer
+			if (gameState.teamId == model.getCharacter().getPkmnTeam().size())
+				quit = true;
+			else gameState.teamMenu = true;
+			break;
+
 		case 7:
-			gameState.menuMode = true;
-			gameState.teamMode = false;
-			view.mapView.renderWorld();
-			return;
+			if(gameState.teamMenu)
+				gameState.teamMenu = false;
+			else quit = true;
+			break;
 		}
+	}
+
+	if (quit) {
+		gameState.menuMode = true;
+		gameState.teamMode = false;
+		view.mapView.renderWorld();
+		return;
 	}
 
 	view.mapView.renderTeam();
@@ -217,7 +242,6 @@ void Controller::mapCardUpdate(int action) {
 	}
 }
 
-// TO DO : Validation dans le sous menu
 void Controller::mapBagUpdate(int action) {
 	GameState& gameState = model.getGameState();
 	Inventory& inventory = model.getCharacter().getInventory();
@@ -304,7 +328,7 @@ void Controller::mapBagUpdate(int action) {
 			// Fermeture du sous menu
 			if (subCat.at(id) == "ANNULER")
 				gameState.invMenu = false;
-			// Suppression de l'item (chiant)
+			// Suppression de l'item
 			else if (subCat.at(id) == "JETER") {
 				// Stack supprimé
 				if (inventory.removeItem(std::distance(inventory.itRef, inventory.itBegin) + gameState.invItemId, -1)) {
